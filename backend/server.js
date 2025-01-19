@@ -1,4 +1,4 @@
-const express = require('express');
+const express = ('express');
 const bodyParser = require('body-parser');
 const db = require('./model'); // Import the database model
 require('dotenv').config();
