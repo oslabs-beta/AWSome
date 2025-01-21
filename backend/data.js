@@ -34,7 +34,7 @@ const main = async () => {
   }
 };
 
-//main();
+main();
 
 const test = async () => {
   const input = {
@@ -85,4 +85,4 @@ const test = async () => {
   }
 };
 
-test();
+// test();
