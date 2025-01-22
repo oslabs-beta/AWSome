@@ -7,6 +7,7 @@ import Error from './pages/Error.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Layout from './pages/Layout.jsx';
+import LineChartPage from './pages/components/LineChartPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='/Login' element={<Login />} />
         </Route>
         <Route path='/Signup' element={<Signup />} />
+        <Route path='/chart' element= {<LineChartPage />} />
         <Route path='*' element={<Error/>} />
       </Routes>
     </BrowserRouter>
