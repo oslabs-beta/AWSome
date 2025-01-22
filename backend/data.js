@@ -1,41 +1,10 @@
 import {
   CloudWatchServiceException,
-  ListMetricsCommand,
   GetMetricDataCommand,
 } from '@aws-sdk/client-cloudwatch';
 import { client } from './cloudwatch.js';
 
 // export
-const main = async () => {
-  // Use the AWS console to see available namespaces and metric names. Custom metrics can also be created.
-  // https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/viewing_metrics_with_cloudwatch.html
-  const command = new ListMetricsCommand({
-    Dimensions: [
-      {
-        Name: 'InstanceId',
-        Value: 'i-03dc51c409e900f26',
-      },
-    ],
-    MetricName: 'CPUUtilization',
-    Namespace: 'AWS/EC2',
-  });
-
-  try {
-    const response = await client.send(command);
-    console.log(`Metrics count: ${response.Metrics?.length}`);
-    console.log('response', response.Metrics[0]);
-    return response;
-  } catch (caught) {
-    if (caught instanceof CloudWatchServiceException) {
-      console.error(`Error from CloudWatch. ${caught.name}: ${caught.message}`);
-    } else {
-      throw caught;
-    }
-  }
-};
-
-main();
-
 const test = async () => {
   const input = {
     // GetMetricDataInput
@@ -43,7 +12,7 @@ const test = async () => {
       // MetricDataQueries // required
       {
         // MetricDataQuery
-        Id: 'tester', // required
+        Id: 'cpuutilization', // required
         MetricStat: {
           // MetricStat
           Metric: {
@@ -60,21 +29,114 @@ const test = async () => {
             ],
           },
           Period: 300, // required
-          Stat: 'Minimum', // required
+          Stat: 'Average', // required
+          Unit: 'Percent',
+        },
+      },
+      {
+        // MetricDataQuery
+        Id: 'networkin', // required
+        MetricStat: {
+          // MetricStat
+          Metric: {
+            // Metric
+            Namespace: 'AWS/EC2',
+            MetricName: 'NetworkIn',
+            Dimensions: [
+              // Dimensions
+              {
+                // Dimension
+                Name: 'InstanceId', // required
+                Value: 'i-03dc51c409e900f26', // required
+              },
+            ],
+          },
+          Period: 300, // required
+          Stat: 'Average', // required
+          Unit: 'Bytes',
+        },
+      },
+      {
+        // MetricDataQuery
+        Id: 'networkout', // required
+        MetricStat: {
+          // MetricStat
+          Metric: {
+            // Metric
+            Namespace: 'AWS/EC2',
+            MetricName: 'NetworkOut',
+            Dimensions: [
+              // Dimensions
+              {
+                // Dimension
+                Name: 'InstanceId', // required
+                Value: 'i-03dc51c409e900f26', // required
+              },
+            ],
+          },
+          Period: 300, // required
+          Stat: 'Average', // required
+          Unit: 'Bytes',
+        },
+      },
+      {
+        // MetricDataQuery
+        Id: 'write', // required
+        MetricStat: {
+          // MetricStat
+          Metric: {
+            // Metric
+            Namespace: 'AWS/EC2',
+            MetricName: 'EBSWriteOps',
+            Dimensions: [
+              // Dimensions
+              {
+                // Dimension
+                Name: 'InstanceId', // required
+                Value: 'i-03dc51c409e900f26', // required
+              },
+            ],
+          },
+          Period: 300, // required
+          Stat: 'Average', // required
+          Unit: 'Count',
+        },
+      },
+      {
+        // MetricDataQuery
+        Id: 'read', // required
+        MetricStat: {
+          // MetricStat
+          Metric: {
+            // Metric
+            Namespace: 'AWS/EC2',
+            MetricName: 'EBSReadOps',
+            Dimensions: [
+              // Dimensions
+              {
+                // Dimension
+                Name: 'InstanceId', // required
+                Value: 'i-03dc51c409e900f26', // required
+              },
+            ],
+          },
+          Period: 300, // required
+          Stat: 'Average', // required
+          Unit: 'Count',
         },
       },
     ],
     StartTime: new Date('2025-01-18T23:05:00.000Z'), // required
     EndTime: new Date('2025-01-18T23:30:00.000Z'), // required
     ScanBy: 'TimestampDescending',
-    // MaxDatapoints: 30,
+    MaxDatapoints: 1000,
   };
 
   const command = new GetMetricDataCommand(input);
   try {
     const response = await client.send(command);
-    console.log('response timestamp', response.MetricDataResults[0].Timestamps);
-    console.log('response value', response.MetricDataResults[0].Values);
+    console.log('response results', response.MetricDataResults);
+    console.log('response all', response);
     return response;
   } catch (caught) {
     if (caught instanceof CloudWatchServiceException) {
