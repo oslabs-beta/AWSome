@@ -1,7 +1,8 @@
 import {
+  CloudWatchClient,
   CloudWatchServiceException,
   ListMetricsCommand,
-  GetMetricDataCommand,
+  GetMetricDataCommand, 
 } from '@aws-sdk/client-cloudwatch';
 import { client } from './cloudwatch.js';
 
