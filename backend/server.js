@@ -16,7 +16,7 @@ app.use('/auth', router);
 
 app.get('/data', async (req, res) => {
   let data = await awsData();
-  console.log(data);
+  //console.log(data);
   res.status(200).json({ data });
 });
 
