@@ -1,13 +1,11 @@
 import { Outlet } from 'react-router';
 
 function Layout() {
+  return (
+    <div style={{ backgroundColor: 'lightCoral' }}>
+      <Outlet />
+    </div>
+  );
+}
 
-    return (
-        <div style={{ backgroundColor: 'green'}}>
-        <Outlet />
-      </div>
-    )
-  }
-  
-  export default Layout
-  
+export default Layout;
