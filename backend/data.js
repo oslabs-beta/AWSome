@@ -1,16 +1,16 @@
-import {
-  CloudWatchClient,
-  CloudWatchServiceException,
-  GetMetricDataCommand, 
-} from '@aws-sdk/client-cloudwatch';
+import {// Lines 1-5 is importing the AWS SDK tools
+  CloudWatchClient, // Used to connect to CloudWatch
+  CloudWatchServiceException, // Handles specific erros from CloudWatch
+  GetMetricDataCommand,  // Sends a request to fetch metric data
+} from '@aws-sdk/client-cloudwatch'; 
 
-const client = new CloudWatchClient({});
+// Create a CloudWatch Client
+const client = new CloudWatchClient({}); // This sets up a connection to send and recieve data.
 
-// export
-const test = async () => {
-  const input = {
+export const awsData = async () => { // Starts the awsData function, marked as async because it handles promises (waiting for AWS data)
+  const input = { // Input object describes the data we're requesting from CloudWatch
     // GetMetricDataInput
-    MetricDataQueries: [
+    MetricDataQueries: [ // A list of all the metrics we want
       // MetricDataQueries // required
       {
         // MetricDataQuery
@@ -33,8 +33,8 @@ const test = async () => {
           Period: 300, // required
           Stat: 'Average', // required
           Unit: 'Percent',
-        },
-      },
+        }, // Lines 17-38 fetches the CPU usage for the EC2 instance
+        }, // Data is averaged over 5 min (period:300 seconds) resulting in a percentage format (Unit:percent)
       {
         // MetricDataQuery
         Id: 'networkin', // required
@@ -56,7 +56,7 @@ const test = async () => {
           Period: 300, // required
           Stat: 'Average', // required
           Unit: 'Bytes',
-        },
+        }, // 41-60 fetching the incoming network traffic (NetworkIn) in Bytes
       },
       {
         // MetricDataQuery
@@ -79,7 +79,7 @@ const test = async () => {
           Period: 300, // required
           Stat: 'Average', // required
           Unit: 'Bytes',
-        },
+        }, // lines 64-83 fetching the outgoing network traffic (NetworkOut) in Bytes
       },
       {
         // MetricDataQuery
@@ -102,7 +102,7 @@ const test = async () => {
           Period: 300, // required
           Stat: 'Average', // required
           Unit: 'Count',
-        },
+        }, //lines 87-106 fetches write operations on the instance's disk (EBSWriteOps)
       },
       {
         // MetricDataQuery
@@ -125,28 +125,30 @@ const test = async () => {
           Period: 300, // required
           Stat: 'Average', // required
           Unit: 'Count',
-        },
+        }, //lines 110-129 fetches read operations on the instance's disk (EBSReadOps)
       },
     ],
     StartTime: new Date('2025-01-18T23:05:00.000Z'), // required
     EndTime: new Date('2025-01-18T23:30:00.000Z'), // required
-    ScanBy: 'TimestampDescending',
-    MaxDatapoints: 1000,
+    ScanBy: 'TimestampDescending', // Gets the newest data first
+    MaxDatapoints: 1000, // Max Datapoints 100,000
   };
 
-  const command = new GetMetricDataCommand(input);
-  try {
+  const command = new GetMetricDataCommand(input); //Creates the request to send to CloudWatch using the input
+  try { // Sends the request and waits for the response
     const response = await client.send(command);
-    console.log('response results', response.MetricDataResults);
-    console.log('response all', response);
-    return response;
-  } catch (caught) {
-    if (caught instanceof CloudWatchServiceException) {
+    // console.log('response results', response.MetricDataResults);
+    return response; // logs the metric data and entire response if successful
+  } catch (caught) { 
+    if (caught instanceof CloudWatchServiceException) { // if theres a CloudWatch error, it logs the error name and message
       console.error(`Error from CloudWatch. ${caught.name}: ${caught.message}`);
     } else {
-      throw caught;
+      throw caught; // if its a different error, it throws it so it can be handled elsewhere
     }
   }
 };
 
-test();
+
+
+
+// awsData(); // Runs the function to execute everything
