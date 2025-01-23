@@ -6,19 +6,19 @@ import Error from './pages/Error.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Layout from './pages/Layout.jsx';
-import LineChartPage from './pages/components/LineChartPage.jsx'
+import LineChartPage from './pages/components/LineChartPage.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route element={<Layout />}>
-          <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Layout />}>
+          <Route path='/Login' element={<Login />} />
+          <Route path='/Signup' element={<Signup />} />
         </Route>
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/chart' element= {<LineChartPage />} />
+        <Route path='/Home' element={<Home />} />
+        <Route path='/chart' element={<LineChartPage />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
