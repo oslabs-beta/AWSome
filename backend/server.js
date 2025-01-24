@@ -1,26 +1,47 @@
-const express = ('express');
-const bodyParser = require('body-parser');
-const db = require('./model'); // Import the database model
-require('dotenv').config();
+import express from 'express';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+import { awsData } from './data.js';
+import router from './auth.js';
+const port = 3000;
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Test route to verify the connection
-app.get('/test', async (req, res) => {
-  try {
-    const result = await db.query('SELECT NOW() AS current_time');
-    res.status(200).json({ currentTime: result[0].current_time });
-  } catch (err) {
-    console.error('Error fetching data:', err.message);
-    res.status(500).send('Server error');
-  }
+app.use('/auth', router);
+
+app.get('/data', async (req, res) => {
+  let data = await awsData();
+  //console.log(data);
+  res.status(200).json({ data });
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+app.use('/hi', (req, res) => {
+  console.log('in server!');
+  return res.status(200).send('hi');
+});
+
+app.use((req, res) =>
+  res.status(404).send("This is not the page you're looking for...")
+);
+
+app.use((err, req, res, next) => {
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 500,
+    message: { err: 'An error occurred' },
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
+});
+
+app.use(express.static(path.resolve(__dirname, '../src')));
+
+app.listen(port, () => {
+  console.log(`Server started at http://localhost:${port}`);
 });
