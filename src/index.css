@@ -1,7 +1,10 @@
-html {
-  background-color: aqua;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
 }
 
-h1 {
-  color: blue;
-}
