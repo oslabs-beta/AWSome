@@ -7,6 +7,7 @@ import Error from './pages/Error.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Layout from './pages/Layout.jsx';
+import Forgot from './pages/Forgot.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')).render(
         </Route>
         <Route path='/Home' element={<Home />} />
         <Route path='*' element={<Error />} />
+        <Route path='/Forgot' element={<Forgot />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

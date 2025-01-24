@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router';
+import './Layout.css'
 
 function Layout() {
   return (
