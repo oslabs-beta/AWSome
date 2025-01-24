@@ -1,9 +1,32 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 function Login() {
-  return (
-    <div>
-      <div className='header'></div>
-      <div className='page-wrapper'>
-        <div className='page-container-left'></div>
+  const navigate = useNavigate();
+
+  
+  //this function allows user to go to signup page
+  const signUp = () => {
+    fetch('/signup')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const { redirectTo } = data;
+        //this will be used if the login is incorrect, the user will be
+        //redirected to Signup
+        if (redirectTo) {
+          navigate(redirectTo);
+        }
+      });
+  };
+                              
+  return (                        
+    <div className='flex w-full h-screen'>
+      <div className='page-wrapper flex justify-center items-center w-full'>
+        <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-900 to-pink-500 rounded-full'>
+          <div className='w-1 h-1 bg-white/10 backdrop-blur-lg'></div>
+          <div className='w-full h-1/2 bg-white/10 backdrop-blur-lg'></div>
+        </div>
         <div className='page-container-2'>
           <div className='block'>
             <div className='form-wrapper'>
@@ -34,12 +57,13 @@ function Login() {
                   </div>
                 </a>
               </div>
-              <div className='formbox'>
+
+              <div className='w-full flex items-center justify-center lg:w-1/2'>
                 <form>
                   <label htmlFor='email'>Email: </label>
-                  <input type='text' id='email'></input>
-                  <label htmlFor='password' id='password'></label>
-                  <input type='text' id='password'></input>
+                  <input type='email' id='email' required></input>
+                  <label htmlFor='password'>Password: </label>
+                  <input type='password' id='password' required></input>
                   <button type='submit'>Submit</button>
                   <input type='checkbox' id='savePassword'></input>
                   <label htmlFor='savePassword'>Remember for 30 days</label>
@@ -51,6 +75,13 @@ function Login() {
               <p>
                 Forgot Password? <a href='/error'>Click here</a>
               </p>
+              <button
+                onClick={() => {
+                  signUp();
+                }}
+              >
+                Sign up
+              </button>
             </div>
           </div>
         </div>
