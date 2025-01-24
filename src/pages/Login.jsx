@@ -1,4 +1,12 @@
+
 function Login() {
+
+  // const checkLogin = ()=>{
+  //   fetch('/signup').
+  // }
+
+
+
   return (
     <div>
       <div className='header'></div>
