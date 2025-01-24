@@ -48,9 +48,9 @@ function Login() {
               <div className='formbox'>
                 <form>
                   <label htmlFor='email'>Email: </label>
-                  <input type='text' id='email'></input>
-                  <label htmlFor='password' id='password'></label>
-                  <input type='text' id='password'></input>
+                  <input type='email' id='email'></input>
+                  <label htmlFor='password'>Password: </label>
+                  <input type='password' id='password'></input>
                   <button
                     type='submit'
                     onClick={() => {
