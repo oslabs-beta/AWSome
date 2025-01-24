@@ -16,7 +16,28 @@ function Home() {
         </nav>
       </header>
 
-    
+      {/* Metrics Section */}
+      <main className="flex-grow flex flex-col items-center py-12">
+        <h2 className="text-3xl font-extrabold mb-8">METRICS</h2>
+        <div className="grid grid-cols-2 gap-6 w-full max-w-5xl px-6">
+          <div className="bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col">
+            <h3 className="text-lg font-semibold mb-4">Memory</h3>
+            <div className="h-40 bg-purple-600 rounded"></div>
+          </div>
+          <div className="bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col">
+            <h3 className="text-lg font-semibold mb-4">Network Traffic</h3>
+            <div className="h-40 bg-purple-600 rounded"></div>
+          </div>
+          <div className="bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col">
+            <h3 className="text-lg font-semibold mb-4">CPU Usage</h3>
+            <div className="h-40 bg-purple-600 rounded"></div>
+          </div>
+          <div className="bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col">
+            <h3 className="text-lg font-semibold mb-4">Important Data</h3>
+            <div className="h-40 bg-purple-600 rounded"></div>
+          </div>
+        </div>
+      </main>
 
       {/* Footer */}
       <footer className="bg-purple-800 text-center py-4">
