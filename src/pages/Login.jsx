@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
   const navigate = useNavigate();
 
+  
   //this function allows user to go to signup page
   const signUp = () => {
     fetch('/signup')
@@ -18,12 +19,12 @@ function Login() {
         }
       });
   };
-
-  return (
-    <div className='flex w-full h-screen bg-gradient-to-br from-pink-600 via-pink-300 to-white'>
+                              
+  return (                        
+    <div className='flex w-full h-screen'>
       <div className='page-wrapper flex justify-center items-center w-full'>
-        <div className='hidden lg:flex h-1/2 items-center justify-center bg-gray-200'>
-          <div className='w-60 h-60 bg-gradient-to-tr from-violet-900 to-pink-500 rounded-full'></div>
+        <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-900 to-pink-500 rounded-full'>
+          <div className='w-1 h-1 bg-white/10 backdrop-blur-lg'></div>
           <div className='w-full h-1/2 bg-white/10 backdrop-blur-lg'></div>
         </div>
         <div className='page-container-2'>
