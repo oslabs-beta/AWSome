@@ -1,31 +1,19 @@
-const { Pool } = require('pg');
-require('dotenv').config();
+const { Client } = require("pg");
 
-// Create a pool instance using `.env` values
-const pool = new Pool({
-  host: process.env.DATABASE_HOST,
-  port: process.env.DATABASE_PORT,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
+// Create a PostgreSQL client instance
+const client = new Client({
+  user: "AWSome_members", // Your PostgreSQL username
+  host: "localhost", // If PostgreSQL is running locally
+  database: "aws_monitoring", // The database you created
+  password: "AWSomepassword", // Your PostgreSQL user's password
+  port: 5432, // Default PostgreSQL port
 });
 
-// Test the connection
-pool.on('connect', () => {
-  console.log('Connected to the PostgreSQL database');
-});
+// Connect to the PostgreSQL database
+client
+  .connect()
+  .then(() => console.log("Connected to PostgreSQL!"))
+  .catch((err) => console.error("Error connecting to PostgreSQL:", err));
 
-// Reusable query function
-const query = async (text, params) => {
-  try {
-    const result = await pool.query(text, params);
-    return result.rows;
-  } catch (err) {
-    console.error('Database query error:', err.message);
-    throw err;
-  }
-};
-
-module.exports = {
-  query,
-};
+// Export the client to use in other files
+module.exports = client;
