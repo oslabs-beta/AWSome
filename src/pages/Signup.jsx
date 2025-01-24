@@ -1,4 +1,24 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+
 function Signup() {
+  const navigate = useNavigate();
+
+  //This allows user to go to login page
+  const login = () => {
+    fetch('/login')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const { redirectTo } = data;
+        //this will be used if the login is incorrect, the user will be
+        //redirected to Signup
+        if (redirectTo) {
+          navigate(redirectTo);
+        }
+      });
+  };
+
   return (
     <div>
       <div className='header'></div>
@@ -29,16 +49,13 @@ function Signup() {
               <div className='formbox'>
                 <form>
                   <label htmlFor='first-name'>First Name: </label>
-                  <input type='text' id='first-name'></input>
+                  <input type='text' id='first-name' required></input>
                   <label htmlFor='last-name'>Last Name: </label>
-                  <input type='text' id='last-name'></input>
+                  <input type='text' id='last-name' required></input>
                   <label htmlFor='email'>Email: </label>
-                  <input type='text' id='email'></input>
-                  <label htmlFor='password' id='password'>
-                    {' '}
-                    Password:{' '}
-                  </label>
-                  <input type='text' id='password'></input>
+                  <input type='email' id='email' required></input>
+                  <label htmlFor='password'> Password: </label>
+                  <input type='password' id='password' required></input>
                   <button type='submit'>Submit</button>
                   <input type='checkbox' id='savePassword'></input>
                   <label htmlFor='savePassword'>Remember for 30 days</label>
@@ -49,6 +66,14 @@ function Signup() {
               <p>
                 Forgot Password? <a href='/error'>Click here</a>
               </p>
+              <p>Have an account? Login instead</p>
+              <button
+                onClick={() => {
+                  login();
+                }}
+              >
+                Login
+              </button>
             </div>
           </div>
         </div>

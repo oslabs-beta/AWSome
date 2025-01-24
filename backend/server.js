@@ -3,6 +3,8 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { awsData } from './data.js';
 import router from './auth.js';
+import loginRouter from './routes/loginRouter.js';
+import signupRouter from './routes/signupRouter.js';
 const port = 3000;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -13,6 +15,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', router);
+
+app.use('/signup', signupRouter);
+app.use('/login', loginRouter);
 
 app.get('/data', async (req, res) => {
   let data = await awsData();
