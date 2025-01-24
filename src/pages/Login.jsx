@@ -1,7 +1,6 @@
 function Login() {
-
   const checkLogin = () => {
-    fetch('/signup')
+    fetch('/login')
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -10,7 +9,9 @@ function Login() {
 
   return (
     <div>
-      <div className='header'></div>
+      <div className='bg-blue-300'>
+        <h1> something </h1>
+      </div>
       <div className='page-wrapper'>
         <div className='page-container-left'></div>
         <div className='page-container-2'>
@@ -43,6 +44,7 @@ function Login() {
                   </div>
                 </a>
               </div>
+
               <div className='formbox'>
                 <form>
                   <label htmlFor='email'>Email: </label>
@@ -52,7 +54,7 @@ function Login() {
                   <button
                     type='submit'
                     onClick={() => {
-                      checkLogin;
+                      checkLogin();
                     }}
                   >
                     Submit
