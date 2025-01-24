@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global styles */
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
+html {
+  background-color: rgb(255, 214, 214);
 }
-
+h1 {
+  color: blue;
+}

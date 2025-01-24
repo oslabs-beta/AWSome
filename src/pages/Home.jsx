@@ -1,7 +1,19 @@
 import React from 'react';
 import './Home.css';
+import './Home.css';
 
 function Home() {
+  function fetchdata() {
+    fetch('/data')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => console.log('got nothing', err));
+  }
+
+
+
   return (
     <div className="bg-gradient-to-br from-purple-900 to-indigo-800 text-white font-sans min-h-screen flex flex-col">
       {/* Navbar */}
