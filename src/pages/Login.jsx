@@ -1,11 +1,12 @@
-
 function Login() {
 
-  // const checkLogin = ()=>{
-  //   fetch('/signup').
-  // }
-
-
+  const checkLogin = () => {
+    fetch('/signup')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   return (
     <div>
@@ -48,7 +49,14 @@ function Login() {
                   <input type='text' id='email'></input>
                   <label htmlFor='password' id='password'></label>
                   <input type='text' id='password'></input>
-                  <button type='submit'>Submit</button>
+                  <button
+                    type='submit'
+                    onClick={() => {
+                      checkLogin;
+                    }}
+                  >
+                    Submit
+                  </button>
                   <input type='checkbox' id='savePassword'></input>
                   <label htmlFor='savePassword'>Remember for 30 days</label>
                   <br></br>
