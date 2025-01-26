@@ -1,10 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { CognitoUser } from 'amazon-cognito-identity-js';
+import userPool from '../pools/userPool.js';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [data, setData] = useState(' ');
+
   const navigate = useNavigate();
 
-  
+  //on form submission, this function runs
+  const onSubmit = (event) => {
+    event.preventDefault();
+    userPool.Login(email, password, [], null, (err, data) => {
+      err ? console.error(err) : console.log(data);
+    });
+  };
+
   //this function allows user to go to signup page
   const signUp = () => {
     fetch('/signup')
@@ -19,8 +33,8 @@ function Login() {
         }
       });
   };
-                              
-  return (                        
+
+  return (
     <div className='flex w-full h-screen'>
       <div className='page-wrapper flex justify-center items-center w-full'>
         <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-900 to-pink-500 rounded-full'>
@@ -59,11 +73,17 @@ function Login() {
               </div>
 
               <div className='w-full flex items-center justify-center lg:w-1/2'>
-                <form>
+                <form onSubmit={onSubmit}>
                   <label htmlFor='email'>Email: </label>
-                  <input type='email' id='email' required></input>
+                  <input
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                  ></input>
                   <label htmlFor='password'>Password: </label>
-                  <input type='password' id='password' required></input>
+                  <input
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                  ></input>
                   <button type='submit'>Submit</button>
                   <input type='checkbox' id='savePassword'></input>
                   <label htmlFor='savePassword'>Remember for 30 days</label>
