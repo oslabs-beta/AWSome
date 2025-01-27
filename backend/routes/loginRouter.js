@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', loginController.authenticate, (req, res) => {
   console.log('test');
-  res.json('test');
+  return res.json({ redirectTo: '/' });
 });
 
 router.post('/', loginController.authenticate, (req, res) => {});
