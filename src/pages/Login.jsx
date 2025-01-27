@@ -1,23 +1,53 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CognitoUser } from 'amazon-cognito-identity-js';
+import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import userPool from '../pools/userPool.js';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [data, setData] = useState(' ');
+  const [success, setSuccess] = useState(' ');
 
   const navigate = useNavigate();
 
-  //on form submission, this function runs
-  const onSubmit = (event) => {
+  const handlesLogin = (event) => {
     event.preventDefault();
-    userPool.Login(email, password, [], null, (err, data) => {
-      err ? console.error(err) : console.log(data);
+
+    const user = new CognitoUser({
+      Username: email,
+      Pool: userPool,
     });
+
+    const authenticationDetails = new AuthenticationDetails({
+      Username: email,
+      Password: password,
+    });
+
+    user.authenticateUser(
+      authenticationDetails,
+      {
+        onSuccess: (data) => {
+          console.log('Login Successful:', data);
+          setSuccess('true');
+        },
+      },
+      {
+        onFailure: (err) => {
+          console.error('Login not successful', err);
+          setError(err.message || 'Something did not go right');
+        },
+      }
+    );
   };
+
+  //on form submission, this function runs
+  // const onSubmit = (event) => {
+  //   event.preventDefault();
+  //   userPool.Login(email, password, [], null, (err, data) => {
+  //     err ? console.error(err) : console.log(data);
+  //   });
+  // };
 
   //this function allows user to go to signup page
   const signUp = () => {
@@ -73,18 +103,22 @@ function Login() {
               </div>
 
               <div className='w-full flex items-center justify-center lg:w-1/2'>
-                <form onSubmit={onSubmit}>
-                  <label htmlFor='email'>Email: </label>
+                <form onSubmit={handlesLogin}>
+                  <label>Email: </label>
                   <input
+                    type='email'
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                   ></input>
-                  <label htmlFor='password'>Password: </label>
+                  <label>Password: </label>
                   <input
+                    type='password'
                     value={password}
-                    onChange={(event) => setPassword(event.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
                   ></input>
-                  <button type='submit'>Submit</button>
+                  <button type='submit'>Login</button>
                   <input type='checkbox' id='savePassword'></input>
                   <label htmlFor='savePassword'>Remember for 30 days</label>
                   <br></br>
