@@ -29,7 +29,7 @@ function Login() {
       onSuccess: (data) => {
         console.log('Login Successful:', data);
         setSuccess(true);
-        navigate('/');
+        navigate('/Home');
       },
       onFailure: (err) => {
         console.error('Login not successful', err);

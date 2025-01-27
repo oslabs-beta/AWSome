@@ -67,7 +67,6 @@ function Signup() {
                     Alias, dolorum. Dignissimos amet in quidem id est
                     consequuntur, natus aliquam possimus maiores dolorum eum
                     odio earum tenetur facilis necessitatibus magni similique!
->>>>>>> 19b92e7cd15b4c8c91655ec198bc1ec701113558
                   </div>
                   <div className='socials-login'>
                     <h4>Sign up instead with Google or </h4>
