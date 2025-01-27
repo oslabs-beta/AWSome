@@ -66,16 +66,13 @@ function Login() {
   };
 
   return (
-    <div className='flex w-full h-screen'>
-      <div className='page-wrapper flex justify-center items-center w-full'>
-        <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-900 to-pink-500 rounded-full'>
-          <div className='w-1 h-1 bg-white/10 backdrop-blur-lg'></div>
-          <div className='w-full h-1/2 bg-white/10 backdrop-blur-lg'></div>
-        </div>
+    <><div className='flex w-full h-screen'>
+      <div className='page-wrapper w-full flex items-center justify-center items-center'>
         <div className='page-container-2'>
           <div className='block'>
-            <div className='form-wrapper'>
-              <h2 className='mainHeading'>Welcome back!</h2>
+            <div className='form-wrapper bg-white px-10 py-20 rounded-3xl'>
+              <h2 className='mainHeading text-5xl font-semibold'>Welcome back!</h2>
+              <p className='font-medium text-lg text-gray-500 mt-4'>Welcome back! Please enter your details.</p>
               <div className='general-desc'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias,
                 dolorum. Dignissimos amet in quidem id est consequuntur, natus
@@ -103,28 +100,34 @@ function Login() {
                 </a>
               </div>
 
-              <div className='w-full flex items-center justify-center lg:w-1/2'>
+              <div className='mt-8'>
                 <form onSubmit={handlesLogin}>
-                  <label>Email: </label>
+                  <label className='text-lg font-medium'>Email: </label>
                   <input
                     type='email'
+                    className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    placeholder='Enter your email'
                   ></input>
                   <label>Password: </label>
                   <input
                     type='password'
+                    className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    placeholder='Enter your password'
                   ></input>
                   <button type='submit'>Login</button>
                   <input type='checkbox' id='savePassword'></input>
                   <label htmlFor='savePassword'>Remember for 30 days</label>
                   <br></br>
                 </form>
-                <div></div>
+                <div>
+                  <button>Forgot Password</button>
+                </div>
               </div>
 
               <p>
@@ -133,7 +136,7 @@ function Login() {
               <button
                 onClick={() => {
                   signUp();
-                }}
+                } }
               >
                 Sign up
               </button>
@@ -142,6 +145,11 @@ function Login() {
         </div>
       </div>
     </div>
+    <div className='hidden relative lg:flex h-full w-1/2 items-center justify-center bg-gray-200'>
+      <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-900 to-pink-500 rounded-full animate-spin'></div>
+      <div className='w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg'></div>
+    </div></>
+    
   );
 }
 
