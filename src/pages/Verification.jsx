@@ -20,7 +20,7 @@ const Verify = ({ email }) => {
         setMessage(`Verification failed: ${err.message}`);
       } else {
         setMessage(`Account verified successfully!`);
-        navigate('/Login');
+        navigate('/');
       }
     });
   };
