@@ -2,7 +2,8 @@ import {// Lines 1-5 is importing the AWS SDK tools
   CloudWatchClient, // Used to connect to CloudWatch
   CloudWatchServiceException, // Handles specific erros from CloudWatch
   GetMetricDataCommand,  // Sends a request to fetch metric data
-} from '@aws-sdk/client-cloudwatch'; 
+} from '@aws-sdk/client-cloudwatch';
+
 
 // Create a CloudWatch Client
 const client = new CloudWatchClient({}); // This sets up a connection to send and recieve data.
@@ -137,7 +138,7 @@ export const awsData = async () => { // Starts the awsData function, marked as a
   const command = new GetMetricDataCommand(input); //Creates the request to send to CloudWatch using the input
   try { // Sends the request and waits for the response
     const response = await client.send(command);
-    // console.log('response results', response.MetricDataResults);
+     console.log('response results', response.MetricDataResults);
     return response; // logs the metric data and entire response if successful
   } catch (caught) { 
     if (caught instanceof CloudWatchServiceException) { // if theres a CloudWatch error, it logs the error name and message
@@ -148,7 +149,3 @@ export const awsData = async () => { // Starts the awsData function, marked as a
   }
 };
 
-
-
-
-// awsData(); // Runs the function to execute everything
