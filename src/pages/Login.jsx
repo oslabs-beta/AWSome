@@ -25,21 +25,16 @@ function Login() {
       Password: password,
     });
 
-    user.authenticateUser(
-      authenticationDetails,
-      {
-        onSuccess: (data) => {
-          console.log('Login Successful:', data);
-          setSuccess(true);
-        },
+    user.authenticateUser(authenticationDetails, {
+      onSuccess: (data) => {
+        console.log('Login Successful:', data);
+        setSuccess(true);
       },
-      {
-        onFailure: (err) => {
-          console.error('Login not successful', err);
-          setError(err.message || 'Something did not go right');
-        },
-      }
-    );
+      onFailure: (err) => {
+        console.error('Login not successful', err);
+        setError(err.message || 'Something did not go right');
+      },
+    });
   };
 
   //on form submission, this function runs
