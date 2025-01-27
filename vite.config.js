@@ -1,9 +1,15 @@
 import { defineConfig } from 'vite';
 import tailwindcss from 'tailwindcss';
 import react from '@vitejs/plugin-react';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    nodePolyfills({
+      globals: true, // Enable polyfilling for `global`
+    }),
+  ],
   css: {
     postcss: {
       plugins: [tailwindcss()],

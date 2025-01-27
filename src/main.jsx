@@ -10,6 +10,9 @@ import LineChartPage from './pages/components/LineChartPage.jsx';
 import BarChart from './pages/components/Barchart.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router';
 
+//polyfill for global
+window.global = window;
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
