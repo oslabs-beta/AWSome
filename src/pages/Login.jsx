@@ -1,7 +1,17 @@
 function Login() {
+  const checkLogin = () => {
+    fetch('/login')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   return (
     <div>
-      <div className='header'></div>
+      <div className='bg-blue-300'>
+        <h1> something </h1>
+      </div>
       <div className='page-wrapper'>
         <div className='page-container-left'></div>
         <div className='page-container-2'>
@@ -34,13 +44,21 @@ function Login() {
                   </div>
                 </a>
               </div>
+
               <div className='formbox'>
                 <form>
                   <label htmlFor='email'>Email: </label>
-                  <input type='text' id='email'></input>
-                  <label htmlFor='password' id='password'></label>
-                  <input type='text' id='password'></input>
-                  <button type='submit'>Submit</button>
+                  <input type='email' id='email'></input>
+                  <label htmlFor='password'>Password: </label>
+                  <input type='password' id='password'></input>
+                  <button
+                    type='submit'
+                    onClick={() => {
+                      checkLogin();
+                    }}
+                  >
+                    Submit
+                  </button>
                   <input type='checkbox' id='savePassword'></input>
                   <label htmlFor='savePassword'>Remember for 30 days</label>
                   <br></br>
