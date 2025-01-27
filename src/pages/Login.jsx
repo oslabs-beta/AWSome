@@ -73,32 +73,6 @@ function Login() {
             <div className='form-wrapper bg-white px-10 py-20 rounded-3xl'>
               <h2 className='mainHeading text-5xl font-semibold'>Welcome back!</h2>
               <p className='font-medium text-lg text-gray-500 mt-4'>Welcome back! Please enter your details.</p>
-              <div className='general-desc'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias,
-                dolorum. Dignissimos amet in quidem id est consequuntur, natus
-                aliquam possimus maiores dolorum eum odio earum tenetur facilis
-                necessitatibus magni similique!
-              </div>
-              <div className='socials-login'>
-                <a
-                  href='https://accounts.google.com/o/oauth2/auth?response_type=code&amp;access_type=online&amp;client_id=1046768301397-9u42bnvab0vmvdf5f6lnf6p821vfh57m.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Fdash.saleskip.com%2Fp%2F&amp;state&amp;scope=email%20profile&amp;approval_prompt=auto'
-                  className='social-login w-inline-block'
-                >
-                  <img src='images/G.png' alt='' className='image'></img>
-                  <div className='div-block-64'>
-                    <div className='text-block-9'>Google</div>
-                  </div>
-                </a>
-                <a
-                  href='https://accounts.google.com/o/oauth2/auth?response_type=code&amp;access_type=online&amp;client_id=1046768301397-9u42bnvab0vmvdf5f6lnf6p821vfh57m.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Fdash.saleskip.com%2Fp%2F&amp;state&amp;scope=email%20profile&amp;approval_prompt=auto'
-                  className='social-login w-inline-block'
-                >
-                  <img src='images/G.png' alt='' className='image'></img>
-                  <div className='div-block-64'>
-                    <div className='text-block-9'>Facebook</div>
-                  </div>
-                </a>
-              </div>
 
               <div className='mt-8'>
                 <form onSubmit={handlesLogin}>
@@ -111,7 +85,7 @@ function Login() {
                     required
                     placeholder='Enter your email'
                   ></input>
-                  <label>Password: </label>
+                  <label className='text-lg font-medium'>Password: </label>
                   <input
                     type='password'
                     className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
@@ -120,32 +94,43 @@ function Login() {
                     required
                     placeholder='Enter your password'
                   ></input>
-                  <button type='submit'>Login</button>
-                  <input type='checkbox' id='savePassword'></input>
-                  <label htmlFor='savePassword'>Remember for 30 days</label>
-                  <br></br>
+                  <div className='mt-8 flex justify-between items-center'>
+                    <div>
+                      <input
+                        type='checkbox' id='savePassword'>
+                      </input>
+                      <label className='ml-2 font-medium text-base' htmlFor='savePassword'>Remember for 30 days</label>
+                    </div>
+                    
+                    <button className='ml-2 font-medium text-violet-500 text-base' a href='/forgot'>Forgot Password</button>
+                  </div>
                 </form>
-                <div>
-                  <button>Forgot Password</button>
+                <div className='mt-8 flex flex-col gap-y-4'>
+                  <button className='active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold' type='submit'>Sign in</button>
+                  <button className='flex rounded-xl py-3 border-2 border-gray-300 items-center justify-center gap-2 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all'type='submit'>Sign in with Google</button>
+                </div>
+                <div className='mt-8 flex justify-center items-center'>
+                  <p className='font-medium text-base'>Don't have an account?</p>
+                  <button
+                  className='text-violet-500 font-medium ml-2'
+                  onClick={() => {
+                    signUp();
+                } }
+              >
+                Sign up
+              </button>
                 </div>
               </div>
 
               <p>
                 Forgot Password? <a href='/forgot'>Click here</a>
               </p>
-              <button
-                onClick={() => {
-                  signUp();
-                } }
-              >
-                Sign up
-              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div className='hidden relative lg:flex h-full w-1/2 items-center justify-center bg-gray-200'>
+    <div className='relative w-full h-1/2 lg:flex items-center justify-center bg-gray-200'>
       <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-900 to-pink-500 rounded-full animate-spin'></div>
       <div className='w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg'></div>
     </div></>
