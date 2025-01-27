@@ -7,10 +7,11 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(' ');
+  const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
 
+  //handles the login process for users, using AWS Cognito
   const handlesLogin = (event) => {
     event.preventDefault();
 
@@ -29,7 +30,7 @@ function Login() {
       {
         onSuccess: (data) => {
           console.log('Login Successful:', data);
-          setSuccess('true');
+          setSuccess(true);
         },
       },
       {

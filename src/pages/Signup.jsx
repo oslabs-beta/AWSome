@@ -1,8 +1,36 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
+import { data, useNavigate } from 'react-router';
+import userPool from '../pools/userPool.js';
 
 function Signup() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  const handleSignups = (event) => {
+    console.log('Email:', email);
+    const test = email.trim();
+    console.log(test);
+    event.preventDefault();
+    setSuccess(false);
+
+    const attributeList = [
+      {
+        Name: 'email',
+        Value: email,
+      },
+    ];
+
+    userPool.signUp(email, password, attributeList, null, (err, data) => {
+      if (err) {
+        console.error('Sign up failed:', err);
+        return;
+      }
+      console.log('Sign up was successful:', data);
+      setSuccess(true);
+    });
+  };
 
   //This allows user to go to login page
   const login = () => {
@@ -47,15 +75,23 @@ function Signup() {
                 </a>
               </div>
               <div className='formbox'>
-                <form>
-                  <label htmlFor='first-name'>First Name: </label>
-                  <input type='text' id='first-name' required></input>
-                  <label htmlFor='last-name'>Last Name: </label>
-                  <input type='text' id='last-name' required></input>
-                  <label htmlFor='email'>Email: </label>
-                  <input type='email' id='email' required></input>
-                  <label htmlFor='password'> Password: </label>
-                  <input type='password' id='password' required></input>
+                <form onSubmit={handleSignups}>
+                  <label>Email: </label>
+                  <input
+                    type='email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  ></input>
+                  <label> Password: </label>
+                  <input
+                    type='password'
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                    required
+                  ></input>
                   <button type='submit'>Submit</button>
                   <input type='checkbox' id='savePassword'></input>
                   <label htmlFor='savePassword'>Remember for 30 days</label>
