@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { CognitoUser } from 'amazon-cognito-identity-js';
 import userPool from '../pools/userPool';
+import { useNavigate } from 'react-router';
 
 const Verify = ({ email }) => {
   const [verificationCode, setVerificationCode] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
+  //handles checking if user enters appropriate code after signup
   const handleVerification = () => {
     const cognitoUser = new CognitoUser({
       Username: email,
@@ -13,9 +16,12 @@ const Verify = ({ email }) => {
     });
 
     cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
-      err
-        ? setMessage(`Verification failed: ${err.message}`)
-        : setMessage(`Account verified successfully!`);
+      if (err) {
+        setMessage(`Verification failed: ${err.message}`);
+      } else {
+        setMessage(`Account verified successfully!`);
+        navigate('/Login');
+      }
     });
   };
 

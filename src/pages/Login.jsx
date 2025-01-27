@@ -29,6 +29,7 @@ function Login() {
       onSuccess: (data) => {
         console.log('Login Successful:', data);
         setSuccess(true);
+        navigate('/');
       },
       onFailure: (err) => {
         console.error('Login not successful', err);
@@ -36,14 +37,6 @@ function Login() {
       },
     });
   };
-
-  //on form submission, this function runs
-  // const onSubmit = (event) => {
-  //   event.preventDefault();
-  //   userPool.Login(email, password, [], null, (err, data) => {
-  //     err ? console.error(err) : console.log(data);
-  //   });
-  // };
 
   //this function allows user to go to signup page
   const signUp = () => {
