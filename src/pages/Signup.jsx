@@ -49,13 +49,13 @@ function Signup() {
 
   return (
     <div>
-      <div className='header'></div>
-      <div className='page-wrapper'>
+      <div className='header flex w-full h-screen'></div>
+      <div className='page-wrapper w-full flex items-center justify-center items-center'>
         <div className='page-container-left'></div>
         <div className='page-container-2'>
           <div className='block'>
-            <div className='form-wrapper'>
-              <h2 className='mainHeading'>Get Started with AWSome!</h2>
+            <div className='form-wrapper bg-white px-10 py-20 rounded-3xl'>
+              <h2 className='mainHeading text-5xl font-semibold'>Get Started with AWSome!</h2>
               <div className='general-desc'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias,
                 dolorum. Dignissimos amet in quidem id est consequuntur, natus
