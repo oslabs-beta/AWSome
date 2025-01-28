@@ -63,7 +63,7 @@ function Login() {
                 <h2 className='mainHeading text-5xl font-semibold'>
                   Welcome back!
                 </h2>
-                <p className='font-medium text-lg text-gray-500 mt-4'>
+                <p className='font-medium text-lg text-gray-500 mt-4 animate-pulse'>
                   Welcome back! Please enter your details.
                 </p>
 
@@ -142,11 +142,13 @@ function Login() {
             </div>
           </div>
         </div>
-      </div>
-      <div className='relative w-full h-1/2 lg:flex items-center justify-center bg-gray-200'>
+        <div className='relative w-full h-full lg:flex items-center justify-center bg-violet-100'>
         <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-900 to-pink-500 rounded-full animate-spin'></div>
         <div className='w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg'></div>
       </div>
+        
+      </div>
+     
     </>
   );
 }

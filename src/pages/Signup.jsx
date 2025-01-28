@@ -60,11 +60,8 @@ function Signup() {
               <div className='block'>
                 <div className='form-wrapper bg-white px-10 py-20 rounded-3xl'>
                   <h2 className='mainHeading text-5xl semi-bold'>Get Started with AWSome!</h2>
-                  <div className='general-desc'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Alias, dolorum. Dignissimos amet in quidem id est
-                    consequuntur, natus aliquam possimus maiores dolorum eum
-                    odio earum tenetur facilis necessitatibus magni similique!
+                  <div className='general-desc mt-8 font-medium text-lg text-gray-500'>
+                    See all your metrics in one place with an AWSome monitoring tool for your EC2 instances!
                   </div>
                   
                   <div className='formbox mt-8 drop-shadow-xl shadow-blue-600'>
@@ -97,7 +94,7 @@ function Signup() {
                         <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold' type='submit'>Sign up</button>
                         <button className='drop-shadow-xl shadow-blue-600 flex rounded-xl py-3 border-2 border-gray-200 items-center justify-center gap-2 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all'type='submit'>Sign up with Google</button>
                   </div>
-                  <p>Have an account? Login instead</p>
+                  <p>Have an account? </p>
                   <button
                     onClick={() => {
                       login();
@@ -109,7 +106,7 @@ function Signup() {
               </div>
             </div>
           </div>
-          <div className='flex w-full h-screen relative lg:flex items-center justify-center bg-white'>
+          <div className='flex w-full h-screen relative lg:flex items-center justify-center bg-violet-100'>
           <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-500 to-pink-500 rounded-full animate-spin'></div>
           <div className='w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg'></div>
         </div>
