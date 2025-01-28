@@ -1,97 +1,131 @@
-import { useEffect, useRef } from 'react';
-import * as d3 from 'd3';
-
-const BarChartPage = () => {
-  const ref = useRef();
-
-  useEffect(() => {
-    const timestamps = [
-      '2025-01-18T23:25:00.000Z',
-      '2025-01-18T23:20:00.000Z',
-      '2025-01-18T23:15:00.000Z',
-      '2025-01-18T23:10:00.000Z',
-      '2025-01-18T23:05:00.000Z',
-    ];
-
-    const values = [
-      4.656709822299232, 74.2454942185731, 89.57956553894077,
-      17.683871823404065, 44.73004349496316,
-    ];
-
-    const width = 640;
-    const height = 400;
-    const marginTop = 20;
-    const marginRight = 20;
-    const marginBottom = 20;
-    const marginLeft = 30;
-
-    const x = d3
-      .scaleBand()
-      .range([marginLeft, width - marginRight])
-      .domain([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]);
-
-    const y = d3
-      .scaleLinear()
-      .domain([0, 100])
-      .range([height - marginBottom, marginTop]);
-
-    const svg = d3
-      .select(ref.current)
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height + marginTop + marginBottom)
-      .append('g')
-      .attr('transform', `translate(${marginLeft},${marginTop})`);
-
-    svg
-      .append('g')
-      .attr('transform', `translate(0, ${height - marginBottom})`)
-      .call(d3.axisBottom(x));
-
-    svg.append('g').call(d3.axisLeft(y));
-
-    svg
-      .append('rect')
-      .attr('x', 'Sun Dec 31 2023 19:00:00 GMT-0500 (Eastern Standard Time)')
-      .attr('y', '0')
-      .attr('width', '1000')
-      .attr('height', '100')
-      .attr('fill', '#5f0f40');
-
-    svg
-      .append('rect')
-      .attr('x', 'Sun Dec 31 2024 19:00:00 GMT-0500 (Eastern Standard Time)')
-      .attr('y', '100')
-      .attr('width', '500')
-      .attr('height', '50')
-      .attr('fill', 'blue');
-
-    svg
-      .append('rect')
-      .attr('x', 'Sun Dec 31 2025 19:00:00 GMT-0500 (Eastern Standard Time)')
-      .attr('y', '150')
-      .attr('width', '300')
-      .attr('height', '50')
-      .attr('fill', 'green');
-
-    // svg
-    // .selectAll("mybar")
-    // .data(values)
-    // .join("rect")
-    // .attr("x", (d) => x(d.Country))
-    // .attr("y", (d) => y(d.Value))
-    // .attr("width", x.bandwidth())
-    // .attr("height", (d) => height - y(d.Value))
-    // .attr("fill", "#5f0f40");
-  }, [ref]);
-
-  return <svg width={1000} height={1000} id='barchart' ref={ref} />;
-};
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import { useEffect, useState } from 'react';
 
 export default function BarChart() {
+  // fetch data of the previous hour never the current
+  // map data to the bar chart in dataset
+  // change the colors to match 'red, green, blue'
+  const [barX, setData] = useState([
+    { x: 0, y: null },
+    { x: 5, y: null },
+    { x: 10, y: null },
+    { X: 15, y: null },
+    { x: 20, y: null },
+    { x: 25, y: null },
+    { x: 30, y: null },
+    { x: 35, y: null },
+    { x: 40, y: null },
+    { x: 45, y: null },
+    { x: 50, y: null },
+    { x: 55, y: null },
+    { x: 60, y: null },
+    { x: null, y: 50 },
+  ]);
+
+  const [refresh, setRefresh] = useState(false);
+
+  useEffect(() => {
+    async function fetchdata() {
+      try {
+        let promise = await fetch('/data');
+        let data = await promise.json();
+        //console.log(data[0]);
+        setRefresh(true);
+        setData((old) => {
+          for (let i = 0; i < old.length - 1; i++) {
+            old[i].y = data[0].Values[i];
+          }
+          console.log('new data', old);
+          return old;
+        });
+      } catch (error) {
+        console.log('fetchData function in barchart.jsx', error);
+      }
+    }
+
+    
+    fetchdata();
+  }, [barX]);
+
+
+  const labels = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
+
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: {
+          color: 'white',
+        },
+      },
+      title: {
+        display: true,
+        text: new Date('2025-01-27T18:50:00.000Z'),
+        color: 'white',
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: 'white',
+        },
+      },
+      y: {
+        ticks: {
+          color: 'white',
+        },
+      },
+    },
+  };
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        barPercentage: 1,
+        categoryPercentage: 1,
+        label: '<40%',
+        data: barX,
+        backgroundColor: [
+          '#3e95cd',
+          '#8e5ea2',
+          '#3cba9f',
+          '#e8c3b9',
+          '#c45850',
+        ],
+      },
+      {
+        label: '<75',
+      },
+      {
+        label: '>85%',
+      },
+    ],
+  };
+
+
+  
   return (
     <div>
-      <BarChartPage />
+      <Bar options={options} data={data} />
     </div>
   );
 }

@@ -9,9 +9,10 @@ import Layout from './pages/Layout.jsx';
 import LineChartPage from './pages/components/LineChartPage.jsx';
 import BarChart from './pages/components/Barchart.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router';
+import LineChart from './pages/components/Linechart.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout />}>
@@ -21,8 +22,9 @@ createRoot(document.getElementById('root')).render(
         <Route path='/Home' element={<Home />} />
         <Route path='/chart' element={<LineChartPage />} />
         <Route path='/barchart' element={<BarChart />} />
+        <Route path='/linechart' element={<LineChart />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>
 );
+// removed strict mode 
