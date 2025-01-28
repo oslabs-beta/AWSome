@@ -54,44 +54,86 @@ function Login() {
   };
 
   return (
-    <><div className='flex w-full h-screen'>
-      <div className='page-wrapper w-full flex items-center justify-center items-center'>
-        <div className='page-container-2'>
-          <div className='block'>
-            <div className='form-wrapper bg-white px-10 py-20 rounded-3xl'>
-              <h2 className='mainHeading text-5xl semi-bold'>Welcome back!</h2>
-              <p className='font-medium mt-6 text-lg text-gray-500 mt-4 animate-pulse'>Good to see you again! Please enter your details.</p>
+    <>
+      <div className='flex w-full h-screen'>
+        <div className='page-wrapper w-full flex items-center justify-center items-center'>
+          <div className='page-container-2'>
+            <div className='block'>
+              <div className='form-wrapper bg-white px-10 py-20 rounded-3xl'>
+                <h2 className='mainHeading text-5xl semi-bold'>
+                  Welcome back!
+                </h2>
+                <p className='font-medium mt-6 text-lg text-gray-500 mt-4 animate-pulse'>
+                  Good to see you again! Please enter your details.
+                </p>
 
-              <div className='mt-8 drop-shadow-xl shadow-blue-600'>
-                <form onSubmit={handlesLogin}>
-                  <label className='text-lg font-medium'>Email: </label>
-                  <input
-                    type='email'
-                    className='mt-3 mb-3 ml-4 w-full border-2 border-gray-200 rounded-xl p-4 mt-1 bg-transparent'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    placeholder='Enter your email'
-                  ></input>
-                  <label className=' text-lg font-medium'>Password: </label>
-                  <input
-                    type='password'
-                    className='mt-3 ml-4 w-full border-2 border-gray-200 rounded-xl p-4 mt-1 bg-transparent'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    placeholder='Enter your password'
-                  ></input>
-                  <div className='mt-8 flex justify-between items-center'>
-                    <div>
-                      <input
-                        type='checkbox' id='savePassword'>
-                      </input>
-                      <label className='ml-2 font-medium text-base' htmlFor='savePassword'>Remember for 30 days</label>
+                <div className='mt-8 drop-shadow-xl shadow-blue-600'>
+                  <form onSubmit={handlesLogin}>
+                    <label className='text-lg font-medium'>Email: </label>
+                    <input
+                      type='email'
+                      className='mt-3 mb-3 ml-4 w-full border-2 border-gray-200 rounded-xl p-4 mt-1 bg-transparent'
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      placeholder='Enter your email'
+                    ></input>
+                    <label className=' text-lg font-medium'>Password: </label>
+                    <input
+                      type='password'
+                      className='mt-3 ml-4 w-full border-2 border-gray-200 rounded-xl p-4 mt-1 bg-transparent'
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      placeholder='Enter your password'
+                    ></input>
+                    <div className='mt-8 flex justify-between items-center'>
+                      <div>
+                        <input type='checkbox' id='savePassword'></input>
+                        <label
+                          className='ml-2 font-medium text-base'
+                          htmlFor='savePassword'
+                        >
+                          Remember for 30 days
+                        </label>
+                      </div>
+
+                      <button
+                        className='hover:font-bold ml-2 font-medium text-violet-500 text-base'
+                        href='/forgot'
+                      >
+                        Forgot Password
+                      </button>
                     </div>
-                    
-                    <button className='hover:font-bold ml-2 font-medium text-violet-500 text-base' a href='/forgot'>Forgot Password</button>
+                    <div className='mt-8 flex flex-col gap-y-4'>
+                      <button
+                        className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
+                        type='submit'
+                      >
+                        Sign in
+                      </button>
+                      <button
+                        className='drop-shadow-xl shadow-blue-600 flex rounded-xl py-3 border-2 border-gray-200 items-center justify-center gap-2 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all'
+                        type='submit'
+                      >
+                        Sign in with Google
+                      </button>
+                    </div>
+                  </form>
+                  <div className='mt-10 flex justify-center items-center'>
+                    <p className='font-medium text-base'>
+                      Do not have an account?
+                    </p>
+                    <button
+                      className='text-violet-500 font-medium ml-2'
+                      onClick={() => {
+                        signUp();
+                      }}
+                    >
+                      Sign up
+                    </button>
                   </div>
+<<<<<<< HEAD
                 </form>
                 <div className='mt-8 flex flex-col gap-y-4'>
                   <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold' type='submit'>Sign in</button>
@@ -100,26 +142,24 @@ function Login() {
                 <div className='mt-10 flex justify-center items-center'>
                   <p className='font-medium text-base'>Don't have an account?</p>
                   <button className='text-violet-500 font-medium ml-2'onClick={() => {signUp();} }>Sign up</button>
+=======
+>>>>>>> f9f8793ccf31adb9431290b540f72b3d52746bc5
                 </div>
-              </div>
 
-              <p>
-                Forgot Password? <a href='/forgot'>Click here</a>
-              </p>
+                <p>
+                  Forgot Password? <a href='/forgot'>Click here</a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
+        <div className='flex w-full h-screen relative lg:flex items-center justify-center bg-white'>
+          <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-500 to-pink-500 rounded-full animate-spin'></div>
+          <div className='w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg'></div>
+        </div>
       </div>
-      <div className='flex w-full h-screen relative lg:flex items-center justify-center bg-white'>
-      <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-500 to-pink-500 rounded-full animate-spin'></div>
-      <div className='w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg'></div>
-    </div>
-    </div>
-    <div>
-      
-    </div>
-   </>
-    
+      <div></div>
+    </>
   );
 }
 
