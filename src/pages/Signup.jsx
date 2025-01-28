@@ -55,48 +55,41 @@ function Signup() {
     <div>
       {!isVerified ? (
         <div>
-          <div className='header'></div>
-          <div className='page-wrapper'>
+          <div className='header flex w-full h-screen'></div>
+          <div className='page-wrapper w-full flex items-center justify-center items-center'>
             <div className='page-container-left'></div>
             <div className='page-container-2'>
               <div className='block'>
-                <div className='form-wrapper'>
-                  <h2 className='mainHeading'>Get Started with AWSome!</h2>
+                <div className='form-wrapper bg-white px-10 py-20 rounded-3xl'>
+                  <h2 className='mainHeading text-5xl semi-bold'>Get Started with AWSome!</h2>
                   <div className='general-desc'>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Alias, dolorum. Dignissimos amet in quidem id est
                     consequuntur, natus aliquam possimus maiores dolorum eum
                     odio earum tenetur facilis necessitatibus magni similique!
                   </div>
-                  <div className='socials-login'>
-                    <h4>Sign up instead with Google or </h4>
-                    <a
-                      href='https://accounts.google.com/o/oauth2/auth?response_type=code&amp;access_type=online&amp;client_id=1046768301397-9u42bnvab0vmvdf5f6lnf6p821vfh57m.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Fdash.saleskip.com%2Fp%2F&amp;state&amp;scope=email%20profile&amp;approval_prompt=auto'
-                      className='social-login w-inline-block'
-                    >
-                      <img src='images/G.png' alt='' className='image'></img>
-                      <div className='div-block-64'>
-                        <div className='text-block-9'>Google</div>
-                      </div>
-                    </a>
-                  </div>
-                  <div className='formbox'>
+                  
+                  <div className='formbox mt-8 drop-shadow-xl shadow-blue-600'>
                     <form onSubmit={handleSignups}>
-                      <label>Email: </label>
+                      <label className='text-lg font-medium'>Email: </label>
                       <input
                         type='email'
+                        className='mt-3 mb-3 ml-4 w-full border-2 border-gray-200 rounded-xl p-4 mt-1 bg-transparent'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
+                        placeholder='Enter your email'
                       ></input>
-                      <label> Password: </label>
+                      <label className=' text-lg font-medium'> Password: </label>
                       <input
                         type='password'
+                        className='mt-3 mb-3 ml-4 w-full border-2 border-gray-200 rounded-xl p-4 mt-1 bg-transparent'
                         value={password}
                         onChange={(e) => {
                           setPassword(e.target.value);
                         }}
                         required
+                        
                       ></input>
                       <button type='submit'>Submit</button>
                       <input type='checkbox' id='savePassword'></input>
