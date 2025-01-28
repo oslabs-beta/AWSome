@@ -28,7 +28,7 @@ export default function BarChart() {
     { x: 50, y: null },
     { x: 55, y: null },
     { x: 60, y: null },
-    { x: null, y: 50 },
+    { x: null, y: 30 },
   ]);
 
   const [refresh, setRefresh] = useState(false);
