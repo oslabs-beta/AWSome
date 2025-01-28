@@ -1,7 +1,7 @@
 import express from 'express';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { awsData } from './data.js';
+import { awsData, awsHourData } from './data.js';
 import router from './auth.js';
 import loginRouter from './routes/loginRouter.js';
 import signupRouter from './routes/signupRouter.js';
@@ -20,9 +20,10 @@ app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 
 app.get('/data', async (req, res) => {
-  let data = await awsData();
-  //console.log(data);
-  res.status(200).json({ data });
+  let data = await awsHourData();
+  //console.log('in server');
+  //console.log('server', data);
+  res.status(200).json(data);
 });
 
 app.use('/hi', (req, res) => {
