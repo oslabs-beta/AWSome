@@ -90,7 +90,7 @@ function Login() {
                       <label className='ml-2 font-medium text-base' htmlFor='savePassword'>Remember for 30 days</label>
                     </div>
                     
-                    <button className='hover:font-bold ml-2 font-medium text-violet-500 text-base' a href='/forgot'>Forgot Password</button>
+                    <button className='hover:font-bold ml-2 font-medium text-violet-500 text-base' href='/forgot'>Forgot Password</button>
                   </div>
                 </form>
                 <div className='mt-8 flex flex-col gap-y-4'>
@@ -98,7 +98,7 @@ function Login() {
                   <button className='drop-shadow-xl shadow-blue-600 flex rounded-xl py-3 border-2 border-gray-200 items-center justify-center gap-2 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all'type='submit'>Sign in with Google</button>
                 </div>
                 <div className='mt-10 flex justify-center items-center'>
-                  <p className='font-medium text-base'>Don't have an account?</p>
+                  <p className='font-medium text-base'>Do not have an account?</p>
                   <button
                   className='text-violet-500 font-medium ml-2'
                   onClick={() => {
