@@ -99,14 +99,7 @@ function Login() {
                 </div>
                 <div className='mt-10 flex justify-center items-center'>
                   <p className='font-medium text-base'>Don't have an account?</p>
-                  <button
-                  className='text-violet-500 font-medium ml-2'
-                  onClick={() => {
-                    signUp();
-                } }
-              >
-                Sign up
-              </button>
+                  <button className='text-violet-500 font-medium ml-2'onClick={() => {signUp();} }>Sign up</button>
                 </div>
               </div>
 
