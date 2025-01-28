@@ -87,6 +87,7 @@ function Signup() {
                           setPassword(e.target.value);
                         }}
                         required
+                        placeholder='Enter your password'
                         
                       ></input>
                     </form>

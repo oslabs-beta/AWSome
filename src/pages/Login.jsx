@@ -133,6 +133,17 @@ function Login() {
                       Sign up
                     </button>
                   </div>
+<<<<<<< HEAD
+                </form>
+                <div className='mt-8 flex flex-col gap-y-4'>
+                  <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold' type='submit'>Sign in</button>
+                  <button className='drop-shadow-xl shadow-blue-600 flex rounded-xl py-3 border-2 border-gray-200 items-center justify-center gap-2 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all'type='submit'>Sign in with Google</button>
+                </div>
+                <div className='mt-10 flex justify-center items-center'>
+                  <p className='font-medium text-base'>Don't have an account?</p>
+                  <button className='text-violet-500 font-medium ml-2'onClick={() => {signUp();} }>Sign up</button>
+=======
+>>>>>>> f9f8793ccf31adb9431290b540f72b3d52746bc5
                 </div>
 
                 <p>
