@@ -1,7 +1,7 @@
-const { Client } = require("pg");
+import pg from "pg";
 
 // Create a PostgreSQL client instance
-const client = new Client({
+ const client = new pg.Client({
   user: "AWSome_members", // Your PostgreSQL username
   host: "localhost", // If PostgreSQL is running locally
   database: "aws_monitoring", // The database you created
@@ -15,5 +15,8 @@ client
   .then(() => console.log("Connected to PostgreSQL!"))
   .catch((err) => console.error("Error connecting to PostgreSQL:", err));
 
-// Export the client to use in other files
-module.exports = client;
+
+
+
+  
+export default client; // Export the client instance for use in other modules

@@ -6,10 +6,14 @@ import Error from './pages/Error.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Layout from './pages/Layout.jsx';
+import Forgot from './pages/Forgot.jsx';
 import LineChartPage from './pages/components/LineChartPage.jsx';
 import BarChart from './pages/components/Barchart.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import LineChart from './pages/components/Linechart.jsx';
+
+//polyfill for global
+window.global = window;
 
 createRoot(document.getElementById('root')).render(
 
@@ -24,6 +28,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='/barchart' element={<BarChart />} />
         <Route path='/linechart' element={<LineChart />} />
         <Route path='*' element={<Error />} />
+        <Route path='/Forgot' element={<Forgot />} />
       </Routes>
     </BrowserRouter>
 );
