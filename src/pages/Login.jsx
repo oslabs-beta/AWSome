@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import userPool from '../pools/userPool.js';
+import { useAuth } from './context/AuthContext.jsx';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
-
+  const { setUserSession } = useAuth();
   const navigate = useNavigate();
 
   //handles the login process for users, using AWS Cognito
@@ -37,7 +37,7 @@ function Login() {
       //on success, we want to print the success and print it to console
       onSuccess: (data) => {
         console.log('Login Successful:', data);
-        setSuccess(true); //sets Success variable to true to be used later
+        setUserSession({ user, session: data });
         navigate('/Home'); //immediately navigates to Home page,
       },
       //upon failure, we instead console the error message, reason why
@@ -53,17 +53,18 @@ function Login() {
   //this function allows user to go to signup page
   const signUp = () => {
     //this function will call the signup endpoint
-    fetch('/signup')
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data); //just testing, CAN BE DELETED
-        const { redirectTo } = data;
-        //this will be used if the login is incorrect, the user will be
-        //redirected to Signup
-        if (redirectTo) {
-          navigate(redirectTo);
-        }
-      });
+    navigate('/signup');
+    // fetch('/signup')
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data); //just testing, CAN BE DELETED
+    //     const { redirectTo } = data;
+    //     //this will be used if the login is incorrect, the user will be
+    //     //redirected to Signup
+    //     if (redirectTo) {
+    //       navigate(redirectTo);
+    //     }
+    //   });
   };
 
   return (
