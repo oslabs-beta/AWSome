@@ -11,8 +11,13 @@ function Signup() {
   const [isVerified, setIsVerified] = useState(false);
 
   const handleSignups = (event) => {
+    //prevents default form loading upon submission
     event.preventDefault();
+
+    //defaults 'success' to false to begin
     setSuccess(false);
+    
+    //ensures email will be saved case insensitive
     let lowerCaseEmail = email;
     lowerCaseEmail = lowerCaseEmail.toLowerCase();
 
