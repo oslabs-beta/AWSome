@@ -13,24 +13,34 @@ function Login() {
 
   //handles the login process for users, using AWS Cognito
   const handlesLogin = (event) => {
+    //prevents default action of form from taking place when submitting
     event.preventDefault();
 
+    //sets email to be lowercase (case insensitive)
+    let lowerCaseEmail = email;
+    lowerCaseEmail = lowerCaseEmail.toLocaleLowerCase();
+
+    //creates a new CognitoUser object, containing the username and the pool it will access
     const user = new CognitoUser({
-      Username: email,
+      Username: lowerCaseEmail,
       Pool: userPool,
     });
 
+    //Creates a new AuthenticationDetails object containing the username and password information
     const authenticationDetails = new AuthenticationDetails({
-      Username: email,
+      Username: lowerCaseEmail,
       Password: password,
     });
 
+    //using the user object, we pass in the authentication to see if this user's password matches
     user.authenticateUser(authenticationDetails, {
+      //on success, we want to print the success and print it to console
       onSuccess: (data) => {
         console.log('Login Successful:', data);
-        setSuccess(true);
-        navigate('/Home');
+        setSuccess(true); //sets Success variable to true to be used later
+        navigate('/Home'); //immediately navigates to Home page,
       },
+      //upon failure, we instead console the error message, reason why
       onFailure: (err) => {
         console.error('Login not successful', err);
         setError(err.message || 'Something did not go right');
@@ -38,12 +48,15 @@ function Login() {
     });
   };
 
+  //Can potentially revamp this function to instead not make a request to server but use the
+  //navigate hook from React to simply navigate to signup page upon clicking the button
   //this function allows user to go to signup page
   const signUp = () => {
+    //this function will call the signup endpoint
     fetch('/signup')
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data); //just testing, CAN BE DELETED
         const { redirectTo } = data;
         //this will be used if the login is incorrect, the user will be
         //redirected to Signup
