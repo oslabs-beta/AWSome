@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { data, useNavigate } from 'react-router';
-import userPool from '../pools/userPool.js';
 import Verify from './Verification.jsx';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 function Signup() {
   const navigate = useNavigate();
@@ -10,9 +10,23 @@ function Signup() {
   const [success, setSuccess] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
 
+  const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.replace(
+    '_',
+    ''
+  ).toLowerCase()}.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=${
+    import.meta.env.VITE_COGNITO_CLIENT_ID
+  }&response_type=token&scope=email+openid+profile&redirect_uri=https://d84l1y8p4kdic.cloudfront.net&identity_provider=Google`.trim();
+
   const handleSignups = (event) => {
     //prevents default form loading upon submission
     event.preventDefault();
+
+    const poolData = {
+      UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
+      ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+    };
+    //ensures our poolID stays safe, along with ClientId
+    const userPool = new CognitoUserPool(poolData);
 
     //defaults 'success' to false to begin
     setSuccess(false);
@@ -113,17 +127,16 @@ function Signup() {
                         >
                           Sign up
                         </button>
-                        <button
-                          className='drop-shadow-xl shadow-blue-600 flex rounded-xl py-3 border-2 border-gray-200 items-center justify-center gap-2 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all'
-                          type='submit'
-                        >
-                          Sign up with Google
-                        </button>
                       </div>
                     </form>
-                    <div></div>
+                    <div>
+                      <a href={authUrl}>
+                        <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
+                          Sign up with Google
+                        </button>
+                      </a>
+                    </div>
                   </div>
-
                   <p>Have an account? </p>
                   <button
                     onClick={() => {

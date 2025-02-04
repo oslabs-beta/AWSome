@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { CognitoUser } from 'amazon-cognito-identity-js';
-import userPool from '../pools/userPool';
+import { CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
+
 import { useNavigate } from 'react-router';
 
 const Verify = ({ email }) => {
@@ -10,6 +10,13 @@ const Verify = ({ email }) => {
 
   //handles checking if user enters appropriate code after signup
   const handleVerification = () => {
+    //grabs pool data
+    const poolData = {
+      UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
+      ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+    };
+    //ensures our poolID stays safe, along with ClientId
+    const userPool = new CognitoUserPool(poolData);
     const cognitoUser = new CognitoUser({
       Username: email,
       Pool: userPool,

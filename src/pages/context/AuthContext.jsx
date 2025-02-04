@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext, createContext } from 'react';
-import userPool from '../../pools/userPool';
+// import userPool from '../../pools/userPool';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 const AuthContext = createContext();
 
@@ -8,6 +9,13 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const poolData = {
+      UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
+      ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+    };
+    //ensures our poolID stays safe, along with ClientId
+    const userPool = new CognitoUserPool(poolData);
+    
     //grabs current logged in user from the browser's local storage
     const currentUser = userPool.getCurrentUser();
 
