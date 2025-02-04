@@ -10,6 +10,13 @@ function Signup() {
   const [success, setSuccess] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
 
+  const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.replace(
+    '_',
+    ''
+  ).toLowerCase()}.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=${
+    import.meta.env.VITE_COGNITO_CLIENT_ID
+  }&response_type=token&scope=email+openid+profile&redirect_uri=https://d84l1y8p4kdic.cloudfront.net&identity_provider=Google`.trim();
+
   const handleSignups = (event) => {
     //prevents default form loading upon submission
     event.preventDefault();
@@ -123,20 +130,13 @@ function Signup() {
                       </div>
                     </form>
                     <div>
-                      <a
-                        href={`https://${
-                          import.meta.env.VITE_COGNITO_USER_POOL_ID
-                        }.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=${
-                          import.meta.env.VITE_COGNITO_CLIENT_ID
-                        }&response_type=token&scope=email+openid+profile&redirect_uri=https://d84l1y8p4kdic.cloudfront.net&identity_provider=Google`}
-                      >
+                      <a href={authUrl}>
                         <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
                           Sign up with Google
                         </button>
                       </a>
                     </div>
                   </div>
-
                   <p>Have an account? </p>
                   <button
                     onClick={() => {
