@@ -14,11 +14,15 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//CAN BE DELETED, WAS ONCE A TEST ROUTER
 app.use('/auth', router);
 
-app.use('/signup', signupRouter);
-app.use('/login', loginRouter);
+//CAN BE DELETED
+// ROUTES ORIGINALLY SET UP TO SEND USER TO login or signup page
+// app.use('/signup', signupRouter);
+// app.use('/login', loginRouter);
 
+//VITE CONFIG file allows for this to be just /data instead of /Home/data
 app.get('/data', async (req, res) => {
   let data = await awsHourData();
   //console.log('in server');
@@ -26,10 +30,11 @@ app.get('/data', async (req, res) => {
   res.status(200).json(data);
 });
 
-app.use('/hi', (req, res) => {
-  console.log('in server!');
-  return res.status(200).send('hi');
-});
+//CAN BE DELETED
+// app.use('/hi', (req, res) => {
+//   console.log('in server!');
+//   return res.status(200).send('hi');
+// });
 
 app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")

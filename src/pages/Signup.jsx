@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { data, useNavigate } from 'react-router';
-import userPool from '../pools/userPool.js';
 import Verify from './Verification.jsx';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 function Signup() {
   const navigate = useNavigate();
@@ -14,9 +14,16 @@ function Signup() {
     //prevents default form loading upon submission
     event.preventDefault();
 
+    const poolData = {
+      UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
+      ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+    };
+    //ensures our poolID stays safe, along with ClientId
+    const userPool = new CognitoUserPool(poolData);
+
     //defaults 'success' to false to begin
     setSuccess(false);
-    
+
     //ensures email will be saved case insensitive
     let lowerCaseEmail = email;
     lowerCaseEmail = lowerCaseEmail.toLowerCase();
@@ -48,17 +55,21 @@ function Signup() {
 
   //This allows user to go to login page
   const login = () => {
-    fetch('/login')
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const { redirectTo } = data;
-        //this will be used if the login is incorrect, the user will be
-        //redirected to Signup
-        if (redirectTo) {
-          navigate(redirectTo);
-        }
-      });
+    console.log('testing');
+    navigate('/');
+
+    //CAN BE DELETED
+    // fetch('/login')
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     const { redirectTo } = data;
+    //     //this will be used if the login is incorrect, the user will be
+    //     //redirected to Signup
+    //     if (redirectTo) {
+    //       navigate(redirectTo);
+    //     }
+    //   });
   };
 
   return (
