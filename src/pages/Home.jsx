@@ -11,8 +11,6 @@ function Home() {
   //     .catch((err) => console.log('got nothing', err));
   // }
 
-  
-
 
   return (
     <div className='bg-gradient-to-br from-purple-900 to-indigo-800 text-white font-sans min-h-screen flex flex-col'>
