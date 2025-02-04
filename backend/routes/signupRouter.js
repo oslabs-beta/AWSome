@@ -2,10 +2,11 @@ import express from 'express';
 const router = express.Router();
 import signupController from '../controllers/signupController.js';
 
-router.get('/', signupController.getPage, (req, res) => {
-  return res.json({ redirectTo: '/Signup' });
-});
+//DELETE THIS ONLY IF LOGIN ROUTER IS DELETED - Jose
+// router.get('/', signupController.getPage, (req, res) => {
+//   return res.json({ redirectTo: '/Signup' });
+// });
 
-router.post('/', signupController.addUser, (req, res) => {});
+// router.post('/', signupController.addUser, (req, res) => {});
 
 export default router;
