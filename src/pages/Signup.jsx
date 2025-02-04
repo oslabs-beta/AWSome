@@ -16,7 +16,7 @@ function Signup() {
 
     //defaults 'success' to false to begin
     setSuccess(false);
-    
+
     //ensures email will be saved case insensitive
     let lowerCaseEmail = email;
     lowerCaseEmail = lowerCaseEmail.toLowerCase();
@@ -48,17 +48,21 @@ function Signup() {
 
   //This allows user to go to login page
   const login = () => {
-    fetch('/login')
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const { redirectTo } = data;
-        //this will be used if the login is incorrect, the user will be
-        //redirected to Signup
-        if (redirectTo) {
-          navigate(redirectTo);
-        }
-      });
+    console.log('testing');
+    navigate('/');
+
+    //CAN BE DELETED
+    // fetch('/login')
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     const { redirectTo } = data;
+    //     //this will be used if the login is incorrect, the user will be
+    //     //redirected to Signup
+    //     if (redirectTo) {
+    //       navigate(redirectTo);
+    //     }
+    //   });
   };
 
   return (
