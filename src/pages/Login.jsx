@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
-import userPool from '../pools/userPool.js';
+import {
+  CognitoUser,
+  AuthenticationDetails,
+  CognitoUserPool,
+} from 'amazon-cognito-identity-js';
 import { useAuth } from './context/AuthContext.jsx';
 
 function Login() {
@@ -10,6 +13,13 @@ function Login() {
   const [error, setError] = useState('');
   const { setUserSession } = useAuth();
   const navigate = useNavigate();
+
+  const poolData = {
+    UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
+    ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+  };
+  //ensures our poolID stays safe, along with ClientId
+  const userPool = new CognitoUserPool(poolData);
 
   //handles the login process for users, using AWS Cognito
   const handlesLogin = (event) => {

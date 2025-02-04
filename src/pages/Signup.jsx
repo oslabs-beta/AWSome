@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { data, useNavigate } from 'react-router';
-import userPool from '../pools/userPool.js';
 import Verify from './Verification.jsx';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 function Signup() {
   const navigate = useNavigate();
@@ -13,6 +13,13 @@ function Signup() {
   const handleSignups = (event) => {
     //prevents default form loading upon submission
     event.preventDefault();
+
+    const poolData = {
+      UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
+      ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+    };
+    //ensures our poolID stays safe, along with ClientId
+    const userPool = new CognitoUserPool(poolData);
 
     //defaults 'success' to false to begin
     setSuccess(false);
