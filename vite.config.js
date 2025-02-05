@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
-import tailwindcss from 'tailwindcss';
-import react from '@vitejs/plugin-react';
-import { nodePolyfills } from 'vite-plugin-node-polyfills';
+import { defineConfig } from "vite";
+import tailwindcss from "tailwindcss";
+import react from "@vitejs/plugin-react";
+import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 export default defineConfig({
   plugins: [
@@ -17,9 +17,10 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/data': 'http://localhost:3000',
-      '/login': 'http://localhost:3000',
-      '/signup': 'http://localhost:3000',
+      "/data": "http://localhost:3000",
+      "/login": "http://localhost:3000",
+      "/signup": "http://localhost:3000",
+      "/aws_services": "http://localhost:3000",
     },
   },
 });
