@@ -16,6 +16,7 @@ export default defineConfig({
     },
   },
   server: {
+    host: '0.0.0.0',
     proxy: {
       '/data': 'http://localhost:3000',
       '/login': 'http://localhost:3000',
