@@ -6,7 +6,7 @@ import router from "./auth.js";
 import loginRouter from "./routes/loginRouter.js";
 import signupRouter from "./routes/signupRouter.js";
 import authenticateToken from "./controllers/authMiddleware.js";
-import Awsrouter from "./ApiRoutes.js";
+import Awsrouter from "./routes/ApiRoutes.js";
 const port = 3000;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
