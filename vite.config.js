@@ -21,6 +21,7 @@ export default defineConfig({
       '/data': 'http://localhost:3000',
       '/login': 'http://localhost:3000',
       '/signup': 'http://localhost:3000',
+      '/protected': 'http://localhost:3000',
     },
   },
 });

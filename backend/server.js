@@ -5,6 +5,7 @@ import { awsData, awsHourData } from './data.js';
 import router from './auth.js';
 import loginRouter from './routes/loginRouter.js';
 import signupRouter from './routes/signupRouter.js';
+import authenticateToken from './controllers/authMiddleware.js';
 const port = 3000;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -17,6 +18,10 @@ app.use(express.urlencoded({ extended: true }));
 //CAN BE DELETED, WAS ONCE A TEST ROUTER
 app.use('/auth', router);
 
+//TEST ROUTE, can be deleted
+app.get('/protected', authenticateToken, (req, res) => {
+  res.json({ message: 'You have accessed a protected route!', user: req.user });
+});
 //CAN BE DELETED
 // ROUTES ORIGINALLY SET UP TO SEND USER TO login or signup page
 // app.use('/signup', signupRouter);

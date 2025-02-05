@@ -2,6 +2,7 @@ import { useState, useEffect, useContext, createContext } from 'react';
 // import userPool from '../../pools/userPool';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
+//allows for any children component to use this CONTEXT, small scale state management
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -9,18 +10,20 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    //grabbing the pool data
     const poolData = {
       UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
       ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
     };
     //ensures our poolID stays safe, along with ClientId
     const userPool = new CognitoUserPool(poolData);
-    
+
     //grabs current logged in user from the browser's local storage
     const currentUser = userPool.getCurrentUser();
 
     //if current user is active, do the following
     if (currentUser) {
+      //grab userSession info
       currentUser.getSession((err, session) => {
         if (err || !session.isValid()) {
           console.log('not logged in testing');
@@ -29,6 +32,10 @@ export const AuthProvider = ({ children }) => {
           //save the current user and their session
           console.log('testing saving current user');
           setUserSession({ user: currentUser, session });
+          const accessToken = session.getAccessToken().getJwtToken();
+          const idToken = session.getIdToken().getJwtToken();
+          console.log('access token:', accessToken);
+          console.log('id token:', idToken);
         }
         setLoading(false);
       });
