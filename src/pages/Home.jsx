@@ -11,6 +11,19 @@ function Home() {
   //     .catch((err) => console.log('got nothing', err));
   // }
 
+  const testingMiddleware = () => {
+    fetch('/protected', {
+      method: 'GET',
+      headers: {
+        Authorization:
+          'Bearer eyJraWQiOiI0Ym9xcFBHU2ZPVTFvS0RWRVlPS2RFYzBPcFhYXC82eEVnN0MxR0tLZitqcz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhNDc4YTQ2OC00MGMxLTcwNDAtZGZjOS01MTVkMzNiZWM5YTUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9wOUVIWHhPOTQiLCJjbGllbnRfaWQiOiIxYjUxNTV2MXQxNzZrM2FmY2o2bXM5NjRsOCIsIm9yaWdpbl9qdGkiOiIwNzA3YWZkNy02NWFiLTRiOTAtODQxOC0wNTUzZDIyOGI3NzUiLCJldmVudF9pZCI6IjIxNDFjMWMxLTczYmYtNGFkNS1iNTBiLTY1YzM4OWUxY2Q3NSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3Mzg3ODc2MDcsImV4cCI6MTczODc5NTE5MywiaWF0IjoxNzM4NzkxNTkzLCJqdGkiOiJkMmZlZTkwNC0wMGUyLTQ3MDAtOWQ3NS02NzE4NGVjMGExZTkiLCJ1c2VybmFtZSI6ImE0NzhhNDY4LTQwYzEtNzA0MC1kZmM5LTUxNWQzM2JlYzlhNSJ9.qCEVSrl1CsOLC-iLlnU06CzBtOo6cq1_khVFtHzsqw5O1opZaD9E5T-fsN_wTa9ZsBalUpkWCO6aFXsnK7yVnV4cCg2r000S9u031RjvMwkt1ju7IOUSqSbf4PxPVX6wfOXAxZcaAeXHKsfChe1pNNBkPBnyfMjWIjnI58UjQs6oHLfYFcQGI-jp4u9_i2XSKMexUaXW8N0i_HcHMCC4oR_egb9rmDcDasPcVljFWvKZW7on7MNsADE9XOkYV8Ro4kMI3mlCGYBRGtETcc8bf5B9UXH1yoWTMl-e_hGuV3JAC6S49B3pZCTESoPc-IGSNxtcBbK_wyD-lfBx1KWu4w',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log('Response:', data))
+      .catch((error) => console.error('Error:', error));
+  };
 
   return (
     <div className='bg-gradient-to-br from-purple-900 to-indigo-800 text-white font-sans min-h-screen flex flex-col'>
@@ -60,7 +73,7 @@ function Home() {
           </div>
         </div>
       </main>
-
+      <button onClick={testingMiddleware}>Testing</button>
       {/* Footer */}
       <footer className='bg-purple-800 text-center py-4'>
         <p className='text-sm'>
