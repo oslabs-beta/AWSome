@@ -4,10 +4,24 @@ import {
   CloudWatchServiceException, // Handles specific erros from CloudWatch
   GetMetricDataCommand,  // Sends a request to fetch metric data
 } from '@aws-sdk/client-cloudwatch';
+import pkg from "pg";
+const { Pool } = pkg;
 
+let response;
 
 // Create a CloudWatch Client
-const client = new CloudWatchClient({}); // This sets up a connection to send and recieve data.
+const client = new CloudWatchClient({
+  // eslint-disable-next-line no-undef
+  region: process.env.AWS_REGION,
+  credentials: {
+    // eslint-disable-next-line no-undef
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    // eslint-disable-next-line no-undef
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+}); // This sets up a connection to send and recieve data.
+
+export { client };
 
 export const awsData = async () => {
   // Starts the awsData function, marked as async because it handles promises (waiting for AWS data)
@@ -142,8 +156,10 @@ export const awsData = async () => {
   const command = new GetMetricDataCommand(input); //Creates the request to send to CloudWatch using the input
   try {
     // Sends the request and waits for the response
-    const response = await client.send(command);
+     response = await client.send(command);
+
      console.log('response results', response.MetricDataResults);
+     
     return response; // logs the metric data and entire response if successful
   } catch (caught) {
     if (caught instanceof CloudWatchServiceException) {
@@ -153,7 +169,58 @@ export const awsData = async () => {
       throw caught; // if its a different error, it throws it so it can be handled elsewhere
     }
   }
+
+ console.log("Inserting metrics into database...");
+    for (const metric of response.MetricDataResults) {
+      for (let i = 0; i < metric.Timestamps.length; i++) {
+        console.log("Metric:", metric.Id, "Value:", metric.Values[i]); // Debugging output
+
+        const query = `
+          INSERT INTO aws_metrics 
+          (aws_account_id, metric_name, metric_value, timestamp, service_name, region)
+          VALUES ($1, $2, $3, $4, $5, $6)
+        `;
+        const values = [
+          1, // Replace with the actual AWS account ID
+          metric.Id,
+          metric.Values[i],
+          metric.Timestamps[i],
+          "EC2",
+          "us-east-1",
+        ];
+
+        await Pool.query(query, values);
+      }
+    }
+    console.log("Metrics inserted successfully!");
+   
 };
+
+// ✅ Correctly formatted IIFE to execute `awsData()`
+(async () => {
+  const data = await awsData();
+  console.log("Final response:", data);
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const awsHourData = async () => {
   const input = {
