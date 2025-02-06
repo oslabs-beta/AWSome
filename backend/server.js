@@ -26,8 +26,6 @@ app.use('/auth', router);
 //VITE CONFIG file allows for this to be just /data instead of /Home/data
 app.get('/data', async (req, res) => {
   let data = await awsHourData();
-  //console.log('in server');
-  //console.log('server', data);
   res.status(200).json(data);
 });
 
