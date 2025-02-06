@@ -14,6 +14,7 @@ function Login() {
   const { setUserSession } = useAuth();
   const navigate = useNavigate();
 
+  //grabs the pool data from local .env file
   const poolData = {
     UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
     ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
@@ -58,23 +59,10 @@ function Login() {
     });
   };
 
-  //Can potentially revamp this function to instead not make a request to server but use the
-  //navigate hook from React to simply navigate to signup page upon clicking the button
   //this function allows user to go to signup page
   const signUp = () => {
     //this function will call the signup endpoint
     navigate('/signup');
-    // fetch('/signup')
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data); //just testing, CAN BE DELETED
-    //     const { redirectTo } = data;
-    //     //this will be used if the login is incorrect, the user will be
-    //     //redirected to Signup
-    //     if (redirectTo) {
-    //       navigate(redirectTo);
-    //     }
-    //   });
   };
 
   return (
