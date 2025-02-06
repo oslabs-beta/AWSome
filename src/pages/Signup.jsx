@@ -10,6 +10,7 @@ function Signup() {
   const [success, setSuccess] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
 
+  //url data to redirect to when user wishes to sign up with Google
   const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.replace(
     '_',
     ''
@@ -17,24 +18,27 @@ function Signup() {
     import.meta.env.VITE_COGNITO_CLIENT_ID
   }&response_type=token&scope=email+openid+profile&redirect_uri=https://d84l1y8p4kdic.cloudfront.net&identity_provider=Google`.trim();
 
+  //function to handle the signup process for our users
   const handleSignups = (event) => {
     //prevents default form loading upon submission
     event.preventDefault();
 
+    //grabs pool data
     const poolData = {
       UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
       ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
     };
-    //ensures our poolID stays safe, along with ClientId
+    //makes a userPool instance using the data from above 
     const userPool = new CognitoUserPool(poolData);
 
-    //defaults 'success' to false to begin
+    //Becomes 'false' to begin
     setSuccess(false);
 
     //ensures email will be saved case insensitive
     let lowerCaseEmail = email;
     lowerCaseEmail = lowerCaseEmail.toLowerCase();
 
+    //atttirbutes to send for signUP method
     const attributeList = [
       {
         Name: 'email',
@@ -64,19 +68,6 @@ function Signup() {
   const login = () => {
     console.log('testing');
     navigate('/');
-
-    //CAN BE DELETED
-    // fetch('/login')
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     const { redirectTo } = data;
-    //     //this will be used if the login is incorrect, the user will be
-    //     //redirected to Signup
-    //     if (redirectTo) {
-    //       navigate(redirectTo);
-    //     }
-    //   });
   };
 
   return (

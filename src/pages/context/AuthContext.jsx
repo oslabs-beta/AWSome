@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
       ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
     };
-    //ensures our poolID stays safe, along with ClientId
+    //makes a userPool instance using pool data
     const userPool = new CognitoUserPool(poolData);
 
     //grabs current logged in user from the browser's local storage
@@ -27,15 +27,17 @@ export const AuthProvider = ({ children }) => {
       currentUser.getSession((err, session) => {
         if (err || !session.isValid()) {
           console.log('not logged in testing');
+          //if user session is not valid, set session to null
           setUserSession(null);
         } else {
           //save the current user and their session
           console.log('testing saving current user');
+          //otherwise make
           setUserSession({ user: currentUser, session });
+
+          //USED FOR DEBUGGING COULD BE DELETED
           const accessToken = session.getAccessToken().getJwtToken();
-          const idToken = session.getIdToken().getJwtToken();
           console.log('access token:', accessToken);
-          console.log('id token:', idToken);
         }
         setLoading(false);
       });

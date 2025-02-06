@@ -2,15 +2,22 @@ import './Home.css';
 import BarChart from './components/Barchart';
 
 function Home() {
-  // function fetchdata() {
-  //   fetch('/data')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((err) => console.log('got nothing', err));
-  // }
 
+  //SIMPLY TESTING MIDDLEWARE, To be implemented properly needs an api call to fetch current user's access token
+  //then use that token and send it as part of the header with each request 
+  const testingMiddleware = () => {
+    fetch('/protected', {
+      method: 'GET',
+      headers: {
+        Authorization:
+          'Bearer eyJraWQiOiI0Ym9xcFBHU2ZPVTFvS0RWRVlPS2RFYzBPcFhYXC82eEVnN0MxR0tLZitqcz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhNDc4YTQ2OC00MGMxLTcwNDAtZGZjOS01MTVkMzNiZWM5YTUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9wOUVIWHhPOTQiLCJjbGllbnRfaWQiOiIxYjUxNTV2MXQxNzZrM2FmY2o2bXM5NjRsOCIsIm9yaWdpbl9qdGkiOiJkNGI2YjJmMS0yNjlhLTQ4YjctODAwZC1hNTUyOTEyZDZkNzYiLCJldmVudF9pZCI6IjkwYmRiNjU1LTNhOWYtNGU1ZS05YWNmLWY2MzA1YjAyMGM1YiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3Mzg3OTI2OTMsImV4cCI6MTczODg3NDgwOCwiaWF0IjoxNzM4ODcxMjA4LCJqdGkiOiI5OGZkZGE2Zi0zYWMxLTQwZmItYmE2Yi1iYTg0MWQxZjIxZDUiLCJ1c2VybmFtZSI6ImE0NzhhNDY4LTQwYzEtNzA0MC1kZmM5LTUxNWQzM2JlYzlhNSJ9.VN4dRDdhh_ISefP734u4yBV5TknNb48_deExZ9HXHBwQS3lZ1J0xvsn8T2CD13Xn1H3PHoSQEIaqAP2lwyfzRfYFFOJGd5bScOWQd2Hk043MWfMGt1K3mzMTmGqz6FXHnHw9QG-jjE3jPGTn6BUvQ49u0gPB_57PrZ6fWOFAiwPlUAvC5MLLzFun6FbguwetdGfEySFuM5mRGoHPGJsDs4aKrj9GCzO5fnUket23fTzwwB4djkCsqGL6v2Vcbw-bI-9YOlYV-TOHM-fLnJ2VyYJfHBokX3BI0MIP8vzt1op8CDFzYMIrvnrs_yqVH2tOZKW-nqQSBtYIWV2CsPyd0g',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log('Response:', data))
+      .catch((error) => console.error('Error:', error));
+  };
 
   return (
     <div className='bg-gradient-to-br from-purple-900 to-indigo-800 text-white font-sans min-h-screen flex flex-col'>
@@ -60,7 +67,7 @@ function Home() {
           </div>
         </div>
       </main>
-
+      <button onClick={testingMiddleware}>Testing</button>
       {/* Footer */}
       <footer className='bg-purple-800 text-center py-4'>
         <p className='text-sm'>

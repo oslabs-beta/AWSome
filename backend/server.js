@@ -18,10 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 //CAN BE DELETED, WAS ONCE A TEST ROUTER
 app.use('/auth', router);
 
-//TEST ROUTE, can be deleted
-app.get('/protected', authenticateToken, (req, res) => {
-  res.json({ message: 'You have accessed a protected route!', user: req.user });
-});
 //CAN BE DELETED
 // ROUTES ORIGINALLY SET UP TO SEND USER TO login or signup page
 // app.use('/signup', signupRouter);
@@ -30,9 +26,11 @@ app.get('/protected', authenticateToken, (req, res) => {
 //VITE CONFIG file allows for this to be just /data instead of /Home/data
 app.get('/data', async (req, res) => {
   let data = await awsHourData();
-  //console.log('in server');
-  //console.log('server', data);
   res.status(200).json(data);
+});
+
+app.get('/protected', authenticateToken, (req, res) => {
+  res.status(200).json('Success, accessed a protected route');
 });
 
 //CAN BE DELETED

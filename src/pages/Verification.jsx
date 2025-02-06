@@ -3,6 +3,7 @@ import { CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 
 import { useNavigate } from 'react-router';
 
+
 const Verify = ({ email }) => {
   const [verificationCode, setVerificationCode] = useState('');
   const [message, setMessage] = useState('');
@@ -10,18 +11,22 @@ const Verify = ({ email }) => {
 
   //handles checking if user enters appropriate code after signup
   const handleVerification = () => {
-    //grabs pool data
+    //grabs pool data, ensures our poolID stays safe, along with ClientId
     const poolData = {
       UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
       ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
     };
-    //ensures our poolID stays safe, along with ClientId
+    //creates a userPool out of the data provided above 
     const userPool = new CognitoUserPool(poolData);
+
+    //creates a CognitoUser instance, which we can run operations on 
     const cognitoUser = new CognitoUser({
       Username: email,
       Pool: userPool,
     });
 
+    //uses confirmRegistration method to ensure the verification code is true
+    //DEPRECATED CAN BE UPDATED TO new AWS SDK
     cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
       if (err) {
         setMessage(`Verification failed: ${err.message}`);
