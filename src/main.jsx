@@ -13,6 +13,7 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 import LineChart from './pages/components/Linechart.jsx';
 import { AuthProvider } from './pages/context/AuthContext.jsx';
 import ProtectedRoute from './pages/components/ProtectedRoutes.jsx';
+import NewUser from './pages/newUserProfile.jsx';
 
 //polyfill for global
 window.global = window;
@@ -33,6 +34,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='/linechart' element={<LineChart />} />
         <Route path='*' element={<Error />} />
         <Route path='/Forgot' element={<Forgot />} />
+        <Route path='/newUserProfile' element ={<NewUser />} />
       </Routes>
     </BrowserRouter>
   </AuthProvider>
