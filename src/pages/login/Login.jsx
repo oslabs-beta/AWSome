@@ -5,7 +5,7 @@ import {
   AuthenticationDetails,
   CognitoUserPool,
 } from 'amazon-cognito-identity-js';
-import { useAuth } from './context/AuthContext.jsx';
+import { useAuth } from '../context/AuthContext';
 
 function Login() {
   const [email, setEmail] = useState('');
