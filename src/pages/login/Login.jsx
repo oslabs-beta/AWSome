@@ -5,7 +5,7 @@ import {
   AuthenticationDetails,
   CognitoUserPool,
 } from 'amazon-cognito-identity-js';
-import { useAuth } from './context/AuthContext.jsx';
+import { useAuth } from '../context/AuthContext';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -49,7 +49,7 @@ function Login() {
       onSuccess: (data) => {
         console.log('Login Successful:', data);
         setUserSession({ user, session: data });
-        navigate('/Home'); //immediately navigates to Home page,
+        navigate('/newUserProfile'); //immediately navigates to Home page,
       },
       //upon failure, we instead console the error message, reason why
       onFailure: (err) => {
@@ -124,14 +124,13 @@ function Login() {
                       >
                         Sign in
                       </button>
-                      <button
-                        className='flex rounded-xl py-3 border-2 border-gray-300 items-center justify-center gap-2 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all'
-                        type='submit'
-                      >
-                        Sign in with Google
-                      </button>
                     </div>
                   </form>
+                  <div className='mt-8 flex flex-col gap-y-4'>
+                    <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
+                      Sign in with Google
+                    </button>
+                  </div>
 
                   <div className='mt-8 flex justify-center items-center'>
                     <p className='font-medium text-base'>
@@ -154,7 +153,7 @@ function Login() {
             </div>
           </div>
         </div>
-        <div className='relative w-full h-full lg:flex items-center justify-center bg-violet-100'>
+        <div className='flex relative w-full h-screen lg:flex items-center justify-center bg-violet-100'>
           <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-900 to-pink-500 rounded-full animate-spin'></div>
           <div className='w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg'></div>
         </div>
