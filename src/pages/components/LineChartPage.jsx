@@ -1,68 +1,95 @@
-import  { useEffect, useRef } from "react";
-import * as d3 from "d3";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import { useEffect, useState } from 'react';
 
-const LineChartPage = ({ data }) => {
-  const svgRef = useRef();
+export default function LineChartPage() {
+  const [barX, setData] = useState([
+    { x: 0, y: 10 },
+    { x: 5, y: 20 },
+    { x: 10, y: 30 },
+    { X: 15, y: 40 },
+    { x: 20, y: 50 },
+    { x: 25, y: 10 },
+    { x: 30, y: null },
+    { x: 35, y: null },
+    { x: 40, y: null },
+    { x: 45, y: null },
+    { x: 50, y: null },
+    { x: 55, y: null },
+    { x: 60, y: null },
+    { x: null, y: 100 },
+  ]);
 
-  useEffect(() => {
-    if (data && data.length > 0) {
-      const margin = { top: 20, right: 20, bottom: 30, left: 40 };
-      const width = 600 - margin.left - margin.right;
-      const height = 400 - margin.top - margin.bottom;
+  const labels = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
 
-      const svg = d3
-        .select(svgRef.current)
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
 
-      const xScale = d3
-        .scaleBand()
-        .domain(data.map((d) => d.name))
-        .range([0, width]);
+  const options = {
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: {
+          color: 'white',
+        },
+      },
+      title: {
+        display: true,
+        text: 'Networt(IN/OUT)',
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true,
+      },
+    },
+  };
 
-      const yScale = d3
-        .scaleLinear()
-        .domain([0, d3.max(data, (d) => d.value)])
-        .range([height, 0]);
+  const data = {
+    labels,
+    datasets: [
+      {
+        barPercentage: 1,
+        categoryPercentage: 1,
+        label: '<40%',
+        data: barX,
+        backgroundColor: ['#3e95cd'],
+      },
+      {
+        data: [
+          { x: 0, y: 20 },
+          { x: 5, y: 30 },
+          { x: 10, y: 50 },
+          { x: 15, y: 30 },
+          { x: 20, y: 45 },
+          { X: 25, y: 50 },
+        ],
+        backgroundColor: ['red'],
+      },
+    ],
+  };
 
-      const line = d3
-        .line()
-        .x((d) => xScale(d.name))
-        .y((d) => yScale(d.value));
-
-      svg
-        .append("path")
-        .data([data])
-        .attr("class", "line")
-        .attr("d", line)
-        .style("fill", "none")
-        .style("stroke", "green")
-        .style("stroke-width", 2);
-
-      svg
-        .append("g")
-        .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(xScale));
-
-      svg.append("g").call(d3.axisLeft(yScale));
-    }
-  }, [data]);
-
-  return <svg ref={svgRef}></svg>;
-};
-
-const data = [
-  { name: "A", value: 10 },
-  { name: "B", value: 20 },
-  { name: "C", value: 15 },
-];
-
-export default function LineChart() {
   return (
     <div>
-      <LineChartPage data={data} />
+      <Bar options={options} data={data} />
     </div>
   );
 }

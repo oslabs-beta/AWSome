@@ -4,10 +4,11 @@ import express from 'express';
 
 const router = express.Router();
 
-
+//delete, once was a test route
 router.get('/test', (req, res) => {
     return res.send('server is working');
 })
 
 
+//delete the whole page if able to 
 export default router
