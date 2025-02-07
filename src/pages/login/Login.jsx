@@ -49,7 +49,7 @@ function Login() {
       onSuccess: (data) => {
         console.log('Login Successful:', data);
         setUserSession({ user, session: data });
-        navigate('/Home'); //immediately navigates to Home page,
+        navigate('/newUserProfile'); //immediately navigates to Home page,
       },
       //upon failure, we instead console the error message, reason why
       onFailure: (err) => {
