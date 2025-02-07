@@ -121,7 +121,7 @@ function Signup() {
                       </div>
                     </form>
                     <div>
-                      <a href={authUrl}>
+                      <a className='mt-8 flex flex-col gap-y-4' href={authUrl}>
                         <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
                           Sign up with Google
                         </button>
