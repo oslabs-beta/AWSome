@@ -24,4 +24,7 @@ export default defineConfig({
       '/protected': 'http://localhost:3000',
     },
   },
+  preview: {
+    allowedHosts: true
+  },
 });

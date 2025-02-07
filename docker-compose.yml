@@ -1,9 +1,0 @@
-version: "3.5"
-services:
-  vite:
-    build: .
-    ports:
-      - "3000:3000"  # Map the container's port 3000 to host port 3000.
-    volumes:
-      - .:/app       # Mount your project directory into the container.
-      - /app/node_modules  # Prevent overwriting node_modules.

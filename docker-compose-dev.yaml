@@ -1,0 +1,25 @@
+services:
+  dev:
+    image: team312/mm-dev:latest
+    container_name: mm-dev-hot
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/usr/src/app/ #path based volume will change 
+      - node_modules:/usr/src/app/node_modules  # node_modules persist 
+    command: "npm run dev:hot"
+    depends_on: 
+      - "postgres-db"
+  postgres-db:
+    image: team312/mm-postgres:latest
+    container_name: mm-database
+    environment: # explict .env variables 
+       - POSTGRES_PASSWORD=admin
+       - POSTGRES_USER=mmadmin
+       - POSTGRES_DB=mmdb
+    volumes:
+      - dev-db-volume:/var/lib/postgresql/data  #db data is persisted 
+    
+volumes: # these named volues are used by both containers 
+    node_modules: # prevent over writing 
+    dev-db-volume: # presist data
