@@ -1,5 +1,7 @@
 import './Home.css';
 import BarChart from './components/Barchart';
+import LineChart from './components/Linechart';
+import LineChartPage from './components/LineChartPage';
 
 function Home() {
 
@@ -48,12 +50,14 @@ function Home() {
         <h2 className='text-3xl font-extrabold mb-8'>METRICS</h2>
         <div className='grid grid-cols-2 gap-6 w-full max-w-5xl px-6'>
           <div className='bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col'>
-            <h3 className='text-lg font-semibold mb-4'>Memory</h3>
-            <div className='h-60 bg-purple-600 rounded'></div>
+            <h3 className='text-lg font-semibold mb-4'>Network Packets</h3>
+
+            {/* <div className='h-60 bg-purple-600 rounded'></div> */}
           </div>
           <div className='bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col'>
             <h3 className='text-lg font-semibold mb-4'>Network Traffic</h3>
-            <div className='h-60 bg-purple-600 rounded'></div>
+            <LineChartPage className='h-60 fit  ' />
+            {/* <div className='h-60 bg-purple-600 rounded'></div> */}
           </div>
           <div className='bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col'>
             <h3 className='text-lg font-semibold mb-4'>CPU Usage</h3>
@@ -62,8 +66,9 @@ function Home() {
             </div> */}
           </div>
           <div className='bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col'>
-            <h3 className='text-lg font-semibold mb-4'>Important Data</h3>
-            <div className='h-60 bg-purple-600 rounded'></div>
+            <h3 className='text-lg font-semibold mb-4'>Write and Read Operation</h3>
+            <LineChart className='h-60 fit  ' />
+            {/* <div className='h-60 bg-purple-600 rounded'></div> */}
           </div>
         </div>
       </main>
