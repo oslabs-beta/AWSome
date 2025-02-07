@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { data, useNavigate } from 'react-router';
-import Verify from './Verification.jsx';
+import Verify from '../Verification';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 function Signup() {
@@ -10,31 +10,35 @@ function Signup() {
   const [success, setSuccess] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
 
-  const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.replace(
+  //url data to redirect to when user wishes to sign up with Google
+  const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.toLowerCase().replace(
     '_',
     ''
-  ).toLowerCase()}.auth.us-east-1.amazoncognito.com/oauth2/authorize?client_id=${
+  )}.auth.us-east-1.amazoncognito.com/login?client_id=${
     import.meta.env.VITE_COGNITO_CLIENT_ID
-  }&response_type=token&scope=email+openid+profile&redirect_uri=https://d84l1y8p4kdic.cloudfront.net&identity_provider=Google`.trim();
+  }&redirect_uri=https%3A%2F%2Fd84l1y8p4kdic.cloudfront.net&response_type=code`;
 
+  //function to handle the signup process for our users
   const handleSignups = (event) => {
     //prevents default form loading upon submission
     event.preventDefault();
 
+    //grabs pool data
     const poolData = {
       UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
       ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
     };
-    //ensures our poolID stays safe, along with ClientId
+    //makes a userPool instance using the data from above
     const userPool = new CognitoUserPool(poolData);
 
-    //defaults 'success' to false to begin
+    //Becomes 'false' to begin
     setSuccess(false);
 
     //ensures email will be saved case insensitive
     let lowerCaseEmail = email;
     lowerCaseEmail = lowerCaseEmail.toLowerCase();
 
+    //atttirbutes to send for signUP method
     const attributeList = [
       {
         Name: 'email',
@@ -64,19 +68,6 @@ function Signup() {
   const login = () => {
     console.log('testing');
     navigate('/');
-
-    //CAN BE DELETED
-    // fetch('/login')
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     const { redirectTo } = data;
-    //     //this will be used if the login is incorrect, the user will be
-    //     //redirected to Signup
-    //     if (redirectTo) {
-    //       navigate(redirectTo);
-    //     }
-    //   });
   };
 
   return (
@@ -130,7 +121,7 @@ function Signup() {
                       </div>
                     </form>
                     <div>
-                      <a href={authUrl}>
+                      <a className='mt-8 flex flex-col gap-y-4' href={authUrl}>
                         <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
                           Sign up with Google
                         </button>

@@ -2,7 +2,7 @@ import pg from "pg";
 
 // Create a PostgreSQL client instance
  const client = new pg.Client({
-  user: "AWSome_members", // Your PostgreSQL username
+  user: "awsome_members", // Your PostgreSQL username
   host: "localhost", // If PostgreSQL is running locally
   database: "aws_monitoring", // The database you created
   password: "AWSomepassword", // Your PostgreSQL user's password
