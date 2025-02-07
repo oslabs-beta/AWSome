@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite & nodemon ./backend/server",
+    "dev": "vite & nodemon ./backend/server.js",
     "build": "vite build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "preview": "vite preview & nodemon ./backend/server.js",
+    "server-docker": "node ./server.js"
   },
   "dependencies": {
     "@aws-sdk/client-cloudwatch": "^3.731.1",

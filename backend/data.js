@@ -7,7 +7,7 @@ import {
 
 
 // Create a CloudWatch Client
-const client = new CloudWatchClient({}); // This sets up a connection to send and recieve data.
+const client = new CloudWatchClient({ region: "us-east-1"}); // This sets up a connection to send and recieve data.
 
 export const awsData = async () => {
   // Starts the awsData function, marked as async because it handles promises (waiting for AWS data)

@@ -48,7 +48,7 @@ export default function BarChart() {
           return old;
         });
       } catch (error) {
-        console.log('fetchData function in barchart.jsx', error);
+        console.log('fetchData function in barchart.jsx: ', error);
       }
     }
 

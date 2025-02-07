@@ -4,13 +4,17 @@ FROM node:23.6.0
 # Set the working directory.
 WORKDIR /app
 
+
 # Copy package files and install dependencies.
-COPY . /app
+COPY ./package.json /app
+
+
+COPY ./backend /app
 RUN npm install
 
 # Copy the rest of your application code.
 # Expose the port Vite is running on.
-EXPOSE 4173
+EXPOSE 3000
 
 # Run the dev server.
-CMD ["npm", "run", "preview"]
+CMD ["npm", "run", "server-docker"]
