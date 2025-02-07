@@ -10,31 +10,65 @@ const transformMetrics = (metricResults) => {
   }));
 };
 
-// Function to save the transformed metrics data into PostgreSQL
+// Function to save the transformed metrics data into PostgreSQL (using UPSERT)
 const saveMetricsToDatabase = async (awsAccountId, transformedMetrics) => {
   for (const metric of transformedMetrics) {
     for (let i = 0; i < metric.timestamps.length; i++) {
-      const query = `
-        INSERT INTO aws_metrics (aws_account_id, metric_name, metric_value, timestamp)
-        VALUES ($1, $2, $3, $4)
-      `;
-      const values = [
-        awsAccountId, // AWS Account ID
+      // Call updateMetric to handle insert/update logic
+      await updateMetric(
+        awsAccountId,
         metric.metricName,
+        null, // instanceId (if available, otherwise null)
         metric.values[i],
-        metric.timestamps[i], // Timestamp for the metric value
-      ];
-      try {
-        await client.query(query, values); // Save each metric entry into PostgreSQL
-        console.log(
-          `Metric ${metric.metricName} saved for AWS account ${awsAccountId}.`
-        );
-      } catch (error) {
-        console.error("Error inserting data into aws_metrics:", error);
-      }
+        metric.timestamps[i],
+        "Average", // Stat (you can modify based on data)
+        "%", // Unit (you can modify based on data)
+        60 // Period (you can modify based on data)
+      );
     }
   }
 };
+
+// Function to update or insert the metric using UPSERT logic
+async function updateMetric(
+  awsAccountId,
+  metricName,
+  instanceId,
+  metricValue,
+  timestamp,
+  stat,
+  unit,
+  period
+) {
+  const query = `
+    INSERT INTO aws_metrics (aws_account_id, metric_name, instance_id, metric_value, timestamp, stat, unit, period)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    ON CONFLICT (aws_account_id, metric_name, timestamp)
+    DO UPDATE
+    SET 
+        metric_value = $4, 
+        stat = $6, 
+        unit = $7,
+        period = $8;
+  `;
+
+  try {
+    // Execute the UPSERT query with the provided parameters
+    await client.query(query, [
+      awsAccountId,
+      metricName,
+      instanceId,
+      metricValue,
+      timestamp,
+      stat,
+      unit,
+      period,
+    ]);
+    console.log("Metric updated successfully");
+  } catch (err) {
+    console.error("Error updating metric:", err);
+  }
+}
 
 // Function to get AWS account ID by user email
 const getAwsAccountIdByEmail = async (email) => {
