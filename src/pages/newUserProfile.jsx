@@ -5,6 +5,23 @@ import './Home.css';
 function NewUser() {
   const navigate = useNavigate();
 
+  async function RandomID () {
+    // let res = await fetch('/random');
+    // console.log('promise: ', res);
+    // let data = await res.json()
+    // console.log('data: ', data)
+
+    fetch('/random')
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => console.log('got nothing', err));
+
+
+  }
+
+
   return (
     <div className='bg-gradient-to-br from-purple-900 to-indigo-800 text-white font-sans min-h-screen flex flex-col'>
       {/* Navbar */}
@@ -41,7 +58,11 @@ function NewUser() {
         <p className='text-lg text-center max-w-lg'>
           Start setting up your AWS monitoring dashboard.
         </p>
-        <button className='bg-pink-600 '>Generate ExternalId </button>
+        <div className='RandomID'>
+        <button className='bg-pink-600 '
+        onClick={RandomID}
+        >Generate ExternalId </button>
+        </div>
         <p>Enter your Role ARN</p>
         <input></input>
       </main>

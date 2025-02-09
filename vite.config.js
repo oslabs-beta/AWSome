@@ -22,9 +22,10 @@ export default defineConfig({
       '/login': 'http://localhost:3000',
       '/signup': 'http://localhost:3000',
       '/protected': 'http://localhost:3000',
+      '/random': 'http://localhost:3000',
     },
   },
   preview: {
-    allowedHosts: true
+    allowedHosts: true,
   },
 });
