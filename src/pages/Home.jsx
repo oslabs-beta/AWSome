@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import BarChart from './components/Barchart';
 import LineChart from './components/Linechart';
 import LineChartPage from './components/LineChartPage';
+import { useSelector, useDispatch } from 'react-redux'
 
 function Home() {
 
