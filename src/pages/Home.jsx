@@ -51,10 +51,14 @@ const navigate = useNavigate()
         </nav>
       </header>
 
+      {/*Connect to User's AWS Account Button */}
+      <button className='bg-pink-600'>Connect!</button>
+
+
       {/* Metrics Section */}
       <main className='flex-grow flex flex-col items-center py-12'>
         <h2 className='text-3xl font-extrabold mb-8'>METRICS</h2>
-        <div className='grid grid-cols-2 gap-6 w-full max-w-5xl px-6'>
+        <div id='container' className='grid grid-cols-2 gap-6 w-full max-w-5xl px-6'>
           <div className='bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col'>
             <h3 className='text-lg font-semibold mb-4'>Network Packets</h3>
 
@@ -76,6 +80,7 @@ const navigate = useNavigate()
             <LineChart className='h-60 fit  ' />
             {/* <div className='h-60 bg-purple-600 rounded'></div> */}
           </div>
+          
         </div>
       </main>
       <button onClick={testingMiddleware}>Testing</button>

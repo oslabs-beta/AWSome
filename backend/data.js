@@ -3,8 +3,9 @@ import {
   CloudWatchServiceException, // Handles specific errors from CloudWatch
   GetMetricDataCommand, // Sends a request to fetch metric data
 } from "@aws-sdk/client-cloudwatch";
-
 import awsCredentialProviders from "@aws-sdk/credential-providers";
+
+
 const { fromSSO } = awsCredentialProviders;
 
 const credentials = await fromSSO({profile: "AdministratorAccess-913524940612" });

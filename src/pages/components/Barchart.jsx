@@ -35,21 +35,21 @@ export default function BarChart() {
 
   useEffect(() => {
     async function fetchdata() {
-      try {
-        let promise = await fetch('/data');
-        let data = await promise.json();
-        //console.log(data[0]);
-        setRefresh(true);
-        setData((old) => {
-          for (let i = 0; i < old.length - 1; i++) {
-            old[i].y = data[0].Values[i];
-          }
-          console.log('new data', old);
-          return old;
-        });
-      } catch (error) {
-        console.log('fetchData function in barchart.jsx: ', error);
-      }
+      // try {
+      //   let promise = await fetch('/data');
+      //   let data = await promise.json();
+      //   //console.log(data[0]);
+      //   setRefresh(true);
+      //   setData((old) => {
+      //     for (let i = 0; i < old.length - 1; i++) {
+      //       old[i].y = data[0].Values[i];
+      //     }
+      //     console.log('new data', old);
+      //     return old;
+      //   });
+      // } catch (error) {
+      //   console.log('fetchData function in barchart.jsx: ', error);
+      // }
     }
 
     

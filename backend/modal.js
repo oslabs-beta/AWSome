@@ -15,8 +15,5 @@ client
   .then(() => console.log("Connected to PostgreSQL!"))
   .catch((err) => console.error("Error connecting to PostgreSQL:", err));
 
-
-
-
   
 export default client; // Export the client instance for use in other modules
