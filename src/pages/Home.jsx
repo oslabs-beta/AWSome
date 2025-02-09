@@ -1,10 +1,11 @@
 import './Home.css';
 import { useNavigate } from 'react-router';
 
-import BarChart from './components/Barchart';
-import LineChart from './components/Linechart';
-import LineChartPage from './components/LineChartPage';
+import BarChart from './components/Barchart.jsx';
+import LineChart from './components/Linechart.jsx';
+import LineChartPage from './components/LineChartPage.jsx';
 import { useSelector, useDispatch } from 'react-redux'
+import { addGraph } from '../state/graph-reducer.js';
 
 function Home() {
 
@@ -24,6 +25,10 @@ const navigate = useNavigate()
       .then((data) => console.log('Response:', data))
       .catch((error) => console.error('Error:', error));
   };
+
+  // const graphs = useSelector(state => state);
+  // const dispatch = useDispatch()
+
 
   return (
     <div className="bg-gradient-to-br from-purple-900 to-indigo-800 text-white font-sans min-h-screen flex flex-col">
@@ -46,7 +51,9 @@ const navigate = useNavigate()
           <a href="#" className="hover:underline">
             Recommended
           </a>
-          <button className="bg-pink-600 hover:bg-pink-700 text-sm py-1 px-4 rounded-lg">
+          <button className="bg-pink-600 hover:bg-pink-700 text-sm py-1 px-4 rounded-lg"
+          // onClick={() => dispatch(addGraph())}
+          >
             Add Metrics
           </button>
         </nav>
