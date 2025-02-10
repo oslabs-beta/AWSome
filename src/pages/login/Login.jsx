@@ -144,11 +144,12 @@ function Login() {
                     >
                       Sign up
                     </button>
+                    <p className='font-medium text-base ml-6'>
+                      Forgot Password? <a href='/forgot' className='text-violet-500 font-medium ml-2'>Click here</a>
+                    </p>
                   </div>
                 </div>
-                <p>
-                  Forgot Password? <a href='/forgot'>Click here</a>
-                </p>
+                
               </div>
             </div>
           </div>
