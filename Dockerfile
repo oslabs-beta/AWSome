@@ -1,16 +1,16 @@
 # Use an official Node.js image.
-FROM node:23.6.0
+FROM node:23.6.0 AS builder
 
-# Set the working directory.
 WORKDIR /app
-
-# Copy package files and install dependencies.
-COPY . /app
+COPY package*.json ./
 RUN npm install
+COPY ./ /app
+RUN npm run build
 
-# Copy the rest of your application code.
-# Expose the port Vite is running on.
-EXPOSE 4173
-
+#Running Production
+FROM nginx:stable-alpine AS production
+COPY --from=builder /app/nginx /etc/nginx/conf.d
+COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
 # Run the dev server.
-CMD ["npm", "run", "preview"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"] 
