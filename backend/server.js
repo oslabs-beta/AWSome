@@ -37,10 +37,14 @@ app.get('/data', async (req, res) => {
   res.status(200).json(data);
 });
 
+app.get('/random', (req, res) => {
+  let id = externalIdGenerator();
+  res.status(200).json({ id });
+});
+
 app.get('/protected', authenticateToken, (req, res) => {
   res.status(200).json('Success, accessed a protected route');
 });
-
 
 app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
