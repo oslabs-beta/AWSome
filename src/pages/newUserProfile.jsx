@@ -1,9 +1,16 @@
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from './context/AuthContext';
 import './Home.css';
 
 function NewUser() {
   const navigate = useNavigate();
+
+  const { signOut } = useAuth();
+
+  const logOut = async () => {
+    signOut();
+    navigate('/');
+  };
 
   return (
     <div className='bg-gradient-to-br from-purple-900 to-indigo-800 text-white font-sans min-h-screen flex flex-col'>
@@ -28,6 +35,9 @@ function NewUser() {
           </a>
           <a href='#' className='hover:underline'>
             Recommended
+          </a>
+          <a onClick={logOut} className='hover:underline'>
+            Logout
           </a>
           <button className='bg-pink-600 hover:bg-pink-700 text-sm py-1 px-4 rounded-lg'>
             Add Metrics

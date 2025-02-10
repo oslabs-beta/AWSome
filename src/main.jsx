@@ -27,10 +27,10 @@ createRoot(document.getElementById('root')).render(
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route path='/Home' element={<Dashboard />} />
+          <Route path='/newUserProfile' element={<NewUser />} />
         </Route>
         <Route path='*' element={<Error />} />
         <Route path='/Forgot' element={<Forgot />} />
-        <Route path='/newUserProfile' element ={<NewUser />} />
       </Routes>
     </BrowserRouter>
   </AuthProvider>

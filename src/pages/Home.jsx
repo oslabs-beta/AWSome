@@ -1,12 +1,25 @@
 import './Home.css';
+import {
+  CognitoIdentityProviderClient,
+  RevokeTokenCommand,
+} from '@aws-sdk/client-cognito-identity-provider';
 import { useNavigate } from 'react-router';
 import BarChart from './components/Barchart.jsx';
 import LineChart from './components/Linechart.jsx';
 import { useSelector } from 'react-redux';
 import DropDownMenu from './menu.jsx';
+import { useAuth } from './context/AuthContext.jsx';
+import { sign } from 'jsonwebtoken';
 
-function Home() {
+const Home = () => {
   const navigate = useNavigate();
+  const { signOut } = useAuth();
+
+  const logOut = async () => {
+    signOut();
+    navigate('/');
+  };
+
   //SIMPLY TESTING MIDDLEWARE, To be implemented properly needs an api call to fetch current user's access token
   //then use that token and send it as part of the header with each request
   const testingMiddleware = () => {
@@ -77,6 +90,9 @@ function Home() {
           <a href='#' className='hover:underline'>
             Recommended
           </a>
+          <a onClick={logOut} className='hover:underline'>
+            Logout
+          </a>
           <div>
             <DropDownMenu />
           </div>
@@ -105,6 +121,6 @@ function Home() {
       </footer>
     </div>
   );
-}
+};
 
 export default Home;

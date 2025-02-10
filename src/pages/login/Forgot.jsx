@@ -109,14 +109,14 @@ function Forgot() {
             <br></br>
             <label>New Password: </label>
             <input
-              type='text'
+              type='password'
               value={passwordOne}
               onChange={(e) => setPasswordOne(e.target.value)}
               required
             ></input>
             <label>Re-type new password</label>
             <input
-              type='text'
+              type='password'
               value={passwordTwo}
               onChange={(e) => setPasswordTwo(e.target.value)}
               required
