@@ -7,12 +7,12 @@ import {
 } from 'amazon-cognito-identity-js';
 import { useAuth } from '../context/AuthContext';
 
-  const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.toLowerCase().replace(
-    '_',
-    ''
-  )}.auth.us-east-1.amazoncognito.com/login?client_id=${
-    import.meta.env.VITE_COGNITO_CLIENT_ID
-  }&redirect_uri=https%3A%2F%2Fd84l1y8p4kdic.cloudfront.net&response_type=code`;
+const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.toLowerCase().replace(
+  '_',
+  ''
+)}.auth.us-east-1.amazoncognito.com/login?client_id=${
+  import.meta.env.VITE_COGNITO_CLIENT_ID
+}&redirect_uri=http://localhost:5173/&response_type=code`;
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -27,6 +27,7 @@ function Login() {
   //runs everytime there are new parameters
   useEffect(() => {
     const code = searchParams.get('code'); // Get auth code from URL
+    console.log('this is the code we are retrieving:', code);
     if (code) {
       exchangeCodeForToken(code);
     }
@@ -202,10 +203,7 @@ function Login() {
                       required
                       placeholder='Enter your password'
                     ></input>
-                    <div className='mt-3 flex justify-between items-center'>
-              
-
-                    </div>
+                    <div className='mt-3 flex justify-between items-center'></div>
                     <div className='mt-8 flex flex-col gap-y-4'>
                       <button
                         className='active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
@@ -221,7 +219,7 @@ function Login() {
                         Sign in with Google
                       </button>
                     </a>
-                  </div> 
+                  </div>
 
                   <div className='mt-8 flex justify-center items-center'>
                     <p className='font-medium text-base'>
