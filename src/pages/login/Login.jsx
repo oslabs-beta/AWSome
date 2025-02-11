@@ -93,7 +93,10 @@ function Login() {
                       type='email'
                       className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => {
+                        setError('');
+                        setEmail(e.target.value);
+                      }}
                       required
                       placeholder='Enter your email'
                     ></input>
@@ -102,7 +105,10 @@ function Login() {
                       type='password'
                       className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => {
+                        setError('');
+                        setPassword(e.target.value);
+                      }}
                       required
                       placeholder='Enter your password'
                     ></input>
@@ -140,11 +146,16 @@ function Login() {
                       Sign up
                     </button>
                     <p className='font-medium text-base ml-6'>
-                      Forgot Password? <a href='/forgot' className='text-violet-500 font-medium ml-2'>Click here</a>
+                      Forgot Password?{' '}
+                      <a
+                        href='/forgot'
+                        className='text-violet-500 font-medium ml-2'
+                      >
+                        Click here
+                      </a>
                     </p>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext, createContext } from 'react';
 // import userPool from '../../pools/userPool';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
-import { useNavigate } from 'react-router';
+
 //allows for any children component to use this CONTEXT, small scale state management
 const AuthContext = createContext();
 
@@ -31,12 +31,7 @@ export const AuthProvider = ({ children }) => {
           setUserSession(null);
         } else {
           //save the current user and their session
-          // console.log('testing saving current user');
-          //otherwise make
           setUserSession({ user: currentUser, session });
-
-          //USED FOR DEBUGGING COULD BE DELETED
-          const accessToken = session.getAccessToken().getJwtToken();
         }
         setLoading(false);
       });
