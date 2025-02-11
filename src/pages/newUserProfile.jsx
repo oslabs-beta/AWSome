@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './context/AuthContext';
+import './Home.css';
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
@@ -5,6 +8,32 @@ import "./Home.css";
 
 function NewUser() {
   const navigate = useNavigate();
+
+
+  const { signOut } = useAuth();
+
+  const logOut = async () => {
+    signOut();
+    navigate('/');
+  };
+
+  async function RandomID () {
+    // let res = await fetch('/random');
+    // console.log('promise: ', res);
+    // let data = await res.json()
+    // console.log('data: ', data)
+
+    fetch('/random')
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => console.log('got nothing', err));
+
+
+  }
+
+
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -67,6 +96,26 @@ function NewUser() {
           >
             Dashboard
           </button>
+          <button
+            className='hover:underline cursor-pointer'
+            onClick={() => navigate('/newUserProfile')}
+          >
+            Account
+          </button>
+          <a href='#' className='hover:underline'>
+            Settings
+          </a>
+          <a href='#' className='hover:underline'>
+            Recommended
+          </a>
+          <a onClick={logOut} className='hover:underline'>
+            Logout
+          </a>
+          <button className='bg-pink-600 hover:bg-pink-700 text-sm py-1 px-4 rounded-lg'>
+            Add Metrics
+          </button>
+        </nav>
+      </header>
 
           {/* Dropdown Menu */}
           {isOpen && (
@@ -93,6 +142,20 @@ function NewUser() {
           )}
         </header>
 
+      {/* Page Content */}
+      <main className='flex-grow flex flex-col items-center py-12'>
+        <h2 className='text-3xl font-extrabold mb-8'>Welcome, New User!</h2>
+        <p className='text-lg text-center max-w-lg'>
+          Start setting up your AWS monitoring dashboard.
+        </p>
+        <div className='RandomID'>
+        <button className='bg-pink-600 '
+        onClick={RandomID}
+        >Generate ExternalId </button>
+        </div>
+        <p>Enter your Role ARN</p>
+        <input></input>
+      </main>
         {/* Page Content */}
         <main className="flex flex-col items-center justify-center flex-grow py-12 space-y-6 px-4 md:px-12 ml-20">
           <h2 className="text-4xl font-extrabold text-gray-900 mb-8">

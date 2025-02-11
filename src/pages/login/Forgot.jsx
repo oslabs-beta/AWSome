@@ -4,6 +4,10 @@ import {
   ForgotPasswordCommand,
 } from '@aws-sdk/client-cognito-identity-provider';
 
+const client = new CognitoIdentityProviderClient({
+  region: 'us-east-1',
+});
+
 function Forgot() {
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -13,18 +17,18 @@ function Forgot() {
   const [resetSucess, setResetSuccess] = useState(false);
 
   //define a client using the proper region
-  const client = new CognitoIdentityProviderClient({
-    region: 'us-east-1',
-  });
 
   //form is submitted, code is sent to email
   const retrieveCode = async (event) => {
     event.preventDefault();
 
+    //sets email to lowercase first before sending it to Cognito
+    const lowerCaseEmail = email.toLowerCase();
+
     //This is what will be sent to Cognito, so that user can get a verification code
     const input = {
       ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
-      Username: email,
+      Username: lowerCaseEmail,
     };
     const command = new ForgotPasswordCommand(input);
     //sends the email
@@ -32,14 +36,12 @@ function Forgot() {
       //sends the client the command in order to get code
       const response = await client.send(command);
       //the response we get back tells us how we received the code
-      setDelivery(response.CodeDeliveryDetails.DeliveryMedium);
+      setDelivery(response?.CodeDeliveryDetails?.DeliveryMedium || 'unknown');
 
       console.log(response);
     } catch (error) {
       console.error('error:', error);
     }
-
-    console.log('testing');
     //after we receive code, set this to true to conditionally render the next step
     setVerificationComponent(true);
   };
@@ -53,15 +55,24 @@ function Forgot() {
   };
 
   return (
-    <div>
+    <div className='flex w-full h-screen'>
       {!verificationComponent ? (
-        <div>
-          <h1> Forgot password?</h1>
-          <p>Enter the email you use to login below</p>
-          <form onSubmit={retrieveCode}>
-            <label>Email: </label>
+        <div className='page-wrapper w-full items-center justify-center items-center'>
+          <h1 className='mainHeading text-5xl font-semibold'>
+            {' '}
+            Forgot password?
+          </h1>
+          <p className='font-medium text-lg text-gray-500 mt-4 animate-pulse'>
+            Enter the email you use to login below
+          </p>
+          <form
+            className='form-wrapper bg-white px-10 py-20 rounded-3xl'
+            onSubmit={retrieveCode}
+          >
+            <label className='text-lg font-medium'>Email: </label>
             <input
               type='email'
+              className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -77,9 +88,10 @@ function Forgot() {
           <h1>You received a code sent to via {delivery}</h1>
           <p>Enter the verification code you received below</p>
           <form onSubmit={codeSubmission}>
-            <label>Verification Code: </label>
+            <label className='text-lg font-medium'>Verification Code: </label>
             <input
               type='text'
+              className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
               value={code}
               onChange={(e) => setCode(e.target.value)}
               placeholder='1234'
@@ -93,6 +105,7 @@ function Forgot() {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
             <button type='submit'>Submit</button>
+            {errorMessage && <p className='text-red-500'>{errorMessage}</p>}
           </form>
         </div>
       ) : (
@@ -100,6 +113,10 @@ function Forgot() {
           <p>Testing</p>
         </div>
       )}
+      <div className='flex relative w-full h-screen lg:flex items-center justify-center bg-violet-100'>
+        <div className='relative w-60 h-60 bg-gradient-to-tr from-violet-900 to-pink-500 rounded-full animate-spin'></div>
+        <div className='w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg'></div>
+      </div>
     </div>
   );
 }

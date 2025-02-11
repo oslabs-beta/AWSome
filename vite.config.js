@@ -10,6 +10,9 @@ export default defineConfig({
       globals: true, // Enable polyfilling for `global`
     }),
   ],
+  build: {
+    outDir: 'dist',
+  },
   css: {
     postcss: {
       plugins: [tailwindcss()],
@@ -22,9 +25,13 @@ export default defineConfig({
       '/login': 'http://localhost:3000',
       '/signup': 'http://localhost:3000',
       '/protected': 'http://localhost:3000',
+      '/random': 'http://localhost:3000',
     },
+    historyApiFallback: true, //ensures client-side routing works
   },
-  preview: {
-    allowedHosts: true
-  },
+
+  // preview: {
+  //   allowedHosts: true,
+  // },
+
 });
