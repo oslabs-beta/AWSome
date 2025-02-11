@@ -9,15 +9,15 @@ export const AuthProvider = ({ children }) => {
   const [userSession, setUserSession] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    //grabbing the pool data
-    const poolData = {
-      UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
-      ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
-    };
-    //makes a userPool instance using pool data
-    const userPool = new CognitoUserPool(poolData);
+  //grabbing the pool data
+  const poolData = {
+    UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
+    ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+  };
+  //makes a userPool instance using pool data
+  const userPool = new CognitoUserPool(poolData);
 
+  useEffect(() => {
     //grabs current logged in user from the browser's local storage
     const currentUser = userPool.getCurrentUser();
 
@@ -31,12 +31,7 @@ export const AuthProvider = ({ children }) => {
           setUserSession(null);
         } else {
           //save the current user and their session
-          // console.log('testing saving current user');
-          //otherwise make
           setUserSession({ user: currentUser, session });
-
-          //USED FOR DEBUGGING COULD BE DELETED
-          const accessToken = session.getAccessToken().getJwtToken();
         }
         setLoading(false);
       });
@@ -53,6 +48,8 @@ export const AuthProvider = ({ children }) => {
       currentUser.signOut();
     }
     setUserSession(null);
+    localStorage.clear(); //clear any stored tokens
+    sessionStorage.clear(); //clear out session data
   };
 
   return (

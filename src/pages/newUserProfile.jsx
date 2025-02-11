@@ -1,9 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from './context/AuthContext';
 import './Home.css';
 
 function NewUser() {
   const navigate = useNavigate();
+
+
+  const { signOut } = useAuth();
+
+  const logOut = async () => {
+    signOut();
+    navigate('/');
+  };
 
   async function RandomID () {
     // let res = await fetch('/random');
@@ -20,6 +28,7 @@ function NewUser() {
 
 
   }
+
 
 
   return (
@@ -45,6 +54,9 @@ function NewUser() {
           </a>
           <a href='#' className='hover:underline'>
             Recommended
+          </a>
+          <a onClick={logOut} className='hover:underline'>
+            Logout
           </a>
           <button className='bg-pink-600 hover:bg-pink-700 text-sm py-1 px-4 rounded-lg'>
             Add Metrics

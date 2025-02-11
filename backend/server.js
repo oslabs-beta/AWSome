@@ -8,14 +8,16 @@ import signupRouter from './routes/signupRouter.js';
 import authenticateToken from './controllers/authMiddleware.js';
 import Awsrouter from './routes/ApiRoutes.js';
 import externalIdGenerator from './externalIDGenerator.js';
+
 const port = 3000;
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 const app = express();
+
+const __dirname =
+  path.dirname(fileURLToPath(import.meta.url)) || path.resolve();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 //CAN BE DELETED, WAS ONCE A TEST ROUTER
 app.use('/auth', router);
@@ -50,6 +52,7 @@ app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
 );
 
+//default global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
@@ -61,7 +64,9 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-app.use(express.static(path.resolve(__dirname, '../src')));
+
+// app.use(express.static(path.resolve(__dirname, '../src')));
+
 
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`);
