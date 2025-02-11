@@ -24,7 +24,10 @@ export const graphReducer = createSlice({
         state.metric.push(action.payload.metric);
       }
     },
-    getData: (state, action) => {},
+    getData: (state, action) => {
+      console.log(action);
+
+    },
   },
 });
 
