@@ -7,6 +7,13 @@ import {
 } from 'amazon-cognito-identity-js';
 import { useAuth } from '../context/AuthContext';
 
+  const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.toLowerCase().replace(
+    '_',
+    ''
+  )}.auth.us-east-1.amazoncognito.com/login?client_id=${
+    import.meta.env.VITE_COGNITO_CLIENT_ID
+  }&redirect_uri=https%3A%2F%2Fd84l1y8p4kdic.cloudfront.net&response_type=code`;
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -99,23 +106,9 @@ function Login() {
                       required
                       placeholder='Enter your password'
                     ></input>
-                    <div className='mt-8 flex justify-between items-center'>
-                      <div>
-                        <input type='checkbox' id='savePassword'></input>
-                        <label
-                          className='ml-2 font-medium text-base'
-                          htmlFor='savePassword'
-                        >
-                          Remember for 30 days
-                        </label>
-                      </div>
+                    <div className='mt-3 flex justify-between items-center'>
+              
 
-                      <button
-                        className='ml-2 font-medium text-violet-500 text-base'
-                        href='/forgot'
-                      >
-                        Forgot Password
-                      </button>
                     </div>
                     <div className='mt-8 flex flex-col gap-y-4'>
                       <button
@@ -126,11 +119,13 @@ function Login() {
                       </button>
                     </div>
                   </form>
-                  <div className='mt-8 flex flex-col gap-y-4'>
-                    <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
-                      Sign in with Google
-                    </button>
-                  </div>
+                  <div>
+                    <a className='mt-8 flex flex-col gap-y-4' href={authUrl}>
+                      <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
+                        Sign in with Google
+                      </button>
+                    </a>
+                  </div> 
 
                   <div className='mt-8 flex justify-center items-center'>
                     <p className='font-medium text-base'>

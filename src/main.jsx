@@ -12,7 +12,7 @@ import LineChart from './pages/components/Linechart.jsx';
 import { AuthProvider } from './pages/context/AuthContext.jsx';
 import ProtectedRoute from './pages/components/ProtectedRoutes.jsx';
 import NewUser from './pages/newUserProfile.jsx';
-import Dashboard from './pages/dashboard.jsx';
+import Dashboard from './pages/Dashboard.jsx';
 
 //polyfill for global
 window.global = window;
