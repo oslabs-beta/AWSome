@@ -4,11 +4,23 @@ import BarChart from './components/Barchart.jsx';
 import LineChart from './components/Linechart.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import DropDownMenu from './menu.jsx';
+import { useAuth } from './context/AuthContext.jsx';
+import { useEffect } from 'react';
 import { getData } from '../state/graph-reducer.js';
 import { AWSdata } from '../../backend/fetch.js';
 
-function Home() {
+const Home = () => {
+  const { signOut, userSession } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userSession) navigate('/');
+  }, [userSession, navigate]);
+
+  const logOut = () => {
+    signOut();
+  };
+
   //SIMPLY TESTING MIDDLEWARE, To be implemented properly needs an api call to fetch current user's access token
   //then use that token and send it as part of the header with each request
   const testingMiddleware = () => {
@@ -60,25 +72,27 @@ function Home() {
 
   return (
     <div className='bg-gradient-to-br from-purple-900 to-indigo-800 text-white font-sans min-h-screen flex flex-col'>
-      {/* Navbar */}
       <header className='bg-purple-800 text-white p-4 flex justify-between items-center shadow-md'>
         <h1 className='text-xl font-bold'>AWSome</h1>
         <nav className='flex items-center space-x-6'>
           <a href='#' className='hover:underline'>
             Dashboard
           </a>
-          <a
+          <button
             onClick={() => navigate('/newUserProfile')}
             className='hover:underline'
           >
             Account
-          </a>
+          </button>
           <a href='#' className='hover:underline'>
             Settings
           </a>
           <a href='#' className='hover:underline'>
             Recommended
           </a>
+          <button onClick={logOut} className='hover:underline'>
+            Logout
+          </button>
           <div>
             <DropDownMenu />
           </div>
@@ -115,6 +129,6 @@ function Home() {
       </footer>
     </div>
   );
-}
+};
 
 export default Home;
