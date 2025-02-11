@@ -71,15 +71,15 @@ function Login() {
 
         // After tokens are saved, create the session object and call setUserSession
         const user = { id: userId, email: data.email }; // Customize as per the user data you get
-
+        console.log('testing:', user);
         const session = {
           accessToken: data.access_token,
           idToken: data.id_token,
         };
-
+        console.log('session:', session);
         setUserSession({ user, session }); // Set user session after successful login
 
-        fetchUserInfo(data.id_token);
+        // fetchUserInfo(data.id_token);
         navigate('/newUserProfile');
       }
     } catch (error) {
@@ -88,29 +88,29 @@ function Login() {
   };
 
   //handles confirmation of token and ensures that user is authorized
-  const fetchUserInfo = async () => {
-    const token = localStorage.getItem('id_token'); // Use the ID token
+  // const fetchUserInfo = async () => {
+  //   const token = localStorage.getItem('id_token'); // Use the ID token
 
-    if (!token) {
-      console.log('User not authenticated.');
-      return;
-    }
+  //   if (!token) {
+  //     console.log('User not authenticated.');
+  //     return;
+  //   }
 
-    try {
-      const response = await fetch(
-        'https://us-east-1p9ehxxo94.auth.us-east-1.amazoncognito.com/oauth2/userInfo',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const userData = await response.json();
-      console.log('User Info:', userData);
-    } catch (error) {
-      console.error('Error fetching user info:', error);
-    }
-  };
+  //   try {
+  //     const response = await fetch(
+  //       'https://us-east-1p9ehxxo94.auth.us-east-1.amazoncognito.com/oauth2/userInfo',
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+  //     const userData = await response.json();
+  //     console.log('User Info:', userData);
+  //   } catch (error) {
+  //     console.error('Error fetching user info:', error);
+  //   }
+  // };
 
   //grabs the pool data from local .env file
   const poolData = {
