@@ -7,7 +7,7 @@
     "dev": "vite & nodemon ./backend/server.js",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview & nodemon ./backend/server.js",
+    "preview": "vite preview & node ./backend/server.js",
     "server-docker": "node ./server.js"
   },
   "dependencies": {
