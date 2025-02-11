@@ -67,7 +67,7 @@ function Home() {
           </a>
           <a
             onClick={() => navigate('/newUserProfile')}
-            className='hover:underline'
+            className='hover:underline cursor-pointer'
           >
             Account
           </a>
