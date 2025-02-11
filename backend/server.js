@@ -41,9 +41,6 @@ app.get('/protected', authenticateToken, (req, res) => {
   res.status(200).json('Success, accessed a protected route');
 });
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
-});
 
 
 app.use((req, res) =>
