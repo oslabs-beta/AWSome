@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   CognitoUser,
   AuthenticationDetails,
@@ -13,6 +13,96 @@ function Login() {
   const [error, setError] = useState('');
   const { setUserSession } = useAuth();
   const navigate = useNavigate();
+
+  //grabs url parameters
+  const [searchParams] = useSearchParams();
+
+  //runs everytime there are new parameters
+  useEffect(() => {
+    const code = searchParams.get('code'); // Get auth code from URL
+    if (code) {
+      exchangeCodeForToken(code);
+    }
+  }, [searchParams]);
+
+  //handles the exchange of tokens that are received in the url
+  const exchangeCodeForToken = async (code) => {
+    try {
+      const response = await fetch(
+        'https://us-east-1p9ehxxo94.auth.us-east-1.amazoncognito.com/oauth2/token',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams({
+            grant_type: 'authorization_code',
+            client_id: import.meta.env.VITE_COGNITO_CLIENT_ID,
+            code,
+            redirect_uri: 'http://localhost:5173',
+          }),
+        }
+      );
+
+      const data = await response.json();
+      console.log('Token Response:', data);
+
+      if (data.access_token) {
+        // Store the tokens with Cognito-like format
+        const userId = data.id_token.split('.')[0]; // Using the ID token's first part as a user ID
+        const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
+
+        localStorage.setItem(
+          `CognitoIdentityServiceProvider.${clientId}.${userId}.accessToken`,
+          data.access_token
+        );
+        localStorage.setItem(
+          `CognitoIdentityServiceProvider.${clientId}.${userId}.idToken`,
+          data.id_token
+        );
+
+        // After tokens are saved, create the session object and call setUserSession
+        const user = { id: userId, email: data.email }; // Customize as per the user data you get
+
+        const session = {
+          accessToken: data.access_token,
+          idToken: data.id_token,
+        };
+
+        setUserSession({ user, session }); // Set user session after successful login
+
+        fetchUserInfo(data.id_token);
+        navigate('/newUserProfile');
+      }
+    } catch (error) {
+      console.error('Error exchanging auth code for token:', error);
+    }
+  };
+
+  //handles confirmation of token and ensures that user is authorized
+  const fetchUserInfo = async () => {
+    const token = localStorage.getItem('id_token'); // Use the ID token
+
+    if (!token) {
+      console.log('User not authenticated.');
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        'https://us-east-1p9ehxxo94.auth.us-east-1.amazoncognito.com/oauth2/userInfo',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const userData = await response.json();
+      console.log('User Info:', userData);
+    } catch (error) {
+      console.error('Error fetching user info:', error);
+    }
+  };
 
   //grabs the pool data from local .env file
   const poolData = {
