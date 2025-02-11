@@ -36,7 +36,6 @@ const Home = () => {
   };
 
   const graphs = useSelector((state) => state.graphs);
-  const metric = useSelector((state) => state.metric);
   console.log(graphs);
   const newgraph = [];
 
