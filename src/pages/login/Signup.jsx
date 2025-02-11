@@ -9,6 +9,7 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [success, setSuccess] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   //url data to redirect to when user wishes to sign up with Google
   const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.toLowerCase().replace(
@@ -53,15 +54,17 @@ function Signup() {
       null,
       (err, data) => {
         if (err) {
-          console.error('Sign up failed:', err);
+          //if the email, password or anything is off throw error
+          console.error('Sign up failed:', err.message);
+          setErrorMessage(`${err.message}`);
           return;
         }
-        console.log('Sign up was successful:', data);
+        //otherwise console log success and show next steps
+        console.log('Sign up with this was good:', data);
         setSuccess(true);
+        setIsVerified(true);
       }
     );
-
-    setIsVerified(true);
   };
 
   //This allows user to go to login page
@@ -93,24 +96,33 @@ function Signup() {
                         type='email'
                         className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          setErrorMessage('');
+                        }}
                         required
                         placeholder='Enter your email'
                       ></input>
-                      <label className=' text-lg font-medium'>
-                        {' '}
-                        Password:{' '}
-                      </label>
+                      <label className=' text-lg font-medium'>Password:</label>
                       <input
                         type='password'
                         className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
                         value={password}
                         onChange={(e) => {
                           setPassword(e.target.value);
+                          setErrorMessage('');
                         }}
                         required
                         placeholder='Enter your password'
                       ></input>
+                      {!errorMessage ? (
+                        <p>
+                          Password must contain Uppercase, lowercase, number and
+                          symbol
+                        </p>
+                      ) : (
+                        <p className='text-red-500'>{errorMessage}</p>
+                      )}
                       <div className='mt-8 flex flex-col gap-y-4'>
                         <button
                           className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
@@ -126,15 +138,17 @@ function Signup() {
                           Sign up with Google
                         </button>
                       </a>
-                        <p className='flex justify-center font-medium text-base ml-6 mt-5'>Have an account? </p>
-                        <button
-                          onClick={() => {
-                            login();
-                          }}
-                          className='flex justify-center ml-20 text-violet-500 font-medium ml-2'
-                        >
-                          Login
-                        </button>
+                      <p className='flex justify-center font-medium text-base ml-6 mt-5'>
+                        Have an account?{' '}
+                      </p>
+                      <button
+                        onClick={() => {
+                          login();
+                        }}
+                        className='flex justify-center ml-20 text-violet-500 font-medium ml-2'
+                      >
+                        Login
+                      </button>
                     </div>
                   </div>
                 </div>

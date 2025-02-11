@@ -1,23 +1,22 @@
 import './Home.css';
-import {
-  CognitoIdentityProviderClient,
-  RevokeTokenCommand,
-} from '@aws-sdk/client-cognito-identity-provider';
 import { useNavigate } from 'react-router';
 import BarChart from './components/Barchart.jsx';
 import LineChart from './components/Linechart.jsx';
 import { useSelector } from 'react-redux';
 import DropDownMenu from './menu.jsx';
 import { useAuth } from './context/AuthContext.jsx';
-import { sign } from 'jsonwebtoken';
+import { useEffect } from 'react';
 
 const Home = () => {
+  const { signOut, userSession } = useAuth();
   const navigate = useNavigate();
-  const { signOut } = useAuth();
 
-  const logOut = async () => {
+  useEffect(() => {
+    if (!userSession) navigate('/');
+  }, [userSession, navigate]);
+
+  const logOut = () => {
     signOut();
-    navigate('/');
   };
 
   //SIMPLY TESTING MIDDLEWARE, To be implemented properly needs an api call to fetch current user's access token
@@ -71,28 +70,27 @@ const Home = () => {
 
   return (
     <div className='bg-gradient-to-br from-purple-900 to-indigo-800 text-white font-sans min-h-screen flex flex-col'>
-      {/* Navbar */}
       <header className='bg-purple-800 text-white p-4 flex justify-between items-center shadow-md'>
         <h1 className='text-xl font-bold'>AWSome</h1>
         <nav className='flex items-center space-x-6'>
           <a href='#' className='hover:underline'>
             Dashboard
           </a>
-          <a
+          <button
             onClick={() => navigate('/newUserProfile')}
             className='hover:underline'
           >
             Account
-          </a>
+          </button>
           <a href='#' className='hover:underline'>
             Settings
           </a>
           <a href='#' className='hover:underline'>
             Recommended
           </a>
-          <a onClick={logOut} className='hover:underline'>
+          <button onClick={logOut} className='hover:underline'>
             Logout
-          </a>
+          </button>
           <div>
             <DropDownMenu />
           </div>

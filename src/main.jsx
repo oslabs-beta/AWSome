@@ -29,8 +29,8 @@ createRoot(document.getElementById('root')).render(
           <Route path='/Home' element={<Dashboard />} />
           <Route path='/newUserProfile' element={<NewUser />} />
         </Route>
-        <Route path='*' element={<Error />} />
         <Route path='/Forgot' element={<Forgot />} />
+        <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
   </AuthProvider>
