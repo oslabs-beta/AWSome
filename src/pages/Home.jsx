@@ -107,7 +107,7 @@ const Home = () => {
           dispatch(getData({ data }));
         }}
       >
-        Connect!
+        Get Metrics  
       </button>
 
       {/* Metrics Section */}
