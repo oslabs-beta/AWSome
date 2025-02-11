@@ -12,6 +12,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import { useEffect, useState } from 'react';
 
+
 export default function LineChart() {
   ChartJS.register(
     CategoryScale,

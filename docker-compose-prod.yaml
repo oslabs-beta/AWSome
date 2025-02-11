@@ -1,0 +1,20 @@
+services:
+  dev:
+    image: prod
+    container_name: prod-c
+    ports:
+      - "80:80"
+    networks:
+      - mynetwork
+    depends_on: 
+      - "server"
+  server:
+    image: server
+    container_name: server-c
+    networks:
+      - mynetwork
+    ports:
+      - "81:81"
+      
+networks:
+      mynetwork:

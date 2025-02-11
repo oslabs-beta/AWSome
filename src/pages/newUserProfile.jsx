@@ -6,19 +6,9 @@ function NewUser() {
   const navigate = useNavigate();
 
   async function RandomID () {
-    let res = await fetch('/random');
-    console.log('promise: ', res);
+    let res = await fetch('http://localhost:81/random');
     let data = await res.json()
     console.log('data: ', data)
-
-    // fetch('/random')
-    // .then((res) => res.json())
-    // .then((data) => {
-    //   console.log(data);
-    // })
-    // .catch((err) => console.log('got nothing', err));
-
-
   }
 
 

@@ -2,8 +2,10 @@ import './Home.css';
 import { useNavigate } from 'react-router';
 import BarChart from './components/Barchart.jsx';
 import LineChart from './components/Linechart.jsx';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DropDownMenu from './menu.jsx';
+import { getData } from '../state/graph-reducer.js';
+import { AWSdata } from '../../backend/fetch.js';
 
 function Home() {
   const navigate = useNavigate();
@@ -24,7 +26,8 @@ function Home() {
   };
 
   const graphs = useSelector((state) => state.graphs);
-  console.log(graphs);
+  const dispatch = useDispatch();
+  console.log('graph in home.jsx: ', graphs);
   const newgraph = [];
 
   for (let i = 0; i < graphs.graph.length; i++) {
@@ -83,7 +86,15 @@ function Home() {
       </header>
 
       {/*Connect to User's AWS Account Button */}
-      <button className='bg-pink-600'>Connect!</button>
+      <button
+        className='bg-pink-600'
+        onClick={ async () => {
+          let data = await AWSdata(graphs);
+          dispatch(getData({ data }));
+        }}
+      >
+        Connect!
+      </button>
 
       {/* Metrics Section */}
       <main className='flex-grow flex flex-col items-center py-12'>
