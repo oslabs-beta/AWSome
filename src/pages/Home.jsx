@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import BarChart from './components/Barchart.jsx';
 import LineChart from './components/Linechart.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import DropDownMenu from './menu.jsx';
+import DropDownMenu from './components/menu.jsx';
 import { useAuth } from './context/AuthContext.jsx';
 import { useState, useRef, useEffect } from "react";
 import { getData } from '../state/graph-reducer.js';
