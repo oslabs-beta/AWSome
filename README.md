@@ -60,7 +60,7 @@ Follow these steps to set up the project locally on your machine.
 
 Ensure you have the following tools installed:
 - [Node.js](https://nodejs.org/en/) (>= 16.x)
-- [AWS CLI](https://aws.amazon.com/cli/) (configured with access credentials)
+- [AWS](https://aws.amazon.com) (configured with access credentials)
 - [npm](https://www.npmjs.com/get-npm) or [Yarn](https://yarnpkg.com/)
 
 ### Installation
