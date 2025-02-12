@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { data, useNavigate } from 'react-router';
-import Verify from '../Verification';
+import Verify from '../login/Verification.jsx';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 function Signup() {

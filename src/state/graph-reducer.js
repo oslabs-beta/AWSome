@@ -1,18 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { data } from 'react-router';
 
 export const graphReducer = createSlice({
   name: 'graphReducer',
   initialState: {
     graph: [],
     metric: [],
+    data: [],
   },
   reducers: {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
+    // Redux Toolkit allows us to write "mutating" logic in reducers. It
+    // doesn't actually mutate the state because it uses the Immer library,
+    // which detects changes to a "draft state" and produces a brand new
+    // immutable state based off those changes
     addGraph: (state, action) => {
-      console.log(action.payload);
       if (action.payload.type === 'bar') {
         state.graph.push('bar');
         state.metric.push(action.payload.metric);
@@ -24,7 +25,11 @@ export const graphReducer = createSlice({
         state.metric.push(action.payload.metric);
       }
     },
-    getData: (state, action) => {},
+    getData: (state, action) => {
+      console.log('dat data: ', action);
+
+      state.graph.data.push()
+    },
   },
 });
 

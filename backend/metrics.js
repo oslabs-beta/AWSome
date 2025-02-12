@@ -88,6 +88,7 @@ const Workflow = async () => {
     if (!awsAccountId) {
       throw new Error("No AWS account found for the provided email.");
     }
+    //testing Account ID
     console.log("AWS Account ID:", awsAccountId);
 
     // Fetch the data from AWS CloudWatch

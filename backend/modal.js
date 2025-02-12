@@ -13,7 +13,7 @@ const client = new pg.Client({
 client
   .connect()
   .then(() => console.log('Connected to PostgreSQL!'))
-  .catch((err) => console.log('uncomment below in modal'));
+  .catch((err) => console.log('uncomment below in modal:', err));
 //console.error("Error connecting to PostgreSQL:", err)
 
 export default client; // Export the client instance for use in other modules
