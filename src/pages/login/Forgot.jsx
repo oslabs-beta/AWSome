@@ -57,31 +57,39 @@ function Forgot() {
   return (
     <div className='flex w-full h-screen'>
       {!verificationComponent ? (
-        <div className='page-wrapper w-full items-center justify-center items-center'>
-          <h1 className='mainHeading text-5xl font-semibold'>
-            {' '}
-            Forgot password?
-          </h1>
-          <p className='font-medium text-lg text-gray-500 mt-4 animate-pulse'>
-            Enter the email you use to login below
-          </p>
-          <form
-            className='form-wrapper bg-white px-10 py-20 rounded-3xl'
-            onSubmit={retrieveCode}
-          >
-            <label className='text-lg font-medium'>Email: </label>
-            <input
-              type='email'
-              className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              placeholder='type email'
-              required
-            ></input>
-            <button type='submit'>Submit</button>
-          </form>
+        <div className='page-wrapper w-full flex items-center justify-center'>
+          <div className='page-container-2'>
+            <div  className='block'>
+            <div className='form-wrapper bg-white mt-12 py-20 rounded-3xl'>
+                <h2 className='mainHeading mt-12 flex justify-center text-5xl text-violet-600 font-semibold'>
+                  {' '}
+                  Forgot password?
+                </h2>
+                <p className='font-medium flex justify-center text-lg text-violet-500 mt-7 mb-7 animate-pulse'>
+                  Enter the email you used to signup below:
+                </p>
+
+                <div>
+                  <form onSubmit={retrieveCode}>
+                    <label className='text-lg font-medium'>Email: </label>
+                    <input
+                      type='email'
+                      className='w-full border-2 border-gray-300 rounded-xl p-4 mt-3 bg-transparent'
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                      placeholder='Type Email'
+                      required
+                    ></input>
+                    <div className='mt-8 flex flex-col gap-y-4'>
+                      <button className='mt-4 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold' type='submit'>Submit</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       ) : !resetSucess ? (
         <div>
@@ -105,7 +113,7 @@ function Forgot() {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
             <button type='submit'>Submit</button>
-            {errorMessage && <p className='text-red-500'>{errorMessage}</p>}
+            {/* {errorMessage && <p className='text-red-500'>{errorMessage}</p>} */}
           </form>
         </div>
       ) : (

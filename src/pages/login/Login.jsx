@@ -166,14 +166,14 @@ function Login() {
   return (
     <>
       <div className='flex w-full h-screen'>
-        <div className='page-wrapper w-full flex items-center justify-center items-center'>
+        <div className='page-wrapper w-full flex items-center justify-center'>
           <div className='page-container-2'>
             <div className='block'>
               <div className='form-wrapper bg-white px-10 py-20 rounded-3xl'>
                 <h2 className='mainHeading text-5xl font-semibold'>
                   Welcome back!
                 </h2>
-                <p className='font-medium text-lg text-gray-500 mt-4 animate-pulse'>
+                <p className='font-medium text-lg text-violet-500 mt-4 animate-pulse'>
                   Welcome back! Please enter your details.
                 </p>
 
@@ -182,7 +182,7 @@ function Login() {
                     <label className='text-lg font-medium'>Email: </label>
                     <input
                       type='email'
-                      className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
+                      className='w-full shadow-md shadow-gray-300 border-2 border-gray-300 rounded-xl p-4 mt-1  mb-5 bg-transparent'
                       value={email}
                       onChange={(e) => {
                         setError('');
@@ -194,7 +194,7 @@ function Login() {
                     <label className='text-lg font-medium'>Password: </label>
                     <input
                       type='password'
-                      className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
+                      className='w-full shadow-md shadow-gray-300 border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
                       value={password}
                       onChange={(e) => {
                         setError('');
@@ -206,7 +206,7 @@ function Login() {
                     <div className='mt-3 flex justify-between items-center'></div>
                     <div className='mt-8 flex flex-col gap-y-4'>
                       <button
-                        className='active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
+                        className=' shadow-lg shadow-gray-300 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
                         type='submit'
                       >
                         Sign in
@@ -215,7 +215,7 @@ function Login() {
                   </form>
                   <div>
                     <a className='mt-8 flex flex-col gap-y-4' href={authUrl}>
-                      <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
+                      <button className='shadow-lg shadow-gray-300 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
                         Sign in with Google
                       </button>
                     </a>
