@@ -18,15 +18,12 @@ function NewUser() {
     // console.log('promise: ', res);
     // let data = await res.json()
     // console.log('data: ', data)
-
     fetch('/random')
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
     })
     .catch((err) => console.log('got nothing', err));
-
-
   }
 
 
@@ -50,10 +47,7 @@ function NewUser() {
             Account
           </button>
           <a href='#' className='hover:underline'>
-            Settings
-          </a>
-          <a href='#' className='hover:underline'>
-            Recommended
+            How to
           </a>
           <a onClick={logOut} className='hover:underline'>
             Logout
