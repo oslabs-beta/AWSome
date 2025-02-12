@@ -157,13 +157,11 @@ export const awsData = async () => {
     // Sends the request and waits for the response
     response = await client.send(command);
 
-    // console.log('response results', response.MetricDataResults);
-
     return response; // logs the metric data and entire response if successful
   } catch (caught) {
     if (caught instanceof CloudWatchServiceException) {
       // if theres a CloudWatch error, it logs the error name and message
-      // console.error(`Error from CloudWatch. ${caught.name}: ${caught.message}`);
+      console.error(`Error from CloudWatch. ${caught.name}: ${caught.message}`);
     } else {
       throw caught; // if its a different error, it throws it so it can be handled elsewhere
     }
@@ -172,7 +170,7 @@ export const awsData = async () => {
   console.log('Inserting metrics into database...');
   for (const metric of response.MetricDataResults) {
     for (let i = 0; i < metric.Timestamps.length; i++) {
-      console.log('Metric:', metric.Id, 'Value:', metric.Values[i]); // Debugging output
+      // console.log('Metric:', metric.Id, 'Value:', metric.Values[i]); // Debugging output
 
       const query = `
           INSERT INTO aws_metrics 
@@ -191,7 +189,7 @@ export const awsData = async () => {
       await Pool.query(query, values);
     }
   }
-  console.log('Metrics inserted successfully!');
+  // console.log('Metrics inserted successfully!');
 };
 
 // ✅ Correctly formatted IIFE to execute `awsData()`

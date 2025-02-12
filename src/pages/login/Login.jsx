@@ -7,12 +7,15 @@ import {
 } from 'amazon-cognito-identity-js';
 import { useAuth } from '../context/AuthContext';
 
-const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.toLowerCase().replace(
-  '_',
-  ''
-)}.auth.us-east-1.amazoncognito.com/login?client_id=${
-  import.meta.env.VITE_COGNITO_CLIENT_ID
-}&redirect_uri=http://localhost:5173&response_type=code`;
+const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
+const poolID = import.meta.env.VITE_COGNITO_USER_POOL_ID;
+
+const authUrl = `https://${poolID
+  .toLowerCase()
+  .replace(
+    '_',
+    ''
+  )}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:5173&response_type=code`;
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -26,8 +29,9 @@ function Login() {
 
   //runs everytime there are new parameters
   useEffect(() => {
-    const code = searchParams.get('code'); // Get auth code from URL
-    console.log('this is the code we are retrieving:', code);
+    // Get auth code from URL
+    const code = searchParams.get('code');
+    //if code exists, run the function to exchange code for tokens
     if (code) {
       exchangeCodeForToken(code);
     }
@@ -36,6 +40,7 @@ function Login() {
   //handles the exchange of tokens that are received in the url
   const exchangeCodeForToken = async (code) => {
     try {
+      //this is an endpoint that is used to fetch access,id, and refresh tokens
       const response = await fetch(
         'https://us-east-1p9ehxxo94.auth.us-east-1.amazoncognito.com/oauth2/token',
         {
@@ -43,22 +48,22 @@ function Login() {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
+          //builds a url to send to this endpoint to retrieve the tokens
           body: new URLSearchParams({
             grant_type: 'authorization_code',
             client_id: import.meta.env.VITE_COGNITO_CLIENT_ID,
-            code,
+            code: code,
             redirect_uri: 'http://localhost:5173',
           }),
         }
       );
 
+      //waits to receive a reponse with the proper tokens
       const data = await response.json();
-      console.log('Token Response:', data);
 
       if (data.access_token) {
         // Store the tokens with Cognito-like format
         const userId = data.id_token.split('.')[0]; // Using the ID token's first part as a user ID
-        const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
 
         localStorage.setItem(
           `CognitoIdentityServiceProvider.${clientId}.${userId}.accessToken`,
@@ -68,18 +73,15 @@ function Login() {
           `CognitoIdentityServiceProvider.${clientId}.${userId}.idToken`,
           data.id_token
         );
-
         // After tokens are saved, create the session object and call setUserSession
         const user = { id: userId, email: data.email }; // Customize as per the user data you get
-        console.log('testing:', user);
+
+        //creates session from the data collected
         const session = {
           accessToken: data.access_token,
           idToken: data.id_token,
         };
-        console.log('session:', session);
         setUserSession({ user, session }); // Set user session after successful login
-
-        // fetchUserInfo(data.id_token);
         navigate('/newUserProfile');
       }
     } catch (error) {
@@ -114,8 +116,8 @@ function Login() {
 
   //grabs the pool data from local .env file
   const poolData = {
-    UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
-    ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+    UserPoolId: poolID,
+    ClientId: clientId,
   };
   //ensures our poolID stays safe, along with ClientId
   const userPool = new CognitoUserPool(poolData);
