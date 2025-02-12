@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import {
   CognitoIdentityProviderClient,
+  ConfirmForgotPasswordCommand,
   ForgotPasswordCommand,
 } from '@aws-sdk/client-cognito-identity-provider';
 
@@ -12,11 +13,11 @@ function Forgot() {
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [delivery, setDelivery] = useState('');
-  const [password, setPassword] = useState('');
+  const [passwordOne, setPasswordOne] = useState('');
+  const [passwordTwo, setPasswordTwo] = useState('');
   const [verificationComponent, setVerificationComponent] = useState(false);
   const [resetSucess, setResetSuccess] = useState(false);
-
-  //define a client using the proper region
+  const [errorMessage, setErrorMessage] = useState('');
 
   //form is submitted, code is sent to email
   const retrieveCode = async (event) => {
@@ -47,11 +48,29 @@ function Forgot() {
   };
 
   //code is submitted to Cognito and verified for password reset
-  const codeSubmission = (event) => {
+  const codeSubmission = async (event) => {
     //prevents full page refresh
     event.preventDefault();
+    if (passwordOne !== passwordTwo) {
+      setErrorMessage('Passwords do not match.');
+      return;
+    }
+    setErrorMessage('');
+    const input = {
+      ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+      Username: email,
+      ConfirmationCode: code,
+      Password: passwordOne,
+    };
 
-    console.log('code:', code);
+    const command = new ConfirmForgotPasswordCommand(input);
+    try {
+      await client.send(command);
+      setResetSuccess(true);
+    } catch (error) {
+      console.error('Error confirming password reset:', error);
+      setErrorMessage('Failed to reset password. Please try again.');
+    }
   };
 
   return (
@@ -101,16 +120,25 @@ function Forgot() {
             <label>New Password: </label>
             <input
               type='text'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={passwordOne}
+              onChange={(e) => setPasswordOne(e.target.value)}
+              required
+            ></input>
+            <label>Re-type new password</label>
+            <input
+              type='text'
+              value={passwordTwo}
+              onChange={(e) => setPasswordTwo(e.target.value)}
+              required
             ></input>
             <button type='submit'>Submit</button>
-            {errorMessage && <p className='text-red-500'>{errorMessage}</p>}
+            {/* {errorMessage && <p className='text-red-500'>{errorMessage}</p>} */}
           </form>
         </div>
       ) : (
         <div>
-          <p>Testing</p>
+          <h1>Password Reset Successful</h1>
+          <p>Log in with your new password.</p>
         </div>
       )}
       <div className='flex relative w-full h-screen lg:flex items-center justify-center bg-violet-100'>

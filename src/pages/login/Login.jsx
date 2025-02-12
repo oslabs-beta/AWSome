@@ -7,15 +7,11 @@ import {
 } from 'amazon-cognito-identity-js';
 import { useAuth } from '../context/AuthContext';
 
-const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
-const poolID = import.meta.env.VITE_COGNITO_USER_POOL_ID;
+const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID; //client id to be used in userPool
+const poolID = import.meta.env.VITE_COGNITO_USER_POOL_ID; //original Pool ID
+const urlPoolID = poolID.toLowerCase().replace('_', ''); //pool ID to be used in URLs
 
-const authUrl = `https://${poolID
-  .toLowerCase()
-  .replace(
-    '_',
-    ''
-  )}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:5173&response_type=code`;
+const authUrl = `https://${urlPoolID}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:5173&response_type=code`;
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -42,7 +38,7 @@ function Login() {
     try {
       //this is an endpoint that is used to fetch access,id, and refresh tokens
       const response = await fetch(
-        'https://us-east-1p9ehxxo94.auth.us-east-1.amazoncognito.com/oauth2/token',
+        `https://${urlPoolID}.auth.us-east-1.amazoncognito.com/oauth2/token`,
         {
           method: 'POST',
           headers: {
@@ -182,6 +178,7 @@ function Login() {
                       placeholder='Enter your password'
                     ></input>
                     <div className='mt-3 flex justify-between items-center'></div>
+                    <p className='text-red-500'>{error}</p>
                     <div className='mt-8 flex flex-col gap-y-4'>
                       <button
                         className='active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
