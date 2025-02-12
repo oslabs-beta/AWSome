@@ -77,14 +77,14 @@ function Signup() {
     <div>
       {!isVerified ? (
         <div className='header flex w-full h-screen'>
-          <div className='page-wrapper w-full flex items-center justify-center items-center mx-10'>
+          <div className='page-wrapper w-full flex items-center justify-center mx-10'>
             <div className='page-container-2'>
               <div className='block'>
                 <div className='form-wrapper bg-white px-10 py-20 rounded-3xl'>
                   <h2 className='mainHeading text-5xl semi-bold'>
                     Get Started with AWSome!
                   </h2>
-                  <div className='font-medium text-lg text-gray-500 mt-4 animate-pulse'>
+                  <div className='font-medium text-lg text-violet-500 mt-4 animate-pulse'>
                     See all your metrics in one place with an AWSome monitoring
                     tool for your EC2 instances!
                   </div>
@@ -103,6 +103,7 @@ function Signup() {
                         required
                         placeholder='Enter your email'
                       ></input>
+                      
                       <label className=' text-lg font-medium'>Password:</label>
                       <input
                         type='password'
@@ -116,9 +117,9 @@ function Signup() {
                         placeholder='Enter your password'
                       ></input>
                       {!errorMessage ? (
-                        <p>
+                        <p className='mt-6 text-sm flex justify-center animate-pulse'>
                           Password must contain Uppercase, lowercase, number and
-                          symbol
+                          symbol.
                         </p>
                       ) : (
                         <p className='text-red-500'>{errorMessage}</p>
@@ -140,15 +141,15 @@ function Signup() {
                       </a>
                       <p className='flex justify-center font-medium text-base ml-6 mt-5'>
                         Have an account?{' '}
-                      </p>
                       <button
                         onClick={() => {
                           login();
                         }}
-                        className='flex justify-center ml-20 text-violet-500 font-medium ml-2'
+                        className='flex justify-center ml-5 text-violet-500 font-medium ml-2'
                       >
                         Login
                       </button>
+                      </p>
                     </div>
                   </div>
                 </div>

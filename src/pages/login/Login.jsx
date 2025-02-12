@@ -7,15 +7,11 @@ import {
 } from 'amazon-cognito-identity-js';
 import { useAuth } from '../context/AuthContext';
 
-const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
-const poolID = import.meta.env.VITE_COGNITO_USER_POOL_ID;
+const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID; //client id to be used in userPool
+const poolID = import.meta.env.VITE_COGNITO_USER_POOL_ID; //original Pool ID
+const urlPoolID = poolID.toLowerCase().replace('_', ''); //pool ID to be used in URLs
 
-const authUrl = `https://${poolID
-  .toLowerCase()
-  .replace(
-    '_',
-    ''
-  )}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:5173&response_type=code`;
+const authUrl = `https://${urlPoolID}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:5173&response_type=code`;
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -42,7 +38,7 @@ function Login() {
     try {
       //this is an endpoint that is used to fetch access,id, and refresh tokens
       const response = await fetch(
-        'https://us-east-1p9ehxxo94.auth.us-east-1.amazoncognito.com/oauth2/token',
+        `https://${urlPoolID}.auth.us-east-1.amazoncognito.com/oauth2/token`,
         {
           method: 'POST',
           headers: {
@@ -89,33 +85,8 @@ function Login() {
     }
   };
 
-  //handles confirmation of token and ensures that user is authorized
-  // const fetchUserInfo = async () => {
-  //   const token = localStorage.getItem('id_token'); // Use the ID token
-
-  //   if (!token) {
-  //     console.log('User not authenticated.');
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await fetch(
-  //       'https://us-east-1p9ehxxo94.auth.us-east-1.amazoncognito.com/oauth2/userInfo',
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     const userData = await response.json();
-  //     console.log('User Info:', userData);
-  //   } catch (error) {
-  //     console.error('Error fetching user info:', error);
-  //   }
-  // };
-
   //grabs the pool data from local .env file
-  
+
   const poolData = {
     UserPoolId: poolID,
     ClientId: clientId,
@@ -169,14 +140,14 @@ function Login() {
   return (
     <>
       <div className='flex w-full h-screen'>
-        <div className='page-wrapper w-full flex items-center justify-center items-center'>
+        <div className='page-wrapper w-full flex items-center justify-center'>
           <div className='page-container-2'>
             <div className='block'>
               <div className='form-wrapper bg-white px-10 py-20 rounded-3xl'>
                 <h2 className='mainHeading text-5xl font-semibold'>
                   Welcome back!
                 </h2>
-                <p className='font-medium text-lg text-gray-500 mt-4 animate-pulse'>
+                <p className='font-medium text-lg text-violet-500 mt-4 animate-pulse'>
                   Welcome back! Please enter your details.
                 </p>
 
@@ -185,7 +156,7 @@ function Login() {
                     <label className='text-lg font-medium'>Email: </label>
                     <input
                       type='email'
-                      className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
+                      className='w-full shadow-md shadow-gray-300 border-2 border-gray-300 rounded-xl p-4 mt-1  mb-5 bg-transparent'
                       value={email}
                       onChange={(e) => {
                         setError('');
@@ -197,7 +168,7 @@ function Login() {
                     <label className='text-lg font-medium'>Password: </label>
                     <input
                       type='password'
-                      className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
+                      className='w-full shadow-md shadow-gray-300 border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
                       value={password}
                       onChange={(e) => {
                         setError('');
@@ -207,9 +178,10 @@ function Login() {
                       placeholder='Enter your password'
                     ></input>
                     <div className='mt-3 flex justify-between items-center'></div>
+                    <p className='text-red-500'>{error}</p>
                     <div className='mt-8 flex flex-col gap-y-4'>
                       <button
-                        className='active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
+                        className=' shadow-lg shadow-gray-300 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
                         type='submit'
                       >
                         Sign in
@@ -218,7 +190,7 @@ function Login() {
                   </form>
                   <div>
                     <a className='mt-8 flex flex-col gap-y-4' href={authUrl}>
-                      <button className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
+                      <button className='shadow-lg shadow-gray-300 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
                         Sign in with Google
                       </button>
                     </a>
