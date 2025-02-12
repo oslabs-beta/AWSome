@@ -1,9 +1,35 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { useDispatch } from 'react-redux';
-import { addGraph } from '../state/graph-reducer.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { addGraph, getData } from '../state/graph-reducer.js';
+import { AWSdata } from '../../backend/fetch.js';
 
 export default function DropDownMenu() {
   const dispatch = useDispatch();
+  const graphs = useSelector((state) => state.graphs);
+  let firstRender = useRef(true);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+
+    async function auto() {
+      let data = await AWSdata(graphs);
+      dispatch(getData({ data }));
+    }
+    auto();
+  }, [graphs.graph]);
+
+
+  // set interval vs cron, stop interval button
+  setInterval( async () => {
+    console.log('called')
+    let data = await AWSdata(graphs);
+      dispatch(getData({ data }));
+
+  }, 300000)
 
   return (
     <Menu as='div' className='relative inline-block text-left'>
@@ -36,14 +62,16 @@ export default function DropDownMenu() {
                   <MenuItem>
                     <button
                       className=' text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
-                      onClick={() =>
+                      onClick={async () => {
                         dispatch(
                           addGraph({
                             type: 'bar',
                             metric: 'NetworkOut',
                           })
-                        )
-                      }
+                        );
+                        // let data = await AWSdata(graphs);
+                        // dispatch(getData({ data }));
+                      }}
                     >
                       NetworkOut
                     </button>

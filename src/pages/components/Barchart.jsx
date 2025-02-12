@@ -103,7 +103,6 @@ export default function BarChart({ table }) {
       </div>
     );
   } else {
-    console.log('in barchart.jsx: ', table.Data);
 
     const [barX, setData] = useState([
       { x: 0, y: null },
