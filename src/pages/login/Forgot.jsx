@@ -57,7 +57,7 @@ function Forgot() {
   return (
     <div className='flex w-full h-screen'>
       {!verificationComponent ? (
-        <div className='page-wrapper w-full flex flex-row items-center justify-center items-center'>
+        <div className='page-wrapper w-full items-center justify-center items-center'>
           <h1 className='mainHeading text-5xl font-semibold'>
             {' '}
             Forgot password?
