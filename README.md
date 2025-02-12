@@ -103,9 +103,8 @@ For more examples, please refer to the Documentation
 ## Roadmap
 - [x] Add support for viewing EC2 instance performance metrics in real-time
 - [x] Integrate AWS CloudWatch for detailed metrics visualization
-- [ ] Implement automated scaling recommendations based on resource usage
-- [ ] Add email and SMS notifications for CloudWatch alarms
-- [ ] Implement cross-region EC2 instance monitoring
+- [x] Add authorization for a user to view their own metrics
+- [ ] Add Dark Mode
 - [ ] Improve UI responsiveness and accessibility
 
 See the open issues for a full list of proposed features and known issues.
@@ -123,7 +122,7 @@ We welcome contributions from the open-source community! Here's how you can cont
 - Open a Pull Request
 
 ### Top contributors:
-- Your Name
+- Jayson, Jose, Christina, Salem, Elijah
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
