@@ -80,7 +80,7 @@ const Home = () => {
           </a>
           <button
             onClick={() => navigate('/newUserProfile')}
-            className='hover:underline'
+            className='hover:underline cursor-pointer'
           >
             Account
           </button>
