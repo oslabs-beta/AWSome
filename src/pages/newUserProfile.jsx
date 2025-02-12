@@ -44,12 +44,8 @@ function NewUser() {
   }, []);
 
   return (
-    <>
-      <div className='bg-gradient-to-br from-indigo-50 to-indigo-100 text-gray-800 font-sans min-h-screen flex flex-col'>
-    <>
       <div className='bg-gradient-to-br from-indigo-50 to-indigo-100 text-gray-800 font-sans min-h-screen flex flex-col'>
         {/* Navbar */}
-        <header className='h-full absolute max-w-[15rem] shadow-xl  bg-gradient-to-br from-purple-900 to-indigo-800  '>
           <h1 className='text-2xl font-semibold text-white p-4'>AWSome</h1>
         <header className='h-full absolute max-w-[15rem] shadow-xl  bg-gradient-to-br from-purple-900 to-indigo-800  '>
           <h1 className='text-2xl font-semibold text-white p-4'>AWSome</h1>
@@ -146,14 +142,11 @@ function NewUser() {
         {/* Footer */}
         <footer className=' text-center py-6'>
           <p className='text-sm bg-gradient-to-br from-purple-900 to-indigo-800 text-transparent bg-clip-text ml-20'>
-        <footer className=' text-center py-6'>
-          <p className='text-sm bg-gradient-to-br from-purple-900 to-indigo-800 text-transparent bg-clip-text ml-20'>
             &copy; 2025 AWSome Metrics. All rights reserved.
           </p>
         </footer>
       </div>
-    </>
-  );
-}
+  )
+};
 
 export default NewUser;
