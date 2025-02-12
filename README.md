@@ -67,7 +67,7 @@ Ensure you have the following tools installed:
 
 1. Clone the repo:
    ```sh
-   git clone https://github.com/github_username/awsome.git
+(https://github.com/oslabs-beta/AWSome.git)
 
 2. Navigate to the project directory:
   cd awsome
