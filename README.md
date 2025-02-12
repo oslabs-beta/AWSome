@@ -64,26 +64,7 @@ Ensure you have the following tools installed:
 - [npm](https://www.npmjs.com/get-npm) or [Yarn](https://yarnpkg.com/)
 
 ### Installation
-
-1. Clone the repo:
-   ```sh
-   git clone https://github.com/oslabs-beta/AWSome.git
-
-2. Navigate to the project directory:
-  cd awsome
-
-3. Install the necessary NPM packages:
-  npm install
-
-4. Deploy the Cognito resources (if needed) and configure environment variables in .env:
-  VITE_COGNITO_CLIENT_ID=your_cognito_client_id
-  VITE_AWS_REGION=your_aws_region
-
-5. Run the development server:
-  npm run dev
-
-
-Your application will now be running at http://localhost:3000.
+//steps on accessing our deployed app, and our landing page
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 Usage
