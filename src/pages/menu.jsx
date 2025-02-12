@@ -22,19 +22,17 @@ export default function DropDownMenu() {
     auto();
   }, [graphs.graph]);
 
-
   // set interval vs cron, stop interval button
-  setInterval( async () => {
-    console.log('called')
+  setInterval(async () => {
+    console.log('called');
     let data = await AWSdata(graphs);
-      dispatch(getData({ data }));
-
-  }, 300000)
+    dispatch(getData({ data }));
+  }, 300000);
 
   return (
     <Menu as='div' className='relative inline-block text-left'>
       <div>
-        <MenuButton className='bg-pink-600 hover:bg-pink-700 text-sm py-1 px-4 rounded-lg '>
+        <MenuButton className='bg-pink-700 flex flex-col absolute left-1/2 transform -translate-x-1/2 text-md py-2 px-10 rounded-lg mt-3 transition duration-150 ease-in-out'>
           Add Metrics
         </MenuButton>
       </div>
@@ -62,16 +60,14 @@ export default function DropDownMenu() {
                   <MenuItem>
                     <button
                       className=' text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
-                      onClick={async () => {
+                      onClick={() =>
                         dispatch(
                           addGraph({
                             type: 'bar',
                             metric: 'NetworkOut',
                           })
-                        );
-                        // let data = await AWSdata(graphs);
-                        // dispatch(getData({ data }));
-                      }}
+                        )
+                      }
                     >
                       NetworkOut
                     </button>
