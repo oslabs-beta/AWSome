@@ -2,10 +2,12 @@ import './Home.css';
 import { useNavigate } from 'react-router';
 import BarChart from './components/Barchart.jsx';
 import LineChart from './components/Linechart.jsx';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DropDownMenu from './menu.jsx';
 import { useAuth } from './context/AuthContext.jsx';
 import { useState, useRef, useEffect } from "react";
+import { getData } from '../state/graph-reducer.js';
+import { AWSdata } from '../../backend/fetch.js';
 
 const Home = () => {
   const { signOut, userSession } = useAuth();
@@ -20,7 +22,8 @@ const Home = () => {
   };
 
   const graphs = useSelector((state) => state.graphs);
-  console.log(graphs);
+  const dispatch = useDispatch();
+  console.log('graph in home.jsx: ', graphs);
   const newgraph = [];
 
   for (let i = 0; i < graphs.graph.length; i++) {
@@ -117,6 +120,17 @@ const Home = () => {
         
       </h2>
       <main className="flex-grow flex flex-col items-center py-12">
+      {/*Connect to User's AWS Account Button */}
+      <button
+        className='bg-pink-600'
+        onClick={ async () => {
+          let data = await AWSdata(graphs);
+          dispatch(getData({ data }));
+        }}
+      >
+        Get Metrics  
+      </button>
+
         <div
           id="container"
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl px-6"
