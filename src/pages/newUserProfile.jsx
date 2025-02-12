@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
-import './Home.css';
 import { useState, useRef, useEffect } from 'react';
-import './Home.css';
 
 function NewUser() {
   const navigate = useNavigate();
@@ -38,7 +36,9 @@ function NewUser() {
     };
 
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
@@ -46,12 +46,17 @@ function NewUser() {
   return (
     <>
       <div className='bg-gradient-to-br from-indigo-50 to-indigo-100 text-gray-800 font-sans min-h-screen flex flex-col'>
+    <>
+      <div className='bg-gradient-to-br from-indigo-50 to-indigo-100 text-gray-800 font-sans min-h-screen flex flex-col'>
         {/* Navbar */}
+        <header className='h-full absolute max-w-[15rem] shadow-xl  bg-gradient-to-br from-purple-900 to-indigo-800  '>
+          <h1 className='text-2xl font-semibold text-white p-4'>AWSome</h1>
         <header className='h-full absolute max-w-[15rem] shadow-xl  bg-gradient-to-br from-purple-900 to-indigo-800  '>
           <h1 className='text-2xl font-semibold text-white p-4'>AWSome</h1>
 
           {/* Dropdown Button */}
           <div
+            className='w-full text-left py-2 px-4 bg-[#BE1F5D] text-white rounded-md mt-6 hover:bg-[#000000] cursor-pointer transition-all duration-200 ease-in-out'
             className='w-full text-left py-2 px-4 bg-[#BE1F5D] text-white rounded-md mt-6 hover:bg-[#000000] cursor-pointer transition-all duration-200 ease-in-out'
             onMouseEnter={handleMouseEnter}
           >
@@ -60,16 +65,22 @@ function NewUser() {
           <button
             className='block w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out'
             onClick={() => navigate('/Home')}
+            className='block w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out'
+            onClick={() => navigate('/Home')}
           >
             Dashboard
           </button>
+          
+          <button onClick={logOut} className="block cursor-pointer w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out">
 
           <a
             onClick={logOut}
             className='block cursor-pointer w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out'
           >
             Logout
-          </a>
+            </a>
+          </button> 
+          
 
           {/* Dropdown Menu */}
           {/* {isOpen && ( */}
@@ -87,6 +98,7 @@ function NewUser() {
           {/* </nav>
           )} */}
         </header>
+
 
         {/* Page Content */}
         <main className='flex flex-col items-center justify-center flex-grow py-12 space-y-10 px-4 md:px-12 ml-20'>
@@ -117,6 +129,9 @@ function NewUser() {
             className='border-2 border-gray-300 p-3 rounded-md mt-4 w-full max-w-md'
             type='text'
             placeholder='Enter your Role ARN'
+            className='border-2 border-gray-300 p-3 rounded-md mt-4 w-full max-w-md'
+            type='text'
+            placeholder='Enter your Role ARN'
           />
           <button
             onClick={()=>{
@@ -129,6 +144,8 @@ function NewUser() {
         </main>
 
         {/* Footer */}
+        <footer className=' text-center py-6'>
+          <p className='text-sm bg-gradient-to-br from-purple-900 to-indigo-800 text-transparent bg-clip-text ml-20'>
         <footer className=' text-center py-6'>
           <p className='text-sm bg-gradient-to-br from-purple-900 to-indigo-800 text-transparent bg-clip-text ml-20'>
             &copy; 2025 AWSome Metrics. All rights reserved.

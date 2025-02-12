@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }) => {
       //grab userSession info
       currentUser.getSession((err, session) => {
         if (err || !session.isValid()) {
-          console.log('not logged in testing');
           //if user session is not valid, set session to null
           setUserSession(null);
         } else {

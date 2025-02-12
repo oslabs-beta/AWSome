@@ -1,13 +1,10 @@
 const externalIdGenerator = () => {
   const letters = '1234567890qwertyuiopasdfghjklzxcvbnm';
   let result = '';
-
-  for (let i = 0; i < 10; i++){
+  for (let i = 0; i < 10; i++) {
     result += letters[Math.floor(Math.random() * 35)];
   }
-
-  return result
+  return result;
 };
 
 export default externalIdGenerator;
-// uuid npm 

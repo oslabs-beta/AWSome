@@ -1,46 +1,23 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useRef } from 'react';
-import { addGraph, getData } from '../state/graph-reducer.js';
-import { AWSdata } from '../../backend/fetch.js';
+import { useDispatch } from 'react-redux';
+import { addGraph } from '../../state/graph-reducer.js';
 
 export default function DropDownMenu() {
   const dispatch = useDispatch();
-  const graphs = useSelector((state) => state.graphs);
-  let firstRender = useRef(true);
-
-  useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
-
-    async function auto() {
-      let data = await AWSdata(graphs);
-      dispatch(getData({ data }));
-    }
-    auto();
-  }, [graphs.graph]);
-
-  // set interval vs cron, stop interval button
-  setInterval(async () => {
-    console.log('called');
-    let data = await AWSdata(graphs);
-    dispatch(getData({ data }));
-  }, 300000);
 
   return (
-    <Menu as='div' className='relative inline-block text-left'>
+    <Menu as="div" className="relative inline-block text-left">
       <div>
-        <MenuButton className=' mb-[12] mx-2 bg-pink-700 flex flex-col relative left-1/2 transform -translate-x-1/2 text-md py-2 px-10 rounded-lg mt-3 transition duration-150 ease-in-out'>
+        <MenuButton className="bg-pink-700 flex flex-col absolute left-1/2 transform -translate-x-1/2 text-md py-2 px-10 rounded-lg mt-3 transition duration-150 ease-in-out">
           Add Metrics
         </MenuButton>
       </div>
 
       <MenuItems
         transition
-        className=' absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in'
+        className=" absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
       >
+
         <div className='py-1 bg-purple-600'>
           <MenuItem>
             <Menu as='div' className='relative inline-block text-left'>
