@@ -16,21 +16,11 @@ function NewUser() {
     navigate('/');
   };
 
-  // async function RandomID () {
-  //   // let res = await fetch('/random');
-  //   // console.log('promise: ', res);
-  //   // let data = await res.json()
-  //   // console.log('data: ', data)
-
-  //   fetch('/random')
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  //   .catch((err) => console.log('got nothing', err));
-
-
-  // }
+  async function RandomID () {
+    let res = await fetch('http://localhost:81/random');
+    let data = await res.json()
+    console.log('data: ', data)
+  }
 
 
   const [isOpen, setIsOpen] = useState(false);
@@ -117,7 +107,9 @@ function NewUser() {
           <p className="text-lg text-center text-gray-600 max-w-lg mx-auto">
             Start setting up your AWS monitoring dashboard.
           </p>
-          <button className="bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition duration-200 ease-in-out">
+          <button className="bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition duration-200 ease-in-out"
+          onClick={RandomID}
+          >
             Generate External Id
           </button>
 
