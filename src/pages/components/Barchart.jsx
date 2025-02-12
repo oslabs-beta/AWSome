@@ -10,9 +10,28 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { useEffect, useState } from 'react';
 
+export default function BarChart({ table }) {
+  console.log('in barchart.jsx: ', table.Data);
 
-export default function BarChart() {
-  // fetch data of the previous hour never the current
+  const graphed = [];
+
+  if (!table) {
+    
+
+    const { Timestamps, Values } = table.Data;
+
+    for (let i = 0; i < Timestamps.length; i++) {
+      let string = ``;
+      const newdate = new Date(Timestamps[i]);
+      string = `${newdate.getHours()}:${newdate.getMinutes()}:${newdate.getSeconds()}`;
+      console.log(string);
+      graphed.push({x: string, y: null});
+
+    }
+  }
+
+  console.log(graphed)
+  // determine datatyep based on name
   // map data to the bar chart in dataset
   // change the colors to match 'red, green, blue'
   const [barX, setData] = useState([
@@ -31,32 +50,6 @@ export default function BarChart() {
     { x: 60, y: null },
     { x: null, y: 100 },
   ]);
-
-  const [refresh, setRefresh] = useState(false);
-
-  useEffect(() => {
-    async function fetchdata() {
-      // try {
-      //   let promise = await fetch('/data');
-      //   let data = await promise.json();
-      //   //console.log(data[0]);
-      //   setRefresh(true);
-      //   setData((old) => {
-      //     for (let i = 0; i < old.length - 1; i++) {
-      //       old[i].y = data[0].Values[i];
-      //     }
-      //     console.log('new data', old);
-      //     return old;
-      //   });
-      // } catch (error) {
-      //   console.log('fetchData function in barchart.jsx: ', error);
-      // }
-    }
-
-    
-    fetchdata();
-  }, [barX]);
-
 
   const labels = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
 
@@ -122,8 +115,6 @@ export default function BarChart() {
     ],
   };
 
-
-  
   return (
     <div>
       <Bar options={options} data={data} />

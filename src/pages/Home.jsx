@@ -39,7 +39,6 @@ const Home = () => {
 
   const graphs = useSelector((state) => state.graphs);
   const dispatch = useDispatch();
-  console.log('graph in home.jsx: ', graphs);
   const newgraph = [];
 
   for (let i = 0; i < graphs.graph.length; i++) {
@@ -50,7 +49,7 @@ const Home = () => {
           className='bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col'
         >
           <h3 className='text-lg font-semibold mb-4'>{graphs.metric[i]}</h3>
-          <BarChart className='h-60 fit  ' />
+          <BarChart table={{Data: graphs.data[i] || null}} className='h-60 fit  ' />
         </div>
       );
 
@@ -62,7 +61,7 @@ const Home = () => {
           className='bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col'
         >
           <h3 className='text-lg font-semibold mb-4'>{graphs.metric[i]}</h3>
-          <LineChart className='h-60 fit  ' />
+          <LineChart table={{Data: graphs.data[i] || null}} className='h-60 fit  ' />
         </div>
       );
 

@@ -15,11 +15,10 @@ app.get('/random', (req, res) => {
   return res.status(200).json({ id });
 });
 
-app.post('/data', (req, res) => {
+app.post('/data', async (req, res) => {
   const { graph, metric, data } = req.body;
-  let result = MixedMetrix({ graph, metric, data });
-
-  return res.status(200).json(result);
+  let result = await MixedMetrix({ graph, metric, data });
+  return res.status(200).json({result});
 });
 
 app.use((req, res) => res.status(404).send('No Data'));
