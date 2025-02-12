@@ -26,8 +26,16 @@ export const graphReducer = createSlice({
       }
     },
     getData: (state, action) => {
+      console.log('let: ', action.payload.data.result.length)
 
-      state.data = action.payload.data.result;
+      state.data = [];
+  
+
+      for (let i = 0; i < action.payload.data.result.length; i++) {
+        state.data.push(action.payload.data.result[i])
+      }
+
+     
 
     },
   },
