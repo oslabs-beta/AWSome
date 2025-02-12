@@ -67,40 +67,32 @@ function NewUser() {
             Dashboard
           </button>
           
-          <a onClick={logOut} className='hover:underline'>
+          <a onClick={logOut} className="block cursor-pointer w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out">
             Logout
           </a>
           
 
           {/* Dropdown Menu */}
-          {isOpen && (
-            <nav
+          {/* {isOpen && ( */}
+            {/* <nav
               ref={dropdownRef}
               className="absolute mt-4 w-48 bg-white shadow-xl rounded-lg space-y-2 p-2"
-            >
-              <a
+            > */}
+              {/* <a
                 href="#"
                 className="block py-2 px-4 hover:bg-indigo-100 rounded-md transition duration-150 ease-in-out"
               >
                 Settings
-              </a>
-              <a
-                href="#"
-                className="block py-2 px-4 hover:bg-indigo-100 rounded-md transition duration-150 ease-in-out"
-              >
-                Recommended
-              </a>
-              <button className="w-full bg-pink-600 hover:bg-pink-700 text-sm py-2 px-4 rounded-lg mt-2 transition duration-150 ease-in-out">
-                Add Metrics
-              </button>
-            </nav>
-          )}
+              </a> */}
+              
+            {/* </nav>
+          )} */}
         </header>
         
 
     
         {/* Page Content */}
-        <main className="flex flex-col items-center justify-center flex-grow py-12 space-y-6 px-4 md:px-12 ml-20">
+        <main className="flex flex-col items-center justify-center flex-grow py-12 space-y-10 px-4 md:px-12 ml-20">
           <h2 className="text-4xl font-extrabold text-gray-900 mb-8">
             Welcome, New User!
           </h2>
