@@ -11,7 +11,7 @@ const client = jwksClient({
   jwksUri: `${COGNITO_ISSUER}/.well-known/jwks.json`,
 });
 
-//function to get signing key 
+//function to get signing key
 const getKey = async (header) => {
   try {
     const key = await client.getSigningKey(header.kid);
@@ -23,10 +23,10 @@ const getKey = async (header) => {
 
 const authenticateToken = async (req, res, next) => {
   try {
-    //grabs the first token (access token) sent in the header otherwise just returns null or undefined 
+    //grabs the first token (access token) sent in the header otherwise just returns null or undefined
     const token = req.headers.authorization?.split(' ')[1];
 
-    //if token is nonexisten, return error 
+    //if token is nonexisten, return error
     if (!token) {
       return res
         .status(401)

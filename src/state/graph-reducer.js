@@ -14,7 +14,6 @@ export const graphReducer = createSlice({
     // which detects changes to a "draft state" and produces a brand new
     // immutable state based off those changes
     addGraph: (state, action) => {
-      console.log(action.payload);
       if (action.payload.type === 'bar') {
         state.graph.push('bar');
         state.metric.push(action.payload.metric);

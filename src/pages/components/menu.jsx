@@ -1,6 +1,6 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
-import { addGraph } from '../state/graph-reducer.js';
+import { addGraph } from '../../state/graph-reducer.js';
 
 export default function DropDownMenu() {
   const dispatch = useDispatch();
