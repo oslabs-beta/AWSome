@@ -43,12 +43,12 @@ AWSome is a real-time AWS EC2 instance monitoring tool designed to provide compr
 ### Built With
 This project uses several technologies to provide a full-stack solution for AWS EC2 monitoring:
 
-- [![React][React.js]][React-url] - Frontend framework for building interactive UIs
-- [![AWS Cognito][AWS-Cognito]][AWS-Cognito-URL] - User authentication and authorization
-- [![AWS EC2][AWS-EC2]][AWS-EC2-URL] - Cloud computing platform for running instances
-- [![AWS CloudWatch][AWS-CloudWatch]][AWS-CloudWatch-URL] - Monitoring and logging service
-- [![AWS IAM][AWS-IAM]][AWS-IAM-URL] - Identity and access management
-- [![Redux][Redux]][Redux-URL] - State management for React
+- [![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=white)](https://reactjs.org/) - Frontend framework for building interactive UIs
+- [![AWS Cognito](https://img.shields.io/badge/AWS%20Cognito-FF9900?style=flat&logo=aws&logoColor=white)](https://aws.amazon.com/cognito/) - User authentication and authorization
+- [![AWS EC2](https://img.shields.io/badge/AWS%20EC2-FF9900?style=flat&logo=aws&logoColor=white)](https://aws.amazon.com/ec2/) - Cloud computing platform for running instances
+- [![AWS CloudWatch](https://img.shields.io/badge/AWS%20CloudWatch-FF9900?style=flat&logo=aws&logoColor=white)](https://aws.amazon.com/cloudwatch/) - Monitoring and logging service
+- [![AWS IAM](https://img.shields.io/badge/AWS%20IAM-FF9900?style=flat&logo=aws&logoColor=white)](https://aws.amazon.com/iam/) - Identity and access management
+- [![Redux](https://img.shields.io/badge/Redux-764ABC?style=flat&logo=redux&logoColor=white)](https://redux.js.org/) - State management for React
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
