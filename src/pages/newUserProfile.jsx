@@ -12,20 +12,12 @@ function NewUser() {
     navigate('/');
   };
 
-  // async function RandomID () {
-  //   // let res = await fetch('/random');
-  //   // console.log('promise: ', res);
-  //   // let data = await res.json()
-  //   // console.log('data: ', data)
+  async function RandomID () {
+    let res = await fetch('http://localhost:81/random');
+    let data = await res.json()
+    console.log('data: ', data)
+  }
 
-  //   fetch('/random')
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  //   .catch((err) => console.log('got nothing', err));
-
-  // }
 
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -69,53 +61,39 @@ function NewUser() {
           >
             Dashboard
           </button>
-          <button
-            className='block w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out'
-            onClick={() => navigate('/Home')}
-          >
-            Learn more
-          </button>
-          <button
-            onClick={logOut}
-            className='block w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out'
-          >
+          
+          <a onClick={logOut} className="block cursor-pointer w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out">
             Logout
           </button>
 
           {/* Dropdown Menu */}
-          {isOpen && (
-            <nav
+          {/* {isOpen && ( */}
+            {/* <nav
               ref={dropdownRef}
-              className='absolute mt-4 w-48 bg-white shadow-xl rounded-lg space-y-2 p-2'
-            >
-              <a
-                href='#'
-                className='block py-2 px-4 hover:bg-indigo-100 rounded-md transition duration-150 ease-in-out'
+              className="absolute mt-4 w-48 bg-white shadow-xl rounded-lg space-y-2 p-2"
+            > */}
+              {/* <a
+                href="#"
+                className="block py-2 px-4 hover:bg-indigo-100 rounded-md transition duration-150 ease-in-out"
               >
                 Settings
-              </a>
-              <a
-                href='#'
-                className='block py-2 px-4 hover:bg-indigo-100 rounded-md transition duration-150 ease-in-out'
-              >
-                Recommended
-              </a>
-              <button className='w-full bg-pink-600 hover:bg-pink-700 text-sm py-2 px-4 rounded-lg mt-2 transition duration-150 ease-in-out'>
-                Add Metrics
-              </button>
-            </nav>
-          )}
+              </a> */}
+              
+            {/* </nav>
+          )} */}
         </header>
 
         {/* Page Content */}
-        <main className='flex flex-col items-center justify-center flex-grow py-12 space-y-6 px-4 md:px-12 ml-20'>
-          <h2 className='text-4xl font-extrabold text-gray-900 mb-8'>
+        <main className="flex flex-col items-center justify-center flex-grow py-12 space-y-10 px-4 md:px-12 ml-20">
+          <h2 className="text-4xl font-extrabold text-gray-900 mb-8">
             Welcome, New User!
           </h2>
           <p className='text-lg text-center text-gray-600 max-w-lg mx-auto'>
             Start setting up your AWS monitoring dashboard.
           </p>
-          <button className='bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition duration-200 ease-in-out'>
+          <button className="bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition duration-200 ease-in-out"
+          onClick={RandomID}
+          >
             Generate External Id
           </button>
 

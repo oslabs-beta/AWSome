@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router';
 import BarChart from './components/Barchart.jsx';
 import LineChart from './components/Linechart.jsx';
-import { useSelector } from 'react-redux';
-import DropDownMenu from './components/menu.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import DropDownMenu from './menu.jsx';
 import { useAuth } from './context/AuthContext.jsx';
-import { useEffect } from 'react';
+import { useState, useRef, useEffect } from "react";
+import { getData } from '../state/graph-reducer.js';
+import { AWSdata } from '../../backend/fetch.js';
 
 const Home = () => {
   const { signOut, userSession } = useAuth();
@@ -18,24 +20,9 @@ const Home = () => {
     signOut();
   };
 
-  //ASK JASON ABOUT THIS
-  //SIMPLY TESTING MIDDLEWARE, To be implemented properly needs an api call to fetch current user's access token
-  //then use that token and send it as part of the header with each request
-  // const testingMiddleware = () => {
-  //   fetch('/protected', {
-  //     method: 'GET',
-  //     headers: {
-  //       Authorization:
-  //         'Bearer ',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => console.log('Response:', data))
-  //     .catch((error) => console.error('Error:', error));
-  // };
-
   const graphs = useSelector((state) => state.graphs);
+  const dispatch = useDispatch();
+  console.log('graph in home.jsx: ', graphs);
   const newgraph = [];
 
   for (let i = 0; i < graphs.graph.length; i++) {
@@ -46,10 +33,9 @@ const Home = () => {
           className='bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col'
         >
           <h3 className='text-lg font-semibold mb-4'>{graphs.metric[i]}</h3>
-          <BarChart className='h-60 fit  ' />
+          <BarChart className='h-60 w-full' />
         </div>
       );
-
       newgraph.push(bar);
     } else if (graphs.graph[i] === 'areaLine') {
       let line = (
@@ -58,60 +44,108 @@ const Home = () => {
           className='bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col'
         >
           <h3 className='text-lg font-semibold mb-4'>{graphs.metric[i]}</h3>
-          <LineChart className='h-60 fit  ' />
+          <LineChart className='h-60 w-full' />
         </div>
       );
-
       newgraph.push(line);
     }
   }
 
-  return (
-    <div className='bg-gradient-to-br from-purple-900 to-indigo-800 text-white font-sans min-h-screen flex flex-col'>
-      <header className='bg-purple-800 text-white p-4 flex justify-between items-center shadow-md'>
-        <h1 className='text-xl font-bold'>AWSome</h1>
-        <nav className='flex items-center space-x-6'>
-          <a href='#' className='hover:underline'>
-            Dashboard
-          </a>
-          <button
-            onClick={() => navigate('/newUserProfile')}
-            className='hover:underline cursor-pointer'
-          >
-            Account
-          </button>
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
-          <button onClick={logOut} className='hover:underline'>
-            Logout
-          </button>
-          <div>
-            <DropDownMenu />
-          </div>
-        </nav>
+  const handleMouseEnter = () => {
+    setIsOpen(true);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 text-gray-800 font-sans min-h-screen flex flex-col">
+      {/* Navbar */}
+      <header className="h-full absolute max-w-[15rem] shadow-xl bg-gradient-to-br from-purple-900 to-indigo-800">
+        <h1 className="text-2xl font-semibold text-white p-4">AWSome</h1>
+
+        <div
+          className="w-full text-left py-2 px-4 text-white rounded-md mt-6 hover:bg-[#000000] cursor-pointer transition-all duration-200 ease-in-out"
+          onClick={() => navigate("/newUserProfile")}
+        >
+          Account
+        </div>
+        <button
+          className="block w-full text-white bg-[#BE1F5D] text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out"
+          onClick={() => navigate("/Home")}
+          onMouseEnter={handleMouseEnter}
+        >
+          Dashboard
+        </button>
+
+        <a
+          onClick={logOut}
+          className="block w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out"
+        >
+          Logout
+        </a>
+
+        {/* {isOpen && (
+          <nav
+            ref={dropdownRef}
+            className="absolute mt-4 w-48 bg-white shadow-xl rounded-lg space-y-2 p-2"
+          >
+            {/* <button className="w-full bg-pink-600 hover:bg-pink-700 text-sm py-2 px-4 rounded-lg mt-2 transition duration-150 ease-in-out"> */}
+            {/* <DropDownMenu />
+            {newgraph} */}
+            {/* </button> */}
+          {/* </nav> */}
+        {/* )}  */}
       </header>
 
+      {/* Connect to User's AWS Account Button */}
+      <button className="bg-pink-600">Connect!</button>
+      <h2 className="text-3xl font-extrabold mb-8 text-center flex flex-col p-16">
+        <DropDownMenu />
+        {newgraph}
+        
+      </h2>
+      <main className="flex-grow flex flex-col items-center py-12">
       {/*Connect to User's AWS Account Button */}
-      <button className='bg-pink-600'>Connect!</button>
+      <button
+        className='bg-pink-600'
+        onClick={ async () => {
+          let data = await AWSdata(graphs);
+          dispatch(getData({ data }));
+        }}
+      >
+        Get Metrics  
+      </button>
 
-      {/* Metrics Section */}
-      <main className='flex-grow flex flex-col items-center py-12'>
-        <h2 className='text-3xl font-extrabold mb-8'>METRICS</h2>
         <div
-          id='container'
-          className='grid grid-cols-2 gap-6 w-full max-w-5xl px-6'
+          id="container"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl px-6"
         >
-          {newgraph}
+          {/* {newgraph} */}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className='bg-purple-800 text-center py-4'>
-        <p className='text-sm'>
+      <footer className="text-center py-6">
+        <p className="text-sm bg-gradient-to-br from-purple-900 to-indigo-800 text-transparent bg-clip-text ml-20">
           &copy; 2025 AWSome Metrics. All rights reserved.
         </p>
       </footer>
     </div>
   );
-};
+}
 
 export default Home;

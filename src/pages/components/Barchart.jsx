@@ -10,6 +10,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { useEffect, useState } from 'react';
 
+
 export default function BarChart() {
   // fetch data of the previous hour never the current
   // map data to the bar chart in dataset

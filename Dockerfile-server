@@ -2,19 +2,21 @@
 FROM node:23.6.0
 
 # Set the working directory.
-WORKDIR /app
+WORKDIR /server
 
 
 # Copy package files and install dependencies.
-COPY ./package.json /app
+COPY ./package.json /server
 
 
-COPY ./backend /app
+COPY ./backend/serve.js /server
+COPY ./backend/externalIDGenerator.js /server
+COPY ./backend/cloudwatch.js /server
 RUN npm install
 
 # Copy the rest of your application code.
 # Expose the port Vite is running on.
-EXPOSE 3000
+EXPOSE 81
 
 # Run the dev server.
 CMD ["npm", "run", "server-docker"]
