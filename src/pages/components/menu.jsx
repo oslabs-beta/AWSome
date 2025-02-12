@@ -1,23 +1,40 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { useDispatch } from 'react-redux';
-import { addGraph } from '../../state/graph-reducer.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { addGraph, getData } from '../../state/graph-reducer.js';
+import { AWSdata } from '../../../backend/fetch.js';
+import { useRef, useEffect } from 'react';
 
 export default function DropDownMenu() {
+  const graphs = useSelector((state) => state.graphs);
   const dispatch = useDispatch();
+  const first = useRef(true);
+
+  useEffect(() => {
+    if (first.current === true) {
+      first.current = false;
+      return;
+    }
+
+    async function auto() {
+      let data = await AWSdata(graphs);
+      dispatch(getData({ data }));
+    }
+
+    auto();
+  }, [graphs.graph]);
 
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as='div' className='relative inline-block text-left'>
       <div>
-        <MenuButton className="bg-pink-700 flex flex-col absolute left-1/2 transform -translate-x-1/2 text-md py-2 px-10 rounded-lg mt-3 transition duration-150 ease-in-out">
+        <MenuButton className=' -mx-2 bg-pink-700 flex flex-col relative left-1/2 transform -translate-x-1/2 text-md py-2 px-10 rounded-lg mt-3 transition duration-150 ease-in-out'>
           Add Metrics
         </MenuButton>
       </div>
 
       <MenuItems
         transition
-        className=" absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+        className=' absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in'
       >
-
         <div className='py-1 bg-purple-600'>
           <MenuItem>
             <Menu as='div' className='relative inline-block text-left'>
@@ -37,14 +54,14 @@ export default function DropDownMenu() {
                   <MenuItem>
                     <button
                       className=' text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
-                      onClick={() =>
+                      onClick={() => {
                         dispatch(
                           addGraph({
                             type: 'bar',
                             metric: 'NetworkOut',
                           })
-                        )
-                      }
+                        );
+                      }}
                     >
                       NetworkOut
                     </button>
