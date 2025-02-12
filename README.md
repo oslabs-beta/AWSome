@@ -1,56 +1,25 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a id="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
 
 <!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Unlicense License][license-shield]][license-url]
 
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <h1>AWSome</h1>
+  <p>Real-Time AWS EC2 Instance Monitoring Tool</p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#technologies">Technologies Used</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -60,153 +29,139 @@
   </ol>
 </details>
 
-
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
+AWSome is a real-time AWS EC2 instance monitoring tool designed to provide comprehensive insights into your EC2 instances using AWS CloudWatch. The project integrates with various AWS services such as Cognito for user authentication, IAM roles for permissions, and EC2 for instance management. The tool offers an interactive user interface built with React, allowing users to view EC2 instance metrics, generate heat maps, and analyze trends.
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+### Key Features:
+- Real-time EC2 instance monitoring
+- Interactive visualizations using heat maps and graphs
+- Customizable thresholds and alarms for memory usage and CPU load
+- Secure user authentication with AWS Cognito
+- User-friendly interface built with React and Redux
 
 ### Built With
+This project uses several technologies to provide a full-stack solution for AWS EC2 monitoring:
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![React][React.js]][React-url]
-
+- [![React][React.js]][React-url] - Frontend framework for building interactive UIs
+- [![AWS Cognito][AWS-Cognito]][AWS-Cognito-URL] - User authentication and authorization
+- [![AWS EC2][AWS-EC2]][AWS-EC2-URL] - Cloud computing platform for running instances
+- [![AWS CloudWatch][AWS-CloudWatch]][AWS-CloudWatch-URL] - Monitoring and logging service
+- [![AWS IAM][AWS-IAM]][AWS-IAM-URL] - Identity and access management
+- [![Redux][Redux]][Redux-URL] - State management for React
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Follow these steps to set up the project locally on your machine.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Ensure you have the following tools installed:
+- [Node.js](https://nodejs.org/en/) (>= 16.x)
+- [AWS CLI](https://aws.amazon.com/cli/) (configured with access credentials)
+- [npm](https://www.npmjs.com/get-npm) or [Yarn](https://yarnpkg.com/)
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/github_username/awsome.git
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
+2. Navigate to the project directory:
+  cd awsome
+
+3. Install the necessary NPM packages:
+  npm install
+
+4. Deploy the Cognito resources (if needed) and configure environment variables in .env:
+  VITE_COGNITO_CLIENT_ID=your_cognito_client_id
+  VITE_AWS_REGION=your_aws_region
+
+5. Run the development server:
+  npm run dev
+
+
+Your application will now be running at http://localhost:3000.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Usage
+
+<h1>Usage</h1>
+AWSome provides an intuitive interface for managing and monitoring your EC2 instances. You can:
+<ul>
+  <li>View EC2 instance metrics such as CPU usage, memory load, and disk I/O in real time.</li>
+  <li>Set custom alarms to get notified when instance thresholds are exceeded.</li>
+  <li>Use trend analysis to visualize your AWS EC2 instance performance.</li>
+</ul>
+
+For more examples, please refer to the Documentation
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
 ## Roadmap
+- [x] Add support for viewing EC2 instance performance metrics in real-time
+- [x] Integrate AWS CloudWatch for detailed metrics visualization
+- [ ] Implement automated scaling recommendations based on resource usage
+- [ ] Add email and SMS notifications for CloudWatch alarms
+- [ ] Implement cross-region EC2 instance monitoring
+- [ ] Improve UI responsiveness and accessibility
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the open issues for a full list of proposed features and known issues.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
+Contributing
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+We welcome contributions from the open-source community! Here's how you can contribute to AWSome:
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+- Fork the repo
+- Create a new branch (`git checkout -b feature/AmazingFeature`)
+- Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+- Push to the branch (`git push origin feature/AmazingFeature`)
+- Open a Pull Request
 
 ### Top contributors:
+- Your Name
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- LICENSE -->
 ## License
 
 Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- CONTACT -->
 ## Contact
 
+Feel free to contact us with any questions or suggestions:
 
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+- Email: your_email@example.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Acknowledgments
+
+Special thanks to the following resources:
+
+- [AWS Documentation](https://aws.amazon.com/documentation/)
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [Redux Documentation](https://redux.js.org/introduction/getting-started)
+- [AWS CloudWatch Documentation](https://docs.aws.amazon.com/cloudwatch/)
+- [Choose an Open Source License](https://choosealicense.com)
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+### Highlights:
+- **Technologies**: React, AWS (Cognito, CloudWatch, EC2), Redux, IAM Roles
+- **Project Features**: EC2 instance monitoring, CloudWatch visualizations, real-time analytics
+- **Usage**: Setting up AWS credentials and visualizing EC2 instance metrics
+- **Roadmap**: List of future features like automated scaling recommendations and email/SMS notifications
 
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
+
+
+
+
+
+
+
