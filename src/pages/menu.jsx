@@ -17,13 +17,12 @@ export default function DropDownMenu() {
         transition
         className=" absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
       >
-
-        <div className='py-1 bg-purple-600'>
+        <div className="py-1 bg-purple-600">
           <MenuItem>
-            <Menu as='div' className='relative inline-block text-left'>
+            <Menu as="div" className="relative inline-block text-left">
               <div>
                 <MenuButton>
-                  <p className=' text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'>
+                  <p className=" text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden">
                     Bar Graph
                   </p>
                 </MenuButton>
@@ -31,17 +30,17 @@ export default function DropDownMenu() {
 
               <MenuItems
                 transition
-                className=' absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in'
+                className=" absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
               >
-                <div className='py-1 bg-purple-600'>
+                <div className="py-1 bg-purple-600">
                   <MenuItem>
                     <button
-                      className=' text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
+                      className=" text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                       onClick={() =>
                         dispatch(
                           addGraph({
-                            type: 'bar',
-                            metric: 'NetworkOut',
+                            type: "bar",
+                            metric: "NetworkOut",
                           })
                         )
                       }
@@ -51,12 +50,12 @@ export default function DropDownMenu() {
                   </MenuItem>
                   <MenuItem>
                     <button
-                      className='text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
+                      className="text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                       onClick={() =>
                         dispatch(
                           addGraph({
-                            type: 'bar',
-                            metric: 'NetworkIn',
+                            type: "bar",
+                            metric: "NetworkIn",
                           })
                         )
                       }
@@ -66,12 +65,12 @@ export default function DropDownMenu() {
                   </MenuItem>
                   <MenuItem>
                     <button
-                      className='text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
+                      className="text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                       onClick={() =>
                         dispatch(
                           addGraph({
-                            type: 'bar',
-                            metric: 'EBSWriteOps',
+                            type: "bar",
+                            metric: "EBSWriteOps",
                           })
                         )
                       }
@@ -81,12 +80,12 @@ export default function DropDownMenu() {
                   </MenuItem>
                   <MenuItem>
                     <button
-                      className='text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
+                      className="text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                       onClick={() =>
                         dispatch(
                           addGraph({
-                            type: 'bar',
-                            metric: 'EBSReadOps',
+                            type: "bar",
+                            metric: "EBSReadOps",
                           })
                         )
                       }
@@ -96,12 +95,12 @@ export default function DropDownMenu() {
                   </MenuItem>
                   <MenuItem>
                     <button
-                      className='text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
+                      className="text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                       onClick={() =>
                         dispatch(
                           addGraph({
-                            type: 'bar',
-                            metric: 'CPUUtilization',
+                            type: "bar",
+                            metric: "CPUUtilization",
                           })
                         )
                       }
@@ -114,10 +113,10 @@ export default function DropDownMenu() {
             </Menu>
           </MenuItem>
           <MenuItem>
-            <Menu as='div' className='relative inline-block text-left'>
+            <Menu as="div" className="relative inline-block text-left">
               <div>
                 <MenuButton>
-                  <p className=' text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'>
+                  <p className=" text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden">
                     Line Graph
                   </p>
                 </MenuButton>
@@ -125,17 +124,17 @@ export default function DropDownMenu() {
 
               <MenuItems
                 transition
-                className=' absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in'
+                className=" absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
               >
-                <div className='py-1 bg-purple-600'>
+                <div className="py-1 bg-purple-600">
                   <MenuItem>
                     <button
-                      className=' text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
+                      className=" text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                       onClick={() =>
                         dispatch(
                           addGraph({
-                            type: 'areaLine',
-                            metric: 'NetworkOut',
+                            type: "areaLine",
+                            metric: "NetworkOut",
                           })
                         )
                       }
@@ -145,12 +144,12 @@ export default function DropDownMenu() {
                   </MenuItem>
                   <MenuItem>
                     <button
-                      className='text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
+                      className="text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                       onClick={() =>
                         dispatch(
                           addGraph({
-                            type: 'areaLine',
-                            metric: 'NetworkIn',
+                            type: "areaLine",
+                            metric: "NetworkIn",
                           })
                         )
                       }
@@ -160,12 +159,12 @@ export default function DropDownMenu() {
                   </MenuItem>
                   <MenuItem>
                     <button
-                      className='text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
+                      className="text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                       onClick={() =>
                         dispatch(
                           addGraph({
-                            type: 'areaLine',
-                            metric: 'EBSWriteOps',
+                            type: "areaLine",
+                            metric: "EBSWriteOps",
                           })
                         )
                       }
@@ -175,12 +174,12 @@ export default function DropDownMenu() {
                   </MenuItem>
                   <MenuItem>
                     <button
-                      className='text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
+                      className="text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                       onClick={() =>
                         dispatch(
                           addGraph({
-                            type: 'areaLine',
-                            metric: 'EBSReadOps',
+                            type: "areaLine",
+                            metric: "EBSReadOps",
                           })
                         )
                       }
@@ -190,12 +189,12 @@ export default function DropDownMenu() {
                   </MenuItem>
                   <MenuItem>
                     <button
-                      className='text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden'
+                      className="text-pink-50 block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                       onClick={() =>
                         dispatch(
                           addGraph({
-                            type: 'areaLine',
-                            metric: 'CPUUtilization',
+                            type: "areaLine",
+                            metric: "CPUUtilization",
                           })
                         )
                       }

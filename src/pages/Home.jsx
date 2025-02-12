@@ -1,20 +1,20 @@
-import './Home.css';
-import { useNavigate } from 'react-router';
-import BarChart from './components/Barchart.jsx';
-import LineChart from './components/Linechart.jsx';
-import { useDispatch, useSelector } from 'react-redux';
-import DropDownMenu from './menu.jsx';
-import { useAuth } from './context/AuthContext.jsx';
+import "./Home.css";
+import { useNavigate } from "react-router";
+import BarChart from "./components/Barchart.jsx";
+import LineChart from "./components/Linechart.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import DropDownMenu from "./menu.jsx";
+import { useAuth } from "./context/AuthContext.jsx";
 import { useState, useRef, useEffect } from "react";
-import { getData } from '../state/graph-reducer.js';
-import { AWSdata } from '../../backend/fetch.js';
+import { getData } from "../state/graph-reducer.js";
+import { AWSdata } from "../../backend/fetch.js";
 
 const Home = () => {
   const { signOut, userSession } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!userSession) navigate('/');
+    if (!userSession) navigate("/");
   }, [userSession, navigate]);
 
   const logOut = () => {
@@ -23,29 +23,29 @@ const Home = () => {
 
   const graphs = useSelector((state) => state.graphs);
   const dispatch = useDispatch();
-  console.log('graph in home.jsx: ', graphs);
+  console.log("graph in home.jsx: ", graphs);
   const newgraph = [];
 
   for (let i = 0; i < graphs.graph.length; i++) {
-    if (graphs.graph[i] === 'bar') {
+    if (graphs.graph[i] === "bar") {
       let bar = (
         <div
           key={i}
-          className='bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col'
+          className="bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col"
         >
-          <h3 className='text-lg font-semibold mb-4'>{graphs.metric[i]}</h3>
-          <BarChart className='h-60 w-full' />
+          <h3 className="text-lg font-semibold mb-4">{graphs.metric[i]}</h3>
+          <BarChart className="h-60 w-full" />
         </div>
       );
       newgraph.push(bar);
-    } else if (graphs.graph[i] === 'areaLine') {
+    } else if (graphs.graph[i] === "areaLine") {
       let line = (
         <div
           key={i}
-          className='bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col'
+          className="bg-purple-700 rounded-lg shadow-lg p-6 flex flex-col"
         >
-          <h3 className='text-lg font-semibold mb-4'>{graphs.metric[i]}</h3>
-          <LineChart className='h-60 w-full' />
+          <h3 className="text-lg font-semibold mb-4">{graphs.metric[i]}</h3>
+          <LineChart className="h-60 w-full" />
         </div>
       );
       newgraph.push(line);
@@ -105,37 +105,34 @@ const Home = () => {
             className="absolute mt-4 w-48 bg-white shadow-xl rounded-lg space-y-2 p-2"
           >
             {/* <button className="w-full bg-pink-600 hover:bg-pink-700 text-sm py-2 px-4 rounded-lg mt-2 transition duration-150 ease-in-out"> */}
-            {/* <DropDownMenu />
+        {/* <DropDownMenu />
             {newgraph} */}
-            {/* </button> */}
-          {/* </nav> */}
+        {/* </button> */}
+        {/* </nav> */}
         {/* )}  */}
       </header>
 
-      {/* Connect to User's AWS Account Button */}
-      <button className="bg-pink-600">Connect!</button>
-      <h2 className="text-3xl font-extrabold mb-8 text-center flex flex-col p-16">
-        <DropDownMenu />
-        {newgraph}
-        
-      </h2>
+      {/* <h2 className="text-3xl font-extrabold mb-8 text-center flex flex-col p-16"> */}
+      <DropDownMenu />
+
+      {/* </h2> */}
       <main className="flex-grow flex flex-col items-center py-12">
-      {/*Connect to User's AWS Account Button */}
-      <button
-        className='bg-pink-600'
-        onClick={ async () => {
-          let data = await AWSdata(graphs);
-          dispatch(getData({ data }));
-        }}
-      >
-        Get Metrics  
-      </button>
+        {/*Connect to User's AWS Account Button */}
+        <button
+          className="bg-pink-600"
+          onClick={async () => {
+            let data = await AWSdata(graphs);
+            dispatch(getData({ data }));
+          }}
+        >
+          Get Metrics
+        </button>
 
         <div
           id="container"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl px-6"
+          className="grid grid-cols-1 sm:grid-cols-2  gap-6 w-full max-w-5xl px-6"
         >
-          {/* {newgraph} */}
+          {newgraph}
         </div>
       </main>
 
@@ -147,6 +144,6 @@ const Home = () => {
       </footer>
     </div>
   );
-}
+};
 
 export default Home;
