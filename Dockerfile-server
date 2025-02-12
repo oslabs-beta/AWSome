@@ -3,16 +3,11 @@ FROM node:23.6.0
 
 # Set the working directory.
 WORKDIR /server
-
+COPY ./package.json /server
+RUN npm install
 
 # Copy package files and install dependencies.
-COPY ./package.json /server
-
-
-COPY ./backend/serve.js /server
-COPY ./backend/externalIDGenerator.js /server
-COPY ./backend/cloudwatch.js /server
-RUN npm install
+COPY ./backend/ /server
 
 # Copy the rest of your application code.
 # Expose the port Vite is running on.

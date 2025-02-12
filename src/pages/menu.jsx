@@ -32,7 +32,7 @@ export default function DropDownMenu() {
   return (
     <Menu as='div' className='relative inline-block text-left'>
       <div>
-        <MenuButton className='bg-pink-700 flex flex-col absolute left-1/2 transform -translate-x-1/2 text-md py-2 px-10 rounded-lg mt-3 transition duration-150 ease-in-out'>
+        <MenuButton className=' mb-[12] mx-2 bg-pink-700 flex flex-col relative left-1/2 transform -translate-x-1/2 text-md py-2 px-10 rounded-lg mt-3 transition duration-150 ease-in-out'>
           Add Metrics
         </MenuButton>
       </div>
