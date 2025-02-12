@@ -89,33 +89,8 @@ function Login() {
     }
   };
 
-  //handles confirmation of token and ensures that user is authorized
-  // const fetchUserInfo = async () => {
-  //   const token = localStorage.getItem('id_token'); // Use the ID token
-
-  //   if (!token) {
-  //     console.log('User not authenticated.');
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await fetch(
-  //       'https://us-east-1p9ehxxo94.auth.us-east-1.amazoncognito.com/oauth2/userInfo',
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     const userData = await response.json();
-  //     console.log('User Info:', userData);
-  //   } catch (error) {
-  //     console.error('Error fetching user info:', error);
-  //   }
-  // };
-
   //grabs the pool data from local .env file
-  
+
   const poolData = {
     UserPoolId: poolID,
     ClientId: clientId,
