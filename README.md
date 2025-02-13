@@ -141,11 +141,6 @@ Once approved, your contribution will be merged into the project. Thank you for 
 
 💡 Need help? Feel free to open an issue or reach out to us in discussions! 🚀
 
-
-
-### Top contributors:
-- Jayson, Nathalie, Jose, Christina, Elijah
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## License
@@ -153,6 +148,59 @@ Once approved, your contribution will be merged into the project. Thank you for 
 Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Top contributors:
+- Jayson, Nathalie, Jose, Christina, Elijah
+<table>
+  <tr>
+    <td align="center">
+      <img src="" width="140px;" alt=""/>
+      <br />
+      <sub><b>Jayson</b></sub>
+      <br />
+      <a href="">💼</a> <!-- LinkedIn -->
+      <a href="">💻</a> <!-- GitHub -->
+    </td>
+    <td align="center">
+      <img src="" width="140px;" alt=""/>
+      <br />
+      <sub><b>Jose Andrew</b></sub>
+      <br />
+      <a href="https://www.linkedin.com/in/jose-andrew">💼</a> <!-- LinkedIn -->
+      <a href="https://github.com/Jandrew2055">💻</a> <!-- GitHub -->
+    </td>
+    <td align="center">
+      <img src="" width="140px;" alt=""/>
+      <br />
+      <sub><b>Christina Abraham</b></sub>
+      <br />
+      <a href="">💼</a> <!-- LinkedIn -->
+      <a href="">💻</a> <!-- GitHub -->
+    </td>
+    <td align="center">
+      <img src="" width="140px;" alt=""/>
+      <br />
+      <sub><b>Elijah Egede</b></sub>
+      <br />
+      <a href="">💼</a> <!-- LinkedIn -->
+      <a href="">💻</a> <!-- GitHub -->
+    </td>
+    <td align="center">
+      <img src="" width="140px;" alt=""/>
+      <br />
+      <sub><b>Salem </b></sub>
+      <br />
+      <a href="">💼</a> <!-- LinkedIn -->
+      <a href="">💻</a> <!-- GitHub -->
+    </td>
+  </tr>
+  <!-- Add more contributors as needed -->
+</table>
+
+
+
+
+
 
 ## Contact
 
