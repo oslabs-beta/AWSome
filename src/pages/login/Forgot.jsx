@@ -51,10 +51,12 @@ function Forgot() {
   const codeSubmission = async (event) => {
     //prevents full page refresh
     event.preventDefault();
+    //If user types in two passwords that are not the same, this error message will display
     if (passwordOne !== passwordTwo) {
       setErrorMessage('Passwords do not match.');
       return;
     }
+    //
     setErrorMessage('');
     const input = {
       ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
