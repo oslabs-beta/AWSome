@@ -10,8 +10,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/random', (req, res) => {
-  let id = externalIdGenerator();
+app.get('/random', async (req, res) => {
+  let id = await externalIdGenerator();
   return res.status(200).json({ id });
 });
 

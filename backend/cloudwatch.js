@@ -20,6 +20,11 @@ const client = new CloudWatchClient({
 let response;
 const InstanceId = 'i-0610f2356e0d72fcd';
 
+
+
+
+
+
 async function MixedMetrix(metricMap) {
   const { metric, data, graph } = metricMap;
   const queries = [];
