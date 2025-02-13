@@ -27,7 +27,8 @@
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
-</details> https://github.com/user-attachments/assets/00aed0a3-5759-406d-b33c-4cbbe2479877
+</details>
+<img src= https://github.com/user-attachments/assets/00aed0a3-5759-406d-b33c-4cbbe2479877 />
 
 
 ## About The Project
