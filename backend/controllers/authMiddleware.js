@@ -39,7 +39,6 @@ const authenticateToken = async (req, res, next) => {
 
     // Decode the JWT to get the kid (key id)
     const decodedHeader = jwt.decode(token, { complete: true })?.header;
-
     //if decodedheader exists, grab the key id
     const kid = decodedHeader?.kid;
 
@@ -49,7 +48,6 @@ const authenticateToken = async (req, res, next) => {
         .status(400)
         .json({ error: 'Invalid token: Missing kid in token header' });
     }
-
     // Fetch the public key using the kid
     const publicKey = await getKey({ kid });
 
