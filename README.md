@@ -158,8 +158,8 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
       <br />
       <sub><b>Jayson</b></sub>
       <br />
-      <a href="">💼</a> <!-- LinkedIn -->
-      <a href="">💻</a> <!-- GitHub -->
+      <a href="https://www.linkedin.com/in/jayson-sanon-6194b6257/">💼</a> <!-- LinkedIn -->
+      <a href="https://github.com/JO901">💻</a> <!-- GitHub -->
     </td>
     <td align="center">
       <img src="" width="140px;" alt=""/>
@@ -174,7 +174,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
       <br />
       <sub><b>Christina Abraham</b></sub>
       <br />
-      <a href="">💼</a> <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/christina-abraham-001124163/">💼</a> <!-- LinkedIn -->
       <a href="">💻</a> <!-- GitHub -->
     </td>
     <td align="center">
@@ -182,7 +182,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
       <br />
       <sub><b>Elijah Egede</b></sub>
       <br />
-      <a href="">💼</a> <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/elijahegede/">💼</a> <!-- LinkedIn -->
       <a href="">💻</a> <!-- GitHub -->
     </td>
     <td align="center">
@@ -190,14 +190,12 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
       <br />
       <sub><b>Salem </b></sub>
       <br />
-      <a href="">💼</a> <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/nathalieowusu/">💼</a> <!-- LinkedIn -->
       <a href="">💻</a> <!-- GitHub -->
     </td>
   </tr>
   <!-- Add more contributors as needed -->
 </table>
-
-
 
 
 
