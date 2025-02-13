@@ -175,7 +175,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
       <sub><b>Christina Abraham</b></sub>
       <br />
       <a href="https://www.linkedin.com/in/christina-abraham-001124163/">💼</a> <!-- LinkedIn -->
-      <a href="">💻</a> <!-- GitHub -->
+      <a href="https://github.com/Chrissy-a">💻</a> <!-- GitHub -->
     </td>
     <td align="center">
       <img src="" width="140px;" alt=""/>
