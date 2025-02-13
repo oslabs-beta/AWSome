@@ -187,6 +187,7 @@ function Forgot() {
           <p className='font-medium flex justify-center text-lg text-violet-500 mt-7 mb-7 animate-pulse'>
             Log in with your new password.
           </p>
+          
         </div>
       )}
       <div className='flex relative w-full h-screen lg:flex items-center justify-center bg-violet-100'>
