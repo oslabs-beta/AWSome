@@ -56,10 +56,14 @@ This project uses several technologies to provide a full-stack solution for AWS 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
+If you'd like to use our app you can visit the following link below.
+<a href="aw-some.com" target="_blank">Website</a>
 
-Follow these steps to set up the project locally on your machine.
+#Otherwise, if you'd like to contribute to our product you can follow the steps below to get the development environment started!
 
-### Prerequisites
+###Follow these steps to set up the project locally on your machine.
+
+# Prerequisites
 
 Ensure you have the following tools installed:
 - [Node.js](https://nodejs.org/en/) (>= 16.x)
