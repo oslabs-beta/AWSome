@@ -156,7 +156,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
     <td align="center">
       <img src="" width="140px;" alt=""/>
       <br />
-      <sub><b>Jayson</b></sub>
+      <sub><b>Jayson Sanon</b></sub>
       <br />
       <a href="https://www.linkedin.com/in/jayson-sanon-6194b6257/">💼</a> <!-- LinkedIn -->
       <a href="https://github.com/JO901">💻</a> <!-- GitHub -->
@@ -188,7 +188,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
     <td align="center">
       <img src="" width="140px;" alt=""/>
       <br />
-      <sub><b>Salem </b></sub>
+      <sub><b>Salem Owusu</b></sub>
       <br />
       <a href="https://www.linkedin.com/in/nathalieowusu/">💼</a> <!-- LinkedIn -->
       <a href="https://github.com/NathalieOwusu">💻</a> <!-- GitHub -->
