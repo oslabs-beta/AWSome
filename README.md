@@ -178,7 +178,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
       <a href="https://github.com/Chrissy-a">💻</a> <!-- GitHub -->
     </td>
     <td align="center">
-      <img src="" width="140px;" alt=""/>
+      <img src="https://imagekit.io/tools/asset-public-link?detail=%7B%22name%22%3A%22Screenshot%202025-02-13%20at%202.39.42%E2%80%AFPM.png%22%2C%22type%22%3A%22image%2Fpng%22%2C%22signedurl_expire%22%3A%222028-02-13T19%3A40%3A35.337Z%22%2C%22signedUrl%22%3A%22https%3A%2F%2Fmedia-hosting.imagekit.io%2F%2F374cc8a9350a4bbc%2FScreenshot%25202025-02-13%2520at%25202.39.42%25E2%2580%25AFPM.png%3FExpires%3D1834083635%26Key-Pair-Id%3DK2ZIVPTIP2VGHC%26Signature%3DGPOQ5H7CRJ1M8oNIHnUmNJi4p--eehdqw6bm-ZJghTpLYE6d8tXgHFqER2pVBhUDO5FyEjC053l0h7Qwb9qvLFYU1oudttiM5~Pz8dW8muoexitDGvthYDLnNInjHIHCcagi8mQBttSQ8-y0BzmkjZEN~7bHChTT4fqtv1gX6Ojc0dgKFV8Jm9RhiuPLfVjei2G37vDEbAAxKNIVyu3B2Z8DUBdFSzPOuaXQNjugFVNohoHQ2OM8bROPgGO~vmB-y-w1tvQosGk1Cw-Wab1DUdlZhcYvnLR7BlWIWjf4gSx0rvi6JCZG9ZXnkaO~YylkXDsMN9Zfj6MyY90YNCRfbg__%22%7D" width="140px;" alt=""/>
       <br />
       <sub><b>Elijah Egede</b></sub>
       <br />
