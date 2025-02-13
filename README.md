@@ -7,6 +7,8 @@
 [![Unlicense License][license-shield]][license-url]
 
 <!-- PROJECT LOGO -->
+<img src= https://github.com/user-attachments/assets/00aed0a3-5759-406d-b33c-4cbbe2479877 />
+
 <br />
 <div align="center">
   <h1>AWSome</h1>
@@ -28,7 +30,6 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
-<img src= https://github.com/user-attachments/assets/00aed0a3-5759-406d-b33c-4cbbe2479877 />
 
 
 ## About The Project
