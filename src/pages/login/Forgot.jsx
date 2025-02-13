@@ -149,11 +149,11 @@ function Forgot() {
                       placeholder= ' Password must contain Uppercase, lowercase, number and symbol.'
                       required
                     ></input>
-                    <div className='mt-8 flex flex-col gap-y-4'>
+                    {errorMessage && <p className='flex justify-center text-red-500 mt-2'>{errorMessage}</p>}
+                    <div className='mt-6 flex flex-col gap-y-4'>
                       <button className='shadow-md shadow-gray-400 mt-4 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold' type='submit'>Submit</button>
                     </div>
                     
-                    {/* {errorMessage && <p className='text-red-500'>{errorMessage}</p>} */}
                   </form>
               </div>      
            </div>      
