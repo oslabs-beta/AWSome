@@ -183,7 +183,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
       <sub><b>Elijah Egede</b></sub>
       <br />
       <a href="https://www.linkedin.com/in/elijahegede/">💼</a> <!-- LinkedIn -->
-      <a href="">💻</a> <!-- GitHub -->
+      <a href="https://github.com/WizardE007">💻</a> <!-- GitHub -->
     </td>
     <td align="center">
       <img src="" width="140px;" alt=""/>
