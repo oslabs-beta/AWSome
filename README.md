@@ -191,7 +191,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
       <sub><b>Salem </b></sub>
       <br />
       <a href="https://www.linkedin.com/in/nathalieowusu/">💼</a> <!-- LinkedIn -->
-      <a href="">💻</a> <!-- GitHub -->
+      <a href="https://github.com/NathalieOwusu">💻</a> <!-- GitHub -->
     </td>
   </tr>
   <!-- Add more contributors as needed -->
