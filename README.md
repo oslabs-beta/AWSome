@@ -103,11 +103,29 @@ Contributing
 
 We welcome contributions from the open-source community! Here's how you can contribute to AWSome:
 
-- Fork the repo
-- Create a new branch (`git checkout -b feature/AmazingFeature`)
-- Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-- Push to the branch (`git push origin feature/AmazingFeature`)
-- Open a Pull Request
+## 🚀 Contributing to Our AWS Monitoring Tool
+
+We ❤️ contributions from the community! Follow these steps to get involved:
+
+### 1️⃣ Fork the Repo  
+Click the **"Fork"** button at the top-right corner of this page to create your own copy.
+
+### 2️⃣ Create a Feature Branch  
+```sh
+git checkout -b feature/yourNewFeatureName
+```
+
+
+### 3️⃣ Build Something Awesome 🛠️
+- **Implement Your Feature**: Add your code, tests, or documentation.
+- **Ensure Your Changes Align with the Project's Goals**: Make sure your work fits the overall vision.
+- **Keep Your Implementation Clean, Modular, and Well-Documented**: Strive for readable, reusable, and well-commented code.
+
+
+
+
+
+
 
 ### Top contributors:
 - Jayson, Nathalie, Jose, Christina, Elijah
