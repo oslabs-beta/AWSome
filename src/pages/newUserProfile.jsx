@@ -15,7 +15,6 @@ function NewUser() {
   async function RandomID() {
     let res = await fetch('http://localhost:81/random');
     let data = await res.json();
-    console.log('data: ', data);
     return data;
   }
 
@@ -108,7 +107,6 @@ function NewUser() {
             className='bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition duration-200 ease-in-out'
             onClick={async () => {
               let pass = await RandomID();
-              console.log('in here', pass);
               document.querySelector('#password').innerText = pass.id;
             }}
           >

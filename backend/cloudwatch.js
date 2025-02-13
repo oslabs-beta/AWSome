@@ -3,8 +3,17 @@ import {
   CloudWatchServiceException, // Handles specific errors from CloudWatch
   GetMetricDataCommand, // Sends a request to fetch metric data
 } from '@aws-sdk/client-cloudwatch';
+import { fromIni } from '@aws-sdk/credential-providers';
+const region = 'us-east-1';
 
-const client = new CloudWatchClient({ region: 'us-east-1' });
+const client = new CloudWatchClient({
+  credentials: fromIni({
+    filepath: '~/.aws/credentials',
+    configFilepath: '~/.aws/config',
+    clientConfig: { region },
+  }),
+  region,
+});
 let response;
 const InstanceId = 'i-0610f2356e0d72fcd';
 
@@ -25,7 +34,7 @@ async function MixedMetrix(metricMap) {
 
   for (let i = 0; i < metric.length; i++) {
     let id = metric[i].toLowerCase() + graph[i] + num.toString();
-    num++
+    num++;
     queries.push(
       {
         // MetricDataQuery

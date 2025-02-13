@@ -7,7 +7,7 @@ COPY ./package.json /server
 RUN npm install
 
 # Copy package files and install dependencies.
-COPY ./backend/ /server
+COPY ./backend /server
 
 # Copy the rest of your application code.
 # Expose the port Vite is running on.

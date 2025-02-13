@@ -21,7 +21,6 @@ const Home = () => {
   };
 
   const graphs = useSelector((state) => state.graphs);
-  console.log(graphs);
   const dispatch = useDispatch();
   const newgraph = [];
 
