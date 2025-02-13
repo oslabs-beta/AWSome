@@ -16,8 +16,8 @@
 </div>
 
 <!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
+
+## Table of Contents
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#technologies">Technologies Used</a></li>
@@ -29,7 +29,7 @@
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
-</details>
+
 
 
 ## About The Project
