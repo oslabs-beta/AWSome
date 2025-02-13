@@ -136,6 +136,10 @@ git push origin feature/yourNewFeatureName
 - Provide a detailed description of your changes.
 - Submit the PR and wait for our team to review it.
 
+### 7️⃣ Celebrate! 🎉
+Once approved, your contribution will be merged into the project. Thank you for helping us improve this tool for developers!
+
+💡 Need help? Feel free to open an issue or reach out to us in discussions! 🚀
 
 
 
