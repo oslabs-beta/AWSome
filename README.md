@@ -105,7 +105,7 @@ We welcome contributions from the open-source community! Here's how you can cont
 - Open a Pull Request
 
 ### Top contributors:
-- Jayson, Jose, Christina, Salem, Elijah
+- Jayson, Nathalie, Jose, Christina, Elijah
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
