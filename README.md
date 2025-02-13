@@ -115,14 +115,26 @@ Click the **"Fork"** button at the top-right corner of this page to create your 
 git checkout -b feature/yourNewFeatureName
 ```
 
-
 ### 3️⃣ Build Something Awesome 🛠️
 - **Implement Your Feature**: Add your code, tests, or documentation.
 - **Ensure Your Changes Align with the Project's Goals**: Make sure your work fits the overall vision.
 - **Keep Your Implementation Clean, Modular, and Well-Documented**: Strive for readable, reusable, and well-commented code.
 
+### 4️⃣ Commit Your Changes ✅
+```sh
+git commit -m "✨ Added [your-new-feature-description]"
+```
 
+### 5️⃣ Push to Your Branch 🚀
+```sh
+git push origin feature/yourNewFeatureName
+```
 
+### 6️⃣ Open a Pull Request (PR) 🔄
+- Navigate to your fork on GitHub.
+- Click "New Pull Request" and select the dev branch as the base (unless otherwise specified).
+- Provide a detailed description of your changes.
+- Submit the PR and wait for our team to review it.
 
 
 
