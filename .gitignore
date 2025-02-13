@@ -11,6 +11,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+,env
 dist
 dist-ssr
 *.local
@@ -27,4 +28,4 @@ dist-ssr
 *.sw?
 
 # Aws 
-backend/.aws
+backend/.aws/*
