@@ -17,7 +17,7 @@ function Signup() {
     ''
   )}.auth.us-east-1.amazoncognito.com/login?client_id=${
     import.meta.env.VITE_COGNITO_CLIENT_ID
-  }&redirect_uri=http://localhost:5173&response_type=code`;
+  }&redirect_uri=http://localhost:80&response_type=code`;
 
   //function to handle the signup process for our users
   const handleSignups = (event) => {

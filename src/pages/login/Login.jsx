@@ -15,7 +15,7 @@ const authUrl = `https://${poolID
   .replace(
     '_',
     ''
-  )}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:5173&response_type=code`;
+  )}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:80&response_type=code`;
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -53,7 +53,7 @@ function Login() {
             grant_type: 'authorization_code',
             client_id: import.meta.env.VITE_COGNITO_CLIENT_ID,
             code: code,
-            redirect_uri: 'http://localhost:5173',
+            redirect_uri: 'http://localhost:80',
           }),
         }
       );

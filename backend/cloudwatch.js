@@ -7,12 +7,15 @@ import { fromIni } from '@aws-sdk/credential-providers';
 const region = 'us-east-1';
 
 const client = new CloudWatchClient({
+  profile: "default",
+  region,
   credentials: fromIni({
-    filepath: '~/.aws/credentials',
-    configFilepath: '~/.aws/config',
+    profile: 'default',
+    filepath: './.aws/credentials',
+    configFilepath: './.aws/config',
     clientConfig: { region },
   }),
-  region,
+  
 });
 let response;
 const InstanceId = 'i-0610f2356e0d72fcd';
