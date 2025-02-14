@@ -150,7 +150,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Top contributors:
-- Jayson, Nathalie, Jose, Christina, Elijah
+- Jayson, Jose, Christina, Elijah, Nathalie
 <table>
   <tr>
     <td align="center">
