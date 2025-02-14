@@ -9,13 +9,9 @@ import { useAuth } from '../context/AuthContext';
 
 const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
 const poolID = import.meta.env.VITE_COGNITO_USER_POOL_ID;
+const urlPoolID = poolID.toLowerCase().replace('_', '');
 
-const authUrl = `https://${poolID
-  .toLowerCase()
-  .replace(
-    '_',
-    ''
-  )}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:80&response_type=code`;
+const authUrl = `https://${urlPoolID}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:80&response_type=code`;
 
 function Login() {
   const [email, setEmail] = useState('');

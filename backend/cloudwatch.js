@@ -6,20 +6,16 @@ import {
 import { fromIni } from '@aws-sdk/credential-providers';
 const region = 'us-east-1';
 
-const client = new CloudWatchClient({
-  profile: 'default',
-  region,
-  credentials: fromIni({
-    profile: 'default',
-    filepath: './.aws/credentials',
-    configFilepath: './.aws/config',
-    clientConfig: { region },
-  }),
-});
-let response;
-const InstanceId = 'i-0610f2356e0d72fcd';
-
 async function MixedMetrix(metricMap) {
+  const client = new CloudWatchClient({
+    region,
+    credentials: fromIni({
+      profile: 'default',
+    }),
+  });
+  let response;
+  const InstanceId = 'i-0610f2356e0d72fcd';
+
   const { metric, data, graph } = metricMap;
   const queries = [];
 
@@ -77,7 +73,7 @@ async function MixedMetrix(metricMap) {
   try {
     // Sends the request and waits for the response
     response = await client.send(command);
-    console.log('response meta: ', response);
+    //console.log('response meta: ', response);
 
     return response.MetricDataResults; // logs the metric data and entire response if successful
   } catch (caught) {
