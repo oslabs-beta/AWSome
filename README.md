@@ -57,7 +57,7 @@ This project uses several technologies to provide a full-stack solution for AWS 
 
 ## Getting Started
 If you'd like to use our app you can visit the following link below.
-<a href="aw-some.com" target="_blank">Website</a>
+<a href="[aw-some.com](http://aw-some.com)" target="_blank">Website</a>
 
 #Otherwise, if you'd like to contribute to our product you can follow the steps below to get the development environment started!
 
@@ -66,15 +66,14 @@ If you'd like to use our app you can visit the following link below.
 ### Installation
 //steps on accessing our deployed app, and our landing page
 
-### Prerequisities
+### Prerequisites
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-Usage
 
 <h1>Usage</h1>
 AWSome provides an intuitive interface for managing and monitoring your EC2 instances. You can:
 <ul>
-  <li>View EC2 instance metrics such as CPU usage, memory load, and disk I/O in real time.</li>
+  <li>View EC2 instance metrics such as CPU usage, memory load, and disk I/O in real-time.</li>
   <li>Set custom alarms to get notified when instance thresholds are exceeded.</li>
   <li>Use trend analysis to visualize your AWS EC2 instance performance.</li>
 </ul>
