@@ -51,10 +51,12 @@ function Forgot() {
   const codeSubmission = async (event) => {
     //prevents full page refresh
     event.preventDefault();
+    //If user types in two passwords that are not the same, this error message will display
     if (passwordOne !== passwordTwo) {
       setErrorMessage('Passwords do not match.');
       return;
     }
+    //
     setErrorMessage('');
     const input = {
       ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
@@ -68,8 +70,8 @@ function Forgot() {
       await client.send(command);
       setResetSuccess(true);
     } catch (error) {
-      console.error('Error confirming password reset:', error);
-      setErrorMessage('Failed to reset password. Please try again.');
+      console.error('Error:', error.message);
+      setErrorMessage(error.message);
     }
   };
 
@@ -78,8 +80,8 @@ function Forgot() {
       {!verificationComponent ? (
         <div className='page-wrapper w-full flex items-center justify-center'>
           <div className='page-container-2'>
-            <div  className='block'>
-            <div className='form-wrapper bg-white mt-12 py-20 rounded-3xl'>
+            <div className='block'>
+              <div className='form-wrapper bg-white mt-12 py-20 rounded-3xl'>
                 <h2 className='mainHeading mt-12 flex justify-center text-5xl text-violet-600 font-semibold'>
                   {' '}
                   Forgot password?
@@ -93,7 +95,7 @@ function Forgot() {
                     <label className='text-lg font-medium'>Email: </label>
                     <input
                       type='email'
-                      className='w-full border-2 border-gray-300 rounded-xl p-4 mt-3 bg-transparent'
+                      className='shadow-lg shadow-gray-300 w-full border-2 border-gray-300 rounded-xl p-4 mt-3 bg-transparent'
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
@@ -102,7 +104,12 @@ function Forgot() {
                       required
                     ></input>
                     <div className='mt-8 flex flex-col gap-y-4'>
-                      <button className='mt-4 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold' type='submit'>Submit</button>
+                      <button
+                        className='shadow-md shadow-gray-400 mt-4 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
+                        type='submit'
+                      >
+                        Submit
+                      </button>
                     </div>
                   </form>
                 </div>
@@ -111,42 +118,76 @@ function Forgot() {
           </div>
         </div>
       ) : !resetSucess ? (
-        <div>
-          <h1>You received a code sent to via {delivery}</h1>
-          <p>Enter the verification code you received below</p>
-          <form onSubmit={codeSubmission}>
-            <label className='text-lg font-medium'>Verification Code: </label>
-            <input
-              type='text'
-              className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-              placeholder='1234'
-              required
-            ></input>
-            <br></br>
-            <label>New Password: </label>
-            <input
-              type='text'
-              value={passwordOne}
-              onChange={(e) => setPasswordOne(e.target.value)}
-              required
-            ></input>
-            <label>Re-type new password</label>
-            <input
-              type='text'
-              value={passwordTwo}
-              onChange={(e) => setPasswordTwo(e.target.value)}
-              required
-            ></input>
-            <button type='submit'>Submit</button>
-            {/* {errorMessage && <p className='text-red-500'>{errorMessage}</p>} */}
-          </form>
+        <div className='page-wrapper w-full flex items-center justify-center'>
+          <div className='page-container-2'>
+            <div className='block'>
+              <div className='form-wrapper bg-white mt-12 py-20 rounded-3xl'>
+                <h3 className='mainHeading mt-12 flex justify-center text-5xl text-violet-600 font-semibold'>
+                  Your is code sent via {delivery}
+                </h3>
+                <p className='font-medium flex justify-center text-lg text-violet-500 mt-7 mb-7 animate-pulse'>
+                  Enter the verification code you received below
+                </p>
+                <form onSubmit={codeSubmission}>
+                  <label className='text-lg font-medium'>
+                    Verification Code:{' '}
+                  </label>
+                  <input
+                    type='text'
+                    className='shadow-lg shadow-gray-300 w-full border-2 border-gray-300 rounded-xl p-4 mt-3 mb-4 bg-transparent'
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
+                    placeholder='1234'
+                    required
+                  ></input>
+                  <br></br>
+                  <label className='text-lg font-medium'>New Password: </label>
+                  <input
+                    type='text'
+                    className='shadow-lg shadow-gray-300 w-full border-2 border-gray-300 rounded-xl p-4 mt-3 mb-4 bg-transparent'
+                    value={passwordOne}
+                    onChange={(e) => setPasswordOne(e.target.value)}
+                    placeholder=' Password must contain Uppercase, lowercase, number and symbol.'
+                    required
+                  ></input>
+                  <label className='text-lg font-medium'>
+                    Re-type new password
+                  </label>
+                  <input
+                    type='text'
+                    className='shadow-lg shadow-gray-300 w-full border-2 border-gray-300 rounded-xl p-4 mt-3 mb-4 bg-transparent'
+                    value={passwordTwo}
+                    onChange={(e) => setPasswordTwo(e.target.value)}
+                    placeholder=' Password must contain Uppercase, lowercase, number and symbol.'
+                    required
+                  ></input>
+                  {errorMessage && (
+                    <p className='flex justify-center text-red-500 mt-2'>
+                      {errorMessage}
+                    </p>
+                  )}
+                  <div className='mt-6 flex flex-col gap-y-4'>
+                    <button
+                      className='shadow-md shadow-gray-400 mt-4 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
+                      type='submit'
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       ) : (
         <div>
-          <h1>Password Reset Successful</h1>
-          <p>Log in with your new password.</p>
+          <h2 className='mainHeading mt-12 flex justify-center text-5xl text-violet-600 font-semibold'>
+            Password Reset Successful
+          </h2>
+          <p className='font-medium flex justify-center text-lg text-violet-500 mt-7 mb-7 animate-pulse'>
+            Log in with your new password.
+          </p>
+          
         </div>
       )}
       <div className='flex relative w-full h-screen lg:flex items-center justify-center bg-violet-100'>

@@ -157,7 +157,6 @@ export const awsData = async () => {
   try {
     // Sends the request and waits for the response
     response = await client.send(command);
-
     return response; // logs the metric data and entire response if successful
   } catch (caught) {
     if (caught instanceof CloudWatchServiceException) {
@@ -172,7 +171,6 @@ export const awsData = async () => {
   for (const metric of response.MetricDataResults) {
     for (let i = 0; i < metric.Timestamps.length; i++) {
       // console.log('Metric:', metric.Id, 'Value:', metric.Values[i]); // Debugging output
-
       const query = `
           INSERT INTO aws_metrics 
           (aws_account_id, metric_name, metric_value, timestamp, service_name, region)
@@ -233,7 +231,6 @@ export const awsHourData = async () => {
     ScanBy: 'TimestampAscending', // Gets the oldest data first
     MaxDatapoints: 1000, // Max Datapoints 100,000
   };
-
   const command = new GetMetricDataCommand(input); //Creates the request to send to CloudWatch using the input
   try {
     // Sends the request and waits for the response
