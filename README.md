@@ -59,9 +59,7 @@ This project uses several technologies to provide a full-stack solution for AWS 
 If you'd like to use our app you can visit the following link below.
 <a href="http://aw-some.com" target="_blank">Website</a>
 
-#Otherwise, if you'd like to contribute to our product you can follow the steps below to get the development environment started!
-
-## Follow these steps to set up the project locally on your machine.
+Otherwise, if you'd like to contribute to our product you can follow the steps below to get the development environment started!
 
 ### Installation
 //steps on accessing our deployed app, and our landing page
