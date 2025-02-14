@@ -66,6 +66,8 @@ If you'd like to use our app you can visit the following link below.
 ### Installation
 //steps on accessing our deployed app, and our landing page
 
+### Prerequisities
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 Usage
 
