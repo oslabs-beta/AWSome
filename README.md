@@ -1,56 +1,27 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a id="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
 
 <!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Unlicense License][license-shield]][license-url]
 
-
-
-
 <!-- PROJECT LOGO -->
+<img src= https://github.com/user-attachments/assets/00aed0a3-5759-406d-b33c-4cbbe2479877 />
+
 <br />
 <div align="center">
   <h1>AWSome</h1>
+  <p>Real-Time AWS EC2 Instance Monitoring Tool</p>
 </div>
 
-
-
 <!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
+
+## Table of Contents
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#technologies">Technologies Used</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -58,155 +29,199 @@
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
-</details>
 
 
 
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
+AWSome is a real-time AWS EC2 instance monitoring tool designed to provide comprehensive insights into your EC2 instances using AWS CloudWatch. The project integrates with various AWS services such as Cognito for user authentication, IAM roles for permissions, and EC2 for instance management. The tool offers an interactive user interface built with React, allowing users to view EC2 instance metrics, generate heat maps, and analyze trends.
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+### Key Features:
+- Real-time EC2 instance monitoring
+- Interactive visualizations using heat maps and graphs
+- Customizable thresholds and alarms for memory usage and CPU load
+- Secure user authentication with AWS Cognito
+- User-friendly interface built with React and Redux
 
 ### Built With
+This project uses several technologies to provide a full-stack solution for AWS EC2 monitoring:
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![React][React.js]][React-url]
-
+- [![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=white)](https://reactjs.org/) - Frontend framework for building interactive UIs
+- [![AWS Cognito](https://img.shields.io/badge/AWS%20Cognito-FF9900?style=flat&logo=aws&logoColor=white)](https://aws.amazon.com/cognito/) - User authentication and authorization
+- [![AWS EC2](https://img.shields.io/badge/AWS%20EC2-FF9900?style=flat&logo=aws&logoColor=white)](https://aws.amazon.com/ec2/) - Cloud computing platform for running instances
+- [![AWS CloudWatch](https://img.shields.io/badge/AWS%20CloudWatch-FF9900?style=flat&logo=aws&logoColor=white)](https://aws.amazon.com/cloudwatch/) - Monitoring and logging service
+- [![AWS IAM](https://img.shields.io/badge/AWS%20IAM-FF9900?style=flat&logo=aws&logoColor=white)](https://aws.amazon.com/iam/) - Identity and access management
+- [![Redux](https://img.shields.io/badge/Redux-764ABC?style=flat&logo=redux&logoColor=white)](https://redux.js.org/) - State management for React
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- GETTING STARTED -->
 ## Getting Started
+If you'd like to use our app you can visit the following link below.
+<a href="aw-some.com" target="_blank">Website</a>
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+#Otherwise, if you'd like to contribute to our product you can follow the steps below to get the development environment started!
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+###Follow these steps to set up the project locally on your machine.
 
 ### Installation
+//steps on accessing our deployed app, and our landing page
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Usage
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
+<h1>Usage</h1>
+AWSome provides an intuitive interface for managing and monitoring your EC2 instances. You can:
+<ul>
+  <li>View EC2 instance metrics such as CPU usage, memory load, and disk I/O in real time.</li>
+  <li>Set custom alarms to get notified when instance thresholds are exceeded.</li>
+  <li>Use trend analysis to visualize your AWS EC2 instance performance.</li>
+</ul>
+
+For more examples, please refer to the Documentation
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
 ## Roadmap
+- [x] Add support for viewing EC2 instance performance metrics in real-time
+- [x] Integrate AWS CloudWatch for detailed metrics visualization
+- [x] Add authorization for a user to view their own metrics
+- [ ] Add Dark Mode
+- [ ] Improve UI responsiveness and accessibility
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the open issues for a full list of proposed features and known issues.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
+Contributing
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+We welcome contributions from the open-source community! Here's how you can contribute to AWSome:
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+## 🚀 Contributing to Our AWS Monitoring Tool
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+We ❤️ contributions from the community! Follow these steps to get involved:
 
-### Top contributors:
+### 1️⃣ Fork the Repo  
+Click the **"Fork"** button at the top-right corner of this page to create your own copy.
 
+### 2️⃣ Create a Feature Branch  
+```sh
+git checkout -b feature/yourNewFeatureName
+```
 
+### 3️⃣ Build Something Awesome 🛠️
+- **Implement Your Feature**: Add your code, tests, or documentation.
+- **Ensure Your Changes Align with the Project's Goals**: Make sure your work fits the overall vision.
+- **Keep Your Implementation Clean, Modular, and Well-Documented**: Strive for readable, reusable, and well-commented code.
 
+### 4️⃣ Commit Your Changes ✅
+```sh
+git commit -m "✨ Added [your-new-feature-description]"
+```
 
-<!-- LICENSE -->
+### 5️⃣ Push to Your Branch 🚀
+```sh
+git push origin feature/yourNewFeatureName
+```
+
+### 6️⃣ Open a Pull Request (PR) 🔄
+- Navigate to your fork on GitHub.
+- Click "New Pull Request" and select the dev branch as the base (unless otherwise specified).
+- Provide a detailed description of your changes.
+- Submit the PR and wait for our team to review it.
+
+### 7️⃣ Celebrate! 🎉
+Once approved, your contribution will be merged into the project. Thank you for helping us improve this tool for developers!
+
+💡 Need help? Feel free to open an issue or reach out to us in discussions! 🚀
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## License
 
 Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Top contributors:
+- Jayson, Jose, Christina, Elijah, Nathalie
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://media-hosting.imagekit.io//40a7d7fe095d4f29/Screenshot%202025-02-13%20at%202.39.02%E2%80%AFPM.png?Expires=1834083617&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ykoY4J~mB9ct4dGiF1BolS6J-gIItJpyO4AB9X~eZbbO3BQNdpMRulyF2P2UZFO9WZD9IkRELSHHhQJjfydNJgLtA90HfaRpgdD175OCUz34wT4xaAjC7lNRh6MgWGMRQJrw2rKNTsKlO6L8ELqA1jsClTAwFg~NOyS--GWRH~j8L~9qxpUQ1C6go9GEa93aapMeWW6P2AN7-kagslcRIUIx1xTaIwAyrUo9IqoPGs--boF7aDzaiR-f0Jmw~bzytucCtqUmwdEwRAvhz~zQSJTyjkhTs7DvXYhc5kZ1kXp~ifwZmk5F2IdRzSci3L9VgD7GSN0QOtwSKOUhqDTA0w__" width="140px;" alt=""/>
+      <br />
+      <sub><b>Jayson Sanon</b></sub>
+      <br />
+      <a href="https://www.linkedin.com/in/jayson-sanon-6194b6257/">💼</a> <!-- LinkedIn -->
+      <a href="https://github.com/JO901">💻</a> <!-- GitHub -->
+    </td>
+    <td align="center">
+      <img src="https://media-hosting.imagekit.io//4379eed5cef643f9/Screenshot%202025-02-13%20at%202.35.05%E2%80%AFPM.png?Expires=1834083601&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=pRAPURrbYDRqr5oLCa353Wkh60p7ZXUWI-yPk6z4VxeEfF-KVl9i8ZCa0Yn8ENvk9aJIxU4NBl7MC~T8AvpNI5ECEP5YvX7P1MhcAsgXSEJOxWF6VoHUjLtNZYJoz3rDghzYe-qN9ubwIjOwCrKwc198s4ZBOx7iScgeU6l4eWQ6Wwn9F6LVtv1WWgLqNg7~dhasfL5OkJPdLi6MA0fF2Ox0YCKCr78ZtbJDjN6-kjKuHDIAZCuUYl4ozJBytajmuKIUdKw03ssY6DNQai50oOVF99MylFwrrUU-zZxxg1weCY12huNsbs43QIH4txYAnZlmHCZLCM5gL8t1KpIPlw__" width="140px;" alt=""/>
+      <br />
+      <sub><b>Jose Andrew</b></sub>
+      <br />
+      <a href="https://www.linkedin.com/in/jose-andrew">💼</a> <!-- LinkedIn -->
+      <a href="https://github.com/Jandrew2055">💻</a> <!-- GitHub -->
+    </td>
+    <td align="center">
+      <img src="https://media-hosting.imagekit.io//72310c7ebbb74b2e/Screenshot%202025-02-13%20at%202.38.19%E2%80%AFPM.png?Expires=1834083621&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=h7pq7o6BMXBHbfWVf9lB7Evxb2cyTtDuBeE-ncpO3u1-9D5GRtvJqwteDyisn9m2HXoMH-4In2Ivk~hl0gXXOYC2uP0Yt-mmMFlVTkRZNm54qQBTIyteHqmGbMoC9MeB0r7PbymmZfBhhDMs4PsXn1UAFCRbkwaXWw3Zr7Gn70NmlGnoPB~k4Kc3Zg66vibUerYBDu0Zsy7Ok5i~d53XF4vj-OHetN6f8cPjoZbQA8NVyfKp0ufXBLTNk5EPHLmz~CcH0IBbfSw7dkeX-6e1oipF4xuiUvzy2fYYqzvMMGAp8bt-GJFwK7tiepPZfx~nB1Xw3xc~6R1faaTCnpueHQ__" width="140px;" alt=""/>
+      <br />
+      <sub><b>Christina Abraham</b></sub>
+      <br />
+      <a href="https://www.linkedin.com/in/christina-abraham-001124163/">💼</a> <!-- LinkedIn -->
+      <a href="https://github.com/Chrissy-a">💻</a> <!-- GitHub -->
+    </td>
+    <td align="center">
+      <img src="https://media-hosting.imagekit.io//374cc8a9350a4bbc/Screenshot%202025-02-13%20at%202.39.42%E2%80%AFPM.png?Expires=1834083635&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=GPOQ5H7CRJ1M8oNIHnUmNJi4p--eehdqw6bm-ZJghTpLYE6d8tXgHFqER2pVBhUDO5FyEjC053l0h7Qwb9qvLFYU1oudttiM5~Pz8dW8muoexitDGvthYDLnNInjHIHCcagi8mQBttSQ8-y0BzmkjZEN~7bHChTT4fqtv1gX6Ojc0dgKFV8Jm9RhiuPLfVjei2G37vDEbAAxKNIVyu3B2Z8DUBdFSzPOuaXQNjugFVNohoHQ2OM8bROPgGO~vmB-y-w1tvQosGk1Cw-Wab1DUdlZhcYvnLR7BlWIWjf4gSx0rvi6JCZG9ZXnkaO~YylkXDsMN9Zfj6MyY90YNCRfbg__" width="140px;" alt=""/>
+      <br />
+      <sub><b>Elijah Egede</b></sub>
+      <br />
+      <a href="https://www.linkedin.com/in/elijahegede/">💼</a> <!-- LinkedIn -->
+      <a href="https://github.com/WizardE007">💻</a> <!-- GitHub -->
+    </td>
+    <td align="center">
+      <img src="https://media-hosting.imagekit.io//0989132ecc7d46ac/Screenshot%202025-02-13%20at%202.37.44%E2%80%AFPM.png?Expires=1834083625&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=UOSfb-JxXQfWN-QsgmJC7PCpAtMF4pMeJ4uuFlaJGwjxwjOBy9M5BsSalXFn0WoC9MS4HRxf18I8K0CUGFbDxLfwvNTWlPZo3bvwMeGImfWDmn5PKZB5RUnTXbKQNVDkycb1XCBrORA~KkG39gYQasib5t~Y9gxiauQ-MERzQsjg-ZsbdO2-iEYjYoTIOzEMrqre9g0FbQS9d89a~DhFxca1dHzjEZac3vOV7-8wZHJdQt3ZXM3Tiqiuw5yDyGdCC6nQatrbN83RufQp932miRQzpAmAUvoRv3nXL-rzPwpqtBCcJXFi0xMPl1~T7TOEhWOdXIWlUA-Q42WxBVby~Q__" width="140px;" alt=""/>
+      <br />
+      <sub><b>Salem Owusu</b></sub>
+      <br />
+      <a href="https://www.linkedin.com/in/nathalieowusu/">💼</a> <!-- LinkedIn -->
+      <a href="https://github.com/NathalieOwusu">💻</a> <!-- GitHub -->
+    </td>
+  </tr>
+  <!-- Add more contributors as needed -->
+</table>
 
 
-<!-- CONTACT -->
+
+
 ## Contact
 
+Feel free to contact us with any questions or suggestions:
 
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+- Email: your_email@example.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Acknowledgments
+
+Special thanks to the following resources:
+
+- [AWS Documentation](https://aws.amazon.com/documentation/)
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [Redux Documentation](https://redux.js.org/introduction/getting-started)
+- [AWS CloudWatch Documentation](https://docs.aws.amazon.com/cloudwatch/)
+- [Choose an Open Source License](https://choosealicense.com)
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+### Highlights:
+- **Technologies**: React, AWS (Cognito, CloudWatch, EC2), Redux, IAM Roles
+- **Project Features**: EC2 instance monitoring, CloudWatch visualizations, real-time analytics
+- **Usage**: Setting up AWS credentials and visualizing EC2 instance metrics
+- **Roadmap**: List of future features like automated scaling recommendations and email/SMS notifications
 
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
+
+
+
+
+
+
+
