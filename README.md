@@ -50,8 +50,12 @@ This project uses several technologies to provide a full-stack solution for AWS 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
+If you'd like to learn more visit our website here 
+<a href="https://aws-ome-landing-page.vercel.app" target="_blank">Website</a>
+
 If you'd like to use our app you can visit the following link below.
-<a href="http://aw-some.com" target="_blank">Website</a>
+<a href="http://aw-some.com" target="_blank">AWSome Tool</a>
+
 
 Otherwise, if you'd like to contribute to our product you can follow the steps below to get the development environment started!
 
