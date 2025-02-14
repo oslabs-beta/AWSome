@@ -10,16 +10,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/random', (req, res) => {
-  let id = externalIdGenerator();
+app.get('/random', async (req, res) => {
+  let id = await externalIdGenerator();
   return res.status(200).json({ id });
 });
 
-app.post('/data', (req, res) => {
+app.post('/data', async (req, res) => {
   const { graph, metric, data } = req.body;
-  let result = MixedMetrix({ graph, metric, data });
-
-  return res.status(200).json(result);
+  let result = await MixedMetrix({ graph, metric, data });
+  return res.status(200).json({result});
 });
 
 app.use((req, res) => res.status(404).send('No Data'));

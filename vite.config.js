@@ -21,11 +21,11 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     proxy: {
-      '/data': 'http://localhost:3000',
       '/login': 'http://localhost:3000',
       '/signup': 'http://localhost:3000',
       '/protected': 'http://localhost:3000',
       '/random': 'http://localhost:81',
+      '/data': 'http://localhost:81',
     },
     historyApiFallback: true, //ensures client-side routing works
   },
@@ -33,5 +33,4 @@ export default defineConfig({
   // preview: {
   //   allowedHosts: true,
   // },
-
 });

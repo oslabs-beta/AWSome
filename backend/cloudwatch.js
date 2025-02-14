@@ -3,25 +3,40 @@ import {
   CloudWatchServiceException, // Handles specific errors from CloudWatch
   GetMetricDataCommand, // Sends a request to fetch metric data
 } from '@aws-sdk/client-cloudwatch';
-
-const client = new CloudWatchClient({ region: 'us-east-1' });
-let response;
-const InstanceId = 'i-0610f2356e0d72fcd';
-
-
+import { fromIni } from '@aws-sdk/credential-providers';
+const region = 'us-east-1';
 
 async function MixedMetrix(metricMap) {
-  console.log('in metricmix: ', metricMap);
-  const { graph, metric, data } = metricMap;
+  const client = new CloudWatchClient({
+    region,
+    credentials: fromIni({
+      profile: 'default',
+    }),
+  });
+  let response;
+  const InstanceId = 'i-0610f2356e0d72fcd';
+
+  const { metric, data, graph } = metricMap;
   const queries = [];
 
-  
+  let currentTime = new Date();
+  currentTime.setSeconds(0);
+  while (currentTime.getMinutes() % 5 !== 0) {
+    currentTime.setMinutes(currentTime.getMinutes() - 1);
+  }
+
+  let pastHour = new Date(currentTime);
+  pastHour.setHours(pastHour.getHours() - 1);
+
+  let num = 0;
 
   for (let i = 0; i < metric.length; i++) {
+    let id = metric[i].toLowerCase() + graph[i] + num.toString();
+    num++;
     queries.push(
       {
         // MetricDataQuery
-        Id: metric[i], // required
+        Id: id, // required
         MetricStat: {
           // MetricStat
           Metric: {
@@ -48,20 +63,19 @@ async function MixedMetrix(metricMap) {
     // Input object describes the data we're requesting from CloudWatch
     // GetMetricDataInput
     MetricDataQueries: queries,
-    StartTime: new Date('2025-01-18T23:05:00.000Z'), // required
-    EndTime: new Date('2025-01-18T23:30:00.000Z'), // required
-    ScanBy: 'TimestampDescending', // Gets the newest data first
-    MaxDatapoints: 1000, // Max Datapoints 100,000
+    StartTime: pastHour, // required
+    EndTime: currentTime, // required
+    ScanBy: 'TimestampAscending', // Gets the newest data first
+    MaxDatapoints: 10000, // Max Datapoints 100,000
   };
 
   const command = new GetMetricDataCommand(input); //Creates the request to send to CloudWatch using the input
   try {
     // Sends the request and waits for the response
     response = await client.send(command);
+    //console.log('response meta: ', response);
 
-    console.log('response results', response.MetricDataResults);
-
-    return response; // logs the metric data and entire response if successful
+    return response.MetricDataResults; // logs the metric data and entire response if successful
   } catch (caught) {
     if (caught instanceof CloudWatchServiceException) {
       // if theres a CloudWatch error, it logs the error name and message

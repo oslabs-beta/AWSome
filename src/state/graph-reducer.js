@@ -26,9 +26,15 @@ export const graphReducer = createSlice({
       }
     },
     getData: (state, action) => {
-      console.log('dat data: ', action);
+      if (action.payload.data) {
+        // console.log('let: ', action.payload.data.result.length);
 
-      state.graph.data.push()
+        state.data = [];
+
+        for (let i = 0; i < action.payload.data.result.length; i++) {
+          state.data.push(action.payload.data.result[i]);
+        }
+      }
     },
   },
 });

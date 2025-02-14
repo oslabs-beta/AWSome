@@ -17,7 +17,7 @@ function Signup() {
     ''
   )}.auth.us-east-1.amazoncognito.com/login?client_id=${
     import.meta.env.VITE_COGNITO_CLIENT_ID
-  }&redirect_uri=http://localhost:5173&response_type=code`;
+  }&redirect_uri=http://localhost:80&response_type=code`;
 
   //function to handle the signup process for our users
   const handleSignups = (event) => {
@@ -94,7 +94,7 @@ function Signup() {
                       <label className='text-lg font-medium'>Email: </label>
                       <input
                         type='email'
-                        className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
+                        className='shadow-md shadow-gray-300 w-full border-2 border-gray-300 rounded-xl p-4 mt-1 mb-5 bg-transparent'
                         value={email}
                         onChange={(e) => {
                           setEmail(e.target.value);
@@ -107,7 +107,7 @@ function Signup() {
                       <label className=' text-lg font-medium'>Password:</label>
                       <input
                         type='password'
-                        className='w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
+                        className=' shadow-md shadow-gray-300 w-full border-2 border-gray-300 rounded-xl p-4 mt-1 bg-transparent'
                         value={password}
                         onChange={(e) => {
                           setPassword(e.target.value);
@@ -126,7 +126,7 @@ function Signup() {
                       )}
                       <div className='mt-8 flex flex-col gap-y-4'>
                         <button
-                          className='drop-shadow-xl shadow-blue-600 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
+                          className='drop-shadow-md shadow-blue-600 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
                           type='submit'
                         >
                           Sign up
@@ -135,7 +135,7 @@ function Signup() {
                     </form>
                     <div>
                       <a className='mt-8 flex flex-col gap-y-4' href={authUrl}>
-                        <button className='border-2 border-violet-500 drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-transparent text-gray-700 text-lg font-bold'>
+                        <button className='shadow-md shadow-gray-300 border-2 border-violet-500 drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-transparent text-gray-700 text-lg font-bold'>
                           Sign up with Google
                         </button>
                       </a>
