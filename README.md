@@ -61,7 +61,7 @@ If you'd like to use our app you can visit the following link below.
 
 #Otherwise, if you'd like to contribute to our product you can follow the steps below to get the development environment started!
 
-###Follow these steps to set up the project locally on your machine.
+##Follow these steps to set up the project locally on your machine.
 
 ### Installation
 //steps on accessing our deployed app, and our landing page
