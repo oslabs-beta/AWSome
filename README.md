@@ -65,6 +65,10 @@ Otherwise, if you'd like to contribute to our product you can follow the steps b
 //steps on accessing our deployed app, and our landing page
 
 ### Prerequisites
+- Node.js
+- AWS access
+- NPM
+- Docker
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
