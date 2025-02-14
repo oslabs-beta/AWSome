@@ -183,7 +183,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
     <td align="center">
       <img src="https://media-hosting.imagekit.io//0989132ecc7d46ac/Screenshot%202025-02-13%20at%202.37.44%E2%80%AFPM.png?Expires=1834083625&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=UOSfb-JxXQfWN-QsgmJC7PCpAtMF4pMeJ4uuFlaJGwjxwjOBy9M5BsSalXFn0WoC9MS4HRxf18I8K0CUGFbDxLfwvNTWlPZo3bvwMeGImfWDmn5PKZB5RUnTXbKQNVDkycb1XCBrORA~KkG39gYQasib5t~Y9gxiauQ-MERzQsjg-ZsbdO2-iEYjYoTIOzEMrqre9g0FbQS9d89a~DhFxca1dHzjEZac3vOV7-8wZHJdQt3ZXM3Tiqiuw5yDyGdCC6nQatrbN83RufQp932miRQzpAmAUvoRv3nXL-rzPwpqtBCcJXFi0xMPl1~T7TOEhWOdXIWlUA-Q42WxBVby~Q__" width="140px;" alt=""/>
       <br />
-      <sub><b>Salem Owusu</b></sub>
+      <sub><b>Nathalie Owusu</b></sub>
       <br />
       <a href="https://www.linkedin.com/in/nathalieowusu/">💼</a> <!-- LinkedIn -->
       <a href="https://github.com/NathalieOwusu">💻</a> <!-- GitHub -->
@@ -203,7 +203,7 @@ Feel free to contact us with any questions or suggestions:
 - Jose: 💼 Joseandrew@live.com
 - Christina: 💼 Christinajabraham@yahoo.com
 - Elijah: 💼 Eegede22@gmail.com
-- Salem: 💼 Salem.moon@icloud.com
+- Salem: 💼 Nathalieowusudev@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
