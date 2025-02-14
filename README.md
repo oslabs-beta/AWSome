@@ -1,11 +1,5 @@
 <a id="readme-top"></a>
 
-<!-- PROJECT SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Unlicense License][license-shield]][license-url]
-
 <!-- PROJECT LOGO -->
 <img src= https://github.com/user-attachments/assets/00aed0a3-5759-406d-b33c-4cbbe2479877 />
 
