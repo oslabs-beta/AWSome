@@ -197,7 +197,10 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 
 Feel free to contact us with any questions or suggestions:
 
-- Email: your_email@example.com
+- Jayson: 💼 Jaysonsanon@gmail.com 
+- Jose: 💼 Joseandrew@live.com
+- Christina: 💼 Christinajabraham@yahoo.com
+- Elijah: 💼 Eegede22@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
