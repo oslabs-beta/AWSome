@@ -199,6 +199,7 @@ Feel free to contact us with any questions or suggestions:
 - Jose: 💼 Joseandrew@live.com
 - Christina: 💼 Christinajabraham@yahoo.com
 - Elijah: 💼 Eegede22@gmail.com
+- Salem: 💼 Salem.moon@icloud.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
