@@ -6,6 +6,12 @@ import {
 import { fromIni } from '@aws-sdk/credential-providers';
 const region = 'us-east-1';
 
+// let log = {
+//   metric: ['NetworkIn'],
+//   data: [],
+//   graph: ['bar'],
+// };
+
 async function MixedMetrix(metricMap) {
   const client = new CloudWatchClient({
     region,
@@ -85,5 +91,7 @@ async function MixedMetrix(metricMap) {
     }
   }
 }
+
+//MixedMetrix(log);
 
 export default MixedMetrix;

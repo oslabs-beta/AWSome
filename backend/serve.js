@@ -6,7 +6,15 @@ const port = 81;
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true,
+    preflightContinue: false,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -18,7 +26,13 @@ app.get('/random', async (req, res) => {
 app.post('/data', async (req, res) => {
   const { graph, metric, data } = req.body;
   let result = await MixedMetrix({ graph, metric, data });
-  return res.status(200).json({result});
+  return res.status(200).json({ result });
+});
+
+app.options('/data', async (req, res) => {
+  const { graph, metric, data } = req.body;
+  let result = await MixedMetrix({ graph, metric, data });
+  return res.status(200).json({ result });
 });
 
 app.use((req, res) => res.status(404).send('No Data'));

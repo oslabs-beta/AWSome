@@ -8,6 +8,10 @@ export async function AWSdata(graphs) {
       body: JSON.stringify(graphs),
     });
 
+    if (!res.ok) {
+      throw new Error('Network response was not ok');
+  }
+
     let data = await res.json();
 
     return data;
