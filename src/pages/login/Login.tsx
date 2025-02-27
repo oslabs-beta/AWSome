@@ -5,7 +5,7 @@ import {
   AuthenticationDetails,
   CognitoUserPool,
 } from 'amazon-cognito-identity-js';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext.jsx';
 
 const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID; //client id to be used in userPool
 const poolID = import.meta.env.VITE_COGNITO_USER_POOL_ID; //original Pool ID

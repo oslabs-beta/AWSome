@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import './index.css';
 import { createRoot } from 'react-dom/client';
 import Error from './pages/Error.jsx';
-import Login from './pages/login/Login.jsx';
+import Login from './pages/login/Login.tsx';
 import Signup from './pages/login/Signup.jsx';
 import Layout from './pages/Layout.jsx';
 import Forgot from './pages/login/Forgot.jsx';
