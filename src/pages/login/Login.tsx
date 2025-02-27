@@ -14,9 +14,9 @@ const urlPoolID = poolID.toLowerCase().replace('_', ''); //pool ID to be used in
 const authUrl = `https://${urlPoolID}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:5173&response_type=code`;
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
   const { setUserSession } = useAuth();
   const navigate = useNavigate();
 
