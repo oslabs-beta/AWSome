@@ -13,7 +13,7 @@ const urlPoolID = poolID.toLowerCase().replace('_', ''); //pool ID to be used in
 
 const authUrl = `https://${urlPoolID}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:5173&response_type=code`;
 
-function Login() {
+const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -55,11 +55,11 @@ function Login() {
       );
 
       //waits to receive a reponse with the proper tokens
-      const data = await response.json();
+      const data: any = await response.json();
 
       if (data.access_token) {
         // Store the tokens with Cognito-like format
-        const userId = data.id_token.split('.')[0]; // Using the ID token's first part as a user ID
+        const userId: string = data.id_token.split('.')[0]; // Using the ID token's first part as a user ID
 
         localStorage.setItem(
           `CognitoIdentityServiceProvider.${clientId}.${userId}.accessToken`,
@@ -69,6 +69,7 @@ function Login() {
           `CognitoIdentityServiceProvider.${clientId}.${userId}.idToken`,
           data.id_token
         );
+
         // After tokens are saved, create the session object and call setUserSession
         const user = { id: userId, email: data.email }; // Customize as per the user data you get
 
@@ -86,13 +87,19 @@ function Login() {
   };
 
   //grabs the pool data from local .env file
+  //types for pool data
+  interface PoolData {
+    UserPoolId: string;
+    ClientId: string;
+  }
 
-  const poolData = {
+  const poolData: PoolData = {
     UserPoolId: poolID,
     ClientId: clientId,
   };
+
   //ensures our poolID stays safe, along with ClientId
-  const userPool = new CognitoUserPool(poolData);
+  const userPool:CognitoUserPool = new CognitoUserPool(poolData);
 
   //handles the login process for users, using AWS Cognito
   const handlesLogin = (event: React.FormEvent) => {
@@ -100,8 +107,9 @@ function Login() {
     event.preventDefault();
 
     //sets email to be lowercase (case insensitive)
-    let lowerCaseEmail = email;
+    let lowerCaseEmail: string = email;
     lowerCaseEmail = lowerCaseEmail.toLocaleLowerCase();
+
 
     //creates a new CognitoUser object, containing the username and the pool it will access
     const user = new CognitoUser({
@@ -230,6 +238,6 @@ function Login() {
       </div>
     </>
   );
-}
+};
 
 export default Login;
