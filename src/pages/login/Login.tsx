@@ -7,11 +7,11 @@ import {
 } from 'amazon-cognito-identity-js';
 import { useAuth } from '../context/AuthContext.jsx';
 
-const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID; //client id to be used in userPool
-const poolID = import.meta.env.VITE_COGNITO_USER_POOL_ID; //original Pool ID
-const urlPoolID = poolID.toLowerCase().replace('_', ''); //pool ID to be used in URLs
+const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
+const poolID = import.meta.env.VITE_COGNITO_USER_POOL_ID;
+const urlPoolID = poolID.toLowerCase().replace('_', '');
 
-const authUrl = `https://${urlPoolID}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:5173&response_type=code`;
+const authUrl = `https://${urlPoolID}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:80&response_type=code`;
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -49,7 +49,7 @@ const Login: React.FC = () => {
             grant_type: 'authorization_code',
             client_id: import.meta.env.VITE_COGNITO_CLIENT_ID,
             code: code,
-            redirect_uri: 'http://localhost:5173',
+            redirect_uri: 'http://localhost:80',
           }),
         }
       );
