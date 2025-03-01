@@ -4,12 +4,14 @@ import {
   CognitoUser,
   AuthenticationDetails,
   CognitoUserPool,
+  ICognitoUserSessionData,
+  CognitoUserSession,
 } from 'amazon-cognito-identity-js';
 import { useAuth } from '../context/AuthContext.jsx';
 
 const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
 const poolID = import.meta.env.VITE_COGNITO_USER_POOL_ID;
-const urlPoolID = poolID.toLowerCase().replace('_', '');
+const urlPoolID = poolID.toLowerCase().replace('_', ''); //poolid transformed for url
 
 const authUrl = `https://${urlPoolID}.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&redirect_uri=http://localhost:80&response_type=code`;
 
@@ -20,13 +22,13 @@ const Login: React.FC = () => {
   const { setUserSession } = useAuth();
   const navigate = useNavigate();
 
-  //grabs url parameters
+  //hook allows you to grab URL query params and manipulate query params as well
   const [searchParams] = useSearchParams();
 
-  //runs everytime there are new parameters
+  //runs everytime there are new parameters in the url after 'sign in with google'
   useEffect(() => {
     // Get auth code from URL
-    const code = searchParams.get('code');
+    const code: string | null = searchParams.get('code');
     //if code exists, run the function to exchange code for tokens
     if (code) {
       exchangeCodeForToken(code);
@@ -70,8 +72,14 @@ const Login: React.FC = () => {
           data.id_token
         );
 
+        //types for user below
+        interface User {
+          id: string;
+          email: string;
+        }
+
         // After tokens are saved, create the session object and call setUserSession
-        const user = { id: userId, email: data.email }; // Customize as per the user data you get
+        const user: User = { id: userId, email: data.email }; // Customize as per the user data you get
 
         //creates session from the data collected
         const session = {
@@ -99,7 +107,7 @@ const Login: React.FC = () => {
   };
 
   //ensures our poolID stays safe, along with ClientId
-  const userPool:CognitoUserPool = new CognitoUserPool(poolData);
+  const userPool: CognitoUserPool = new CognitoUserPool(poolData);
 
   //handles the login process for users, using AWS Cognito
   const handlesLogin = (event: React.FormEvent) => {
@@ -109,7 +117,6 @@ const Login: React.FC = () => {
     //sets email to be lowercase (case insensitive)
     let lowerCaseEmail: string = email;
     lowerCaseEmail = lowerCaseEmail.toLocaleLowerCase();
-
 
     //creates a new CognitoUser object, containing the username and the pool it will access
     const user = new CognitoUser({
