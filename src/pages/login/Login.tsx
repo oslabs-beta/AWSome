@@ -36,7 +36,7 @@ const Login: React.FC = () => {
   }, [searchParams]);
 
   //handles the exchange of tokens that are received in the url
-  const exchangeCodeForToken = async (code: string) => {
+  const exchangeCodeForToken = async (code: string): Promise<void> => {
     try {
       //this is an endpoint that is used to fetch access,id, and refresh tokens
       const response = await fetch(
