@@ -35,6 +35,12 @@ const Login: React.FC = () => {
     }
   }, [searchParams]);
 
+  //types for user below
+  interface User {
+    id: string;
+    email: string;
+  }
+
   //handles the exchange of tokens that are received in the url
   const exchangeCodeForToken = async (code: string): Promise<void> => {
     try {
@@ -56,8 +62,13 @@ const Login: React.FC = () => {
         }
       );
 
+      interface TokenResponse {
+        access_token: string;
+        id_token: string;
+        email: string;
+      }
       //waits to receive a reponse with the proper tokens
-      const data: any = await response.json();
+      const data: TokenResponse = await response.json();
 
       if (data.access_token) {
         // Store the tokens with Cognito-like format
@@ -71,12 +82,6 @@ const Login: React.FC = () => {
           `CognitoIdentityServiceProvider.${clientId}.${userId}.idToken`,
           data.id_token
         );
-
-        //types for user below
-        interface User {
-          id: string;
-          email: string;
-        }
 
         // After tokens are saved, create the session object and call setUserSession
         const user: User = { id: userId, email: data.email }; // Customize as per the user data you get
@@ -107,10 +112,10 @@ const Login: React.FC = () => {
   };
 
   //ensures our poolID stays safe, along with ClientId
-  const userPool: CognitoUserPool = new CognitoUserPool(poolData);
+  const userPool = new CognitoUserPool(poolData);
 
   //handles the login process for users, using AWS Cognito
-  const handlesLogin = (event: React.FormEvent) => {
+  const handlesLogin = (event: React.FormEvent<HTMLFormElement>) => {
     //prevents default action of form from taking place when submitting
     event.preventDefault();
 
@@ -133,13 +138,13 @@ const Login: React.FC = () => {
     //using the user object, we pass in the authentication to see if this user's password matches
     user.authenticateUser(authenticationDetails, {
       //on success, we want to print the success and print it to console
-      onSuccess: (data) => {
+      onSuccess: (data): void => {
         console.log('Login Successful:', data);
         setUserSession({ user, session: data });
         navigate('/newUserProfile'); //immediately navigates to Home page,
       },
       //upon failure, we instead console the error message, reason why
-      onFailure: (err) => {
+      onFailure: (err): void => {
         console.error('Login not successful', err);
         setError(err.message || 'Something did not go right');
       },
