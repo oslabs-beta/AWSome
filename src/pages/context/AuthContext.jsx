@@ -5,6 +5,7 @@ import { CognitoUserPool } from 'amazon-cognito-identity-js';
 //allows for any children component to use this CONTEXT, small scale state management
 const AuthContext = createContext();
 
+//this gets exported to be used in main
 export const AuthProvider = ({ children }) => {
   const [userSession, setUserSession] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -51,6 +52,8 @@ export const AuthProvider = ({ children }) => {
     sessionStorage.clear(); //clear out session data
   };
 
+  //AuthContext.Provider component provided by React's Context API, allows for all child components to receive
+  //context from parent
   return (
     <AuthContext.Provider value={{ userSession, setUserSession, signOut }}>
       {loading ? <div>Loading...</div> : children}
@@ -59,4 +62,5 @@ export const AuthProvider = ({ children }) => {
 };
 
 //alows us to use our auth context by creating a custom hook
+//reduces need to repetitively write useContext(AuthContext) all the time
 export const useAuth = () => useContext(AuthContext);
