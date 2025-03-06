@@ -9,6 +9,25 @@ import {
 } from 'amazon-cognito-identity-js';
 import { useAuth } from '../context/AuthContext.jsx';
 
+//types for user below
+interface User {
+  id: string;
+  email: string;
+}
+
+interface TokenResponse {
+  access_token: string;
+  id_token: string;
+  email: string;
+}
+
+//grabs the pool data from local .env file
+//types for the data required for configuring the user pool in AWS Cognito
+interface PoolData {
+  UserPoolId: string;
+  ClientId: string;
+}
+
 const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
 const poolID = import.meta.env.VITE_COGNITO_USER_POOL_ID;
 const urlPoolID = poolID.toLowerCase().replace('_', ''); //poolid transformed for url
@@ -35,12 +54,6 @@ const Login: React.FC = () => {
     }
   }, [searchParams]);
 
-  //types for user below
-  interface User {
-    id: string;
-    email: string;
-  }
-
   //handles the exchange of tokens that are received in the url
   const exchangeCodeForToken = async (code: string): Promise<void> => {
     try {
@@ -62,11 +75,6 @@ const Login: React.FC = () => {
         }
       );
 
-      interface TokenResponse {
-        access_token: string;
-        id_token: string;
-        email: string;
-      }
       //waits to receive a reponse with the proper tokens
       const data: TokenResponse = await response.json();
 
@@ -98,13 +106,6 @@ const Login: React.FC = () => {
       console.error('Error exchanging auth code for token:', error);
     }
   };
-
-  //grabs the pool data from local .env file
-  //types for pool data
-  interface PoolData {
-    UserPoolId: string;
-    ClientId: string;
-  }
 
   const poolData: PoolData = {
     UserPoolId: poolID,
