@@ -32,7 +32,7 @@ AWSome is a real-time AWS EC2 instance monitoring tool designed to provide compr
 
 ### Key Features:
 - Real-time EC2 instance monitoring
-- Interactive visualizations using heat maps and graphs
+- Interactive visualizations using graphs
 - Customizable thresholds and alarms for memory usage and CPU load
 - Secure user authentication with AWS Cognito
 - User-friendly interface built with React and Redux
