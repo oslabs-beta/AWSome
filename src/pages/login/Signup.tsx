@@ -5,11 +5,11 @@ import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 function Signup() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [success, setSuccess] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [success, setSuccess] = useState<boolean>(false);
+  const [isVerified, setIsVerified] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   //url data to redirect to when user wishes to sign up with Google
   const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.toLowerCase().replace(
@@ -103,7 +103,7 @@ function Signup() {
                         required
                         placeholder='Enter your email'
                       ></input>
-                      
+
                       <label className=' text-lg font-medium'>Password:</label>
                       <input
                         type='password'
@@ -141,14 +141,14 @@ function Signup() {
                       </a>
                       <p className='flex justify-center font-medium text-base ml-6 mt-5'>
                         Have an account?{' '}
-                      <button
-                        onClick={() => {
-                          login();
-                        }}
-                        className='flex justify-center ml-5 text-violet-500 font-medium ml-2'
-                      >
-                        Login
-                      </button>
+                        <button
+                          onClick={() => {
+                            login();
+                          }}
+                          className='flex justify-center ml-5 text-violet-500 font-medium ml-2'
+                        >
+                          Login
+                        </button>
                       </p>
                     </div>
                   </div>
