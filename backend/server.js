@@ -1,48 +1,52 @@
 import express from 'express';
-import { fileURLToPath } from 'node:url';
-import path from 'node:path';
-import { awsData, awsHourData } from './data.js';
-import authenticateToken from './controllers/authMiddleware.js';
-import Awsrouter from './routes/ApiRoutes.js';
+import cors from 'cors';
 import externalIdGenerator from './externalIDGenerator.js';
+import MixedMetrix from './cloudwatch.js';
+import authenticateToken from './controllers/authMiddleware.js';
 
-const port = 3000;
+const port = 81;
+
 const app = express();
 
-const __dirname =
-  path.dirname(fileURLToPath(import.meta.url)) || path.resolve();
-
+app.use(
+  cors({
+    origin: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true,
+    preflightContinue: false,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'dist')));
 
-//CAN BE DELETED, WAS ONCE A TEST ROUTER
-app.use('/aws_services', Awsrouter);
-
-//TEST ROUTE, can be deleted
-app.get('/protected', authenticateToken, (req, res) => {
-  res.json({ message: 'You have accessed a protected route!', user: req.user });
+app.get('/random', async (req, res) => {
+  let id = await externalIdGenerator();
+  return res.status(200).json({ id });
 });
 
-//VITE CONFIG file allows for this to be just /data instead of /Home/data
-app.get('/data', async (req, res) => {
-  let data = await awsHourData();
-  res.status(200).json(data);
+app.post('/data', async (req, res) => {
+  const { graph, metric, data } = req.body;
+  let result = await MixedMetrix({ graph, metric, data });
+  return res.status(200).json({ result });
 });
 
-
-app.get('/protected', authenticateToken, (req, res) => {
-  res.status(200).json('Success, accessed a protected route');
+app.options('/data', async (req, res) => {
+  const { graph, metric, data } = req.body;
+  let result = await MixedMetrix({ graph, metric, data });
+  return res.status(200).json({ result });
 });
 
-app.use((req, res) =>
-  res.status(404).send("This is not the page you're looking for...")
-);
+// WILL BE USED TO PROTECT ANY REQUESTS FOR DATA (ENSURES USER IS AUTHENTICATED)
+// app.get('/protected', authenticateToken, (req, res) => {
+//   res.status(200).json('Success, accessed a protected route');
+// });
 
-//default global error handler
+app.use((req, res) => res.status(404).send('No Data'));
+
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: 'Express error handler caught unknown middleware error',
+    log: 'Something Went Wrong in server 2',
     status: 500,
     message: { err: 'An error occurred' },
   };
