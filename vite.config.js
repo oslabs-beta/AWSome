@@ -19,7 +19,8 @@ export default defineConfig({
     },
   },
   server: {
-    host: '0.0.0.0',
+    port: 3000, //runs frontend on 3000
+    open: true, //will automatically open up the page
     proxy: {
       //can be deleted
       // '/login': 'http://localhost:3000',
