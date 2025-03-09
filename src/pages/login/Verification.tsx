@@ -18,7 +18,7 @@ const Verify: React.FC<VerifyProps> = ({ email }): JSX.Element => {
   const navigate = useNavigate();
 
   //handles checking if user enters appropriate code after signup
-  const handleVerification = () => {
+  const handleVerification = (): void => {
     //grabs pool data, ensures our poolID stays safe, along with ClientId
     const poolData: PoolData = {
       UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,

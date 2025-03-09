@@ -116,7 +116,7 @@ const Login: React.FC = () => {
   const userPool = new CognitoUserPool(poolData);
 
   //handles the login process for users, using AWS Cognito
-  const handlesLogin = (event: React.FormEvent<HTMLFormElement>) => {
+  const handlesLogin = (event: React.FormEvent<HTMLFormElement>): void => {
     //prevents default action of form from taking place when submitting
     event.preventDefault();
 

@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react';
 import Verify from './Verification.tsx';
 import { data, useNavigate } from 'react-router';
-import { CognitoUserPool } from 'amazon-cognito-identity-js';
+import {
+  CognitoUserPool,
+  CognitoUserAttribute,
+} from 'amazon-cognito-identity-js';
+
+interface PoolData {
+  UserPoolId: string;
+  ClientId: string;
+}
 
 const Signup: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
@@ -20,12 +28,12 @@ const Signup: React.FC = (): JSX.Element => {
   }&redirect_uri=http://localhost:80&response_type=code`;
 
   //function to handle the signup process for our users
-  const handleSignups = (event) => {
+  const handleSignups = (event: React.FormEvent<HTMLFormElement>): void => {
     //prevents default form loading upon submission
     event.preventDefault();
 
     //grabs pool data
-    const poolData = {
+    const poolData: PoolData = {
       UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
       ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
     };
@@ -36,22 +44,22 @@ const Signup: React.FC = (): JSX.Element => {
     setSuccess(false);
 
     //ensures email will be saved case insensitive
-    let lowerCaseEmail = email;
+    let lowerCaseEmail: string = email;
     lowerCaseEmail = lowerCaseEmail.toLowerCase();
 
-    //atttirbutes to send for signUP method
-    const attributeList = [
-      {
+    //attributes to be included when we send the signup
+    const attributeList: CognitoUserAttribute[] = [
+      new CognitoUserAttribute({
         Name: 'email',
         Value: lowerCaseEmail,
-      },
+      }),
     ];
 
     userPool.signUp(
       lowerCaseEmail,
       password,
       attributeList,
-      null,
+      [],
       (err, data) => {
         if (err) {
           //if the email, password or anything is off throw error
@@ -68,7 +76,7 @@ const Signup: React.FC = (): JSX.Element => {
   };
 
   //This allows user to go to login page
-  const login = () => {
+  const login = (): void => {
     console.log('testing');
     navigate('/');
   };
