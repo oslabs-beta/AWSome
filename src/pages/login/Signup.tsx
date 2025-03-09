@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import Verify from './Verification.tsx';
 import { data, useNavigate } from 'react-router';
-import Verify from '../login/Verification.jsx';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
-function Signup() {
+const Signup: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -12,7 +12,7 @@ function Signup() {
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   //url data to redirect to when user wishes to sign up with Google
-  const authUrl = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.toLowerCase().replace(
+  const authUrl: string = `https://${import.meta.env.VITE_COGNITO_USER_POOL_ID.toLowerCase().replace(
     '_',
     ''
   )}.auth.us-east-1.amazoncognito.com/login?client_id=${
@@ -166,6 +166,6 @@ function Signup() {
       )}
     </div>
   );
-}
+};
 
 export default Signup;

@@ -2,18 +2,29 @@ import { useEffect, useState } from 'react';
 import { CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 import { useNavigate } from 'react-router';
 
-const Verify = ({ email }) => {
-  const [verificationCode, setVerificationCode] = useState('');
-  const [message, setMessage] = useState('');
+//types for the props
+interface VerifyProps {
+  email: string;
+}
+
+interface PoolData {
+  UserPoolId: string;
+  ClientId: string;
+}
+
+const Verify: React.FC<VerifyProps> = ({ email }): JSX.Element => {
+  const [verificationCode, setVerificationCode] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
   const navigate = useNavigate();
 
   //handles checking if user enters appropriate code after signup
   const handleVerification = () => {
     //grabs pool data, ensures our poolID stays safe, along with ClientId
-    const poolData = {
+    const poolData: PoolData = {
       UserPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
       ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
     };
+
     //creates a userPool out of the data provided above
     const userPool = new CognitoUserPool(poolData);
 
