@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   CognitoIdentityProviderClient,
   ConfirmForgotPasswordCommand,
@@ -9,7 +9,7 @@ const client = new CognitoIdentityProviderClient({
   region: 'us-east-1',
 });
 
-function Forgot() {
+const Forgot: React.FC = (): JSX.Element => {
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [delivery, setDelivery] = useState('');
@@ -20,7 +20,9 @@ function Forgot() {
   const [errorMessage, setErrorMessage] = useState('');
 
   //form is submitted, code is sent to email
-  const retrieveCode = async (event) => {
+  const retrieveCode = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
 
     //sets email to lowercase first before sending it to Cognito
@@ -187,7 +189,6 @@ function Forgot() {
           <p className='font-medium flex justify-center text-lg text-violet-500 mt-7 mb-7 animate-pulse'>
             Log in with your new password.
           </p>
-          
         </div>
       )}
       <div className='flex relative w-full h-screen lg:flex items-center justify-center bg-violet-100'>
@@ -196,6 +197,6 @@ function Forgot() {
       </div>
     </div>
   );
-}
+};
 
 export default Forgot;
