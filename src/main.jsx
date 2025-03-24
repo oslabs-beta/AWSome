@@ -5,7 +5,7 @@ import Error from './pages/Error.jsx';
 import Login from './pages/login/Login.tsx';
 import Signup from './pages/login/Signup.tsx';
 import Layout from './pages/Layout.jsx';
-import Forgot from './pages/login/Forgot.jsx';
+import Forgot from './pages/login/Forgot.tsx';
 import BarChart from './pages/components/Barchart.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import LineChart from './pages/components/Linechart.jsx';
