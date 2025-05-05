@@ -91,12 +91,12 @@ const Home = () => {
           Dashboard
         </button>
 
-        <a
+        <button
           onClick={logOut}
           className='block w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out'
         >
           Logout
-        </a>
+        </button>
 
         {/* {isOpen && (
           <nav
@@ -116,8 +116,7 @@ const Home = () => {
       {/* </h2> */}
       <main className='flex-grow flex flex-col items-center py-12'>
         {/*Connect to User's AWS Account Button */}
-        <div className='mb-12 -mx-12'  >
-
+        <div className='mb-12 -mx-12'>
           {/* <button
             className='bg-white-600 '
             onClick={async () => {

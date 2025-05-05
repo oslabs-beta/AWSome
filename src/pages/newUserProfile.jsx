@@ -67,12 +67,7 @@ function NewUser() {
           onClick={logOut}
           className='block cursor-pointer w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out'
         >
-          <a
-            onClick={logOut}
-            className='block cursor-pointer w-full text-white text-left py-2 px-4 hover:bg-[#000000] rounded-md transition duration-150 ease-in-out'
-          >
-            Logout
-          </a>
+          Logout
         </button>
 
         {/* Dropdown Menu */}
