@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   CognitoIdentityProviderClient,
   ConfirmForgotPasswordCommand,
@@ -9,18 +9,21 @@ const client = new CognitoIdentityProviderClient({
   region: 'us-east-1',
 });
 
-function Forgot() {
-  const [email, setEmail] = useState('');
-  const [code, setCode] = useState('');
-  const [delivery, setDelivery] = useState('');
-  const [passwordOne, setPasswordOne] = useState('');
-  const [passwordTwo, setPasswordTwo] = useState('');
-  const [verificationComponent, setVerificationComponent] = useState(false);
-  const [resetSucess, setResetSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+const Forgot: React.FC = (): JSX.Element => {
+  const [email, setEmail] = useState<string>('');
+  const [code, setCode] = useState<string>('');
+  const [delivery, setDelivery] = useState<string>('');
+  const [passwordOne, setPasswordOne] = useState<string>('');
+  const [passwordTwo, setPasswordTwo] = useState<string>('');
+  const [verificationComponent, setVerificationComponent] =
+    useState<boolean>(false);
+  const [resetSucess, setResetSuccess] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   //form is submitted, code is sent to email
-  const retrieveCode = async (event) => {
+  const retrieveCode = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
 
     //sets email to lowercase first before sending it to Cognito
@@ -48,18 +51,32 @@ function Forgot() {
   };
 
   //code is submitted to Cognito and verified for password reset
-  const codeSubmission = async (event) => {
+  const codeSubmission = async (event: React.FormEvent<HTMLFormElement>) => {
     //prevents full page refresh
     event.preventDefault();
+
     //If user types in two passwords that are not the same, this error message will display
     if (passwordOne !== passwordTwo) {
       setErrorMessage('Passwords do not match.');
       return;
     }
     //
+    const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
+    if (!clientId) {
+      setErrorMessage('Client Id is missing');
+      return;
+    }
+
     setErrorMessage('');
-    const input = {
-      ClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+    interface Input {
+      ClientId: string;
+      Username: string;
+      ConfirmationCode: string;
+      Password: string;
+    }
+
+    const input: Input = {
+      ClientId: clientId,
       Username: email,
       ConfirmationCode: code,
       Password: passwordOne,
@@ -70,8 +87,13 @@ function Forgot() {
       await client.send(command);
       setResetSuccess(true);
     } catch (error) {
-      console.error('Error:', error.message);
-      setErrorMessage(error.message);
+      if (error instanceof Error) {
+        console.error('Error:', error.message);
+        setErrorMessage(error.message);
+      } else {
+        console.error('Error: Unexpected Error');
+        setErrorMessage('An unexpected error occurred');
+      }
     }
   };
 
@@ -187,7 +209,6 @@ function Forgot() {
           <p className='font-medium flex justify-center text-lg text-violet-500 mt-7 mb-7 animate-pulse'>
             Log in with your new password.
           </p>
-          
         </div>
       )}
       <div className='flex relative w-full h-screen lg:flex items-center justify-center bg-violet-100'>
@@ -196,6 +217,6 @@ function Forgot() {
       </div>
     </div>
   );
-}
+};
 
 export default Forgot;

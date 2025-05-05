@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Verify from './Verification.tsx';
-import { data, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import {
   CognitoUserPool,
   CognitoUserAttribute,
