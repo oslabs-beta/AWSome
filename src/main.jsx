@@ -21,10 +21,10 @@ createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route path='/' element={<Login />} />
-          <Route path='/Signup' element={<Signup />} />
-        </Route>
+        {/* <Route path='/' element={<Layout />}> */}
+        <Route path='/' element={<Login />} />
+        <Route path='/Signup' element={<Signup />} />
+        {/* </Route> */}
         <Route element={<ProtectedRoute />}>
           <Route path='/Home' element={<Dashboard />} />
           <Route path='/newUserProfile' element={<NewUser />} />
