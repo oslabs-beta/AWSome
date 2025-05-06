@@ -198,23 +198,23 @@ const Login: React.FC = () => {
                       required
                       placeholder='Enter your password'
                     ></input>
-                    <div className='mt-3 flex justify-between items-center'></div>
                     <p className='text-red-500'>{error}</p>
                     <div className='mt-8 flex flex-col gap-y-4'>
                       <button
-                        className=' shadow-lg shadow-gray-300 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
+                        className=' shadow-lg shadow-gray-200 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
                         type='submit'
                       >
                         Sign in
                       </button>
                     </div>
                   </form>
-                  <div>
-                    <a className='mt-8 flex flex-col gap-y-4' href={authUrl}>
-                      <button className='shadow-lg shadow-gray-300 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'>
-                        Sign in with Google
-                      </button>
-                    </a>
+                  <div className='mt-8 flex flex-col gap-y-4'>
+                    <button
+                      className='shadow-md shadow-gray-300 border-2 border-violet-500 drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-transparent text-gray-700 text-lg font-bold'
+                      onClick={() => (window.location.href = authUrl)}
+                    >
+                      Sign in with Google
+                    </button>
                   </div>
 
                   <div className='mt-8 flex justify-center items-center'>

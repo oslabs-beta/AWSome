@@ -82,22 +82,22 @@ const Signup: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div>
+    <>
       {!isVerified ? (
         <div className='header flex w-full h-screen'>
-          <div className='page-wrapper w-full flex items-center justify-center mx-10'>
+          <div className='page-wrapper w-full flex items-center justify-center '>
             <div className='page-container-2'>
               <div className='block'>
                 <div className='form-wrapper bg-white px-10 py-20 rounded-3xl'>
                   <h2 className='mainHeading text-5xl semi-bold'>
                     Get Started with AWSome!
                   </h2>
-                  <div className='font-medium text-lg text-violet-500 mt-4 animate-pulse'>
+                  <p className='font-medium text-lg text-violet-500 mt-4 animate-pulse'>
                     See all your metrics in one place with an AWSome monitoring
                     tool for your EC2 instances!
-                  </div>
+                  </p>
 
-                  <div className='formbox mt-8 drop-shadow-xl shadow-blue-600'>
+                  <div className='mt-8'>
                     <form onSubmit={handleSignups}>
                       <label className='text-lg font-medium'>Email: </label>
                       <input
@@ -134,19 +134,21 @@ const Signup: React.FC = (): JSX.Element => {
                       )}
                       <div className='mt-8 flex flex-col gap-y-4'>
                         <button
-                          className='drop-shadow-md shadow-blue-600 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
+                          className='shadow-lg shadow-gray-200 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'
                           type='submit'
                         >
                           Sign up
                         </button>
                       </div>
                     </form>
-                    <div>
-                      <a className='mt-8 flex flex-col gap-y-4' href={authUrl}>
-                        <button className='shadow-md shadow-gray-300 border-2 border-violet-500 drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-transparent text-gray-700 text-lg font-bold'>
-                          Sign up with Google
-                        </button>
-                      </a>
+                    <div className='mt-8 flex flex-col gap-y-4'>
+                      <button
+                        className='shadow-md shadow-gray-300 border-2 border-violet-500 drop-shadow-xl shadow-blue-600 active:scale-[.98] active duration-75 hover:scale-[1.01] ease-in-out transition py-3 rounded-xl bg-transparent text-gray-700 text-lg font-bold'
+                        onClick={() => (window.location.href = authUrl)}
+                      >
+                        Sign up with Google
+                      </button>
+
                       <p className='flex justify-center font-medium text-base ml-6 mt-5'>
                         Have an account?{' '}
                         <button
@@ -172,7 +174,7 @@ const Signup: React.FC = (): JSX.Element => {
       ) : (
         <Verify email={email} />
       )}
-    </div>
+    </>
   );
 };
 
